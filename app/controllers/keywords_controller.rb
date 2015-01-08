@@ -8,6 +8,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1
   def show
+    @articles = @keyword.articles params[:page]
   end
 
   # GET /keywords/new

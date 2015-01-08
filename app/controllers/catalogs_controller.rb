@@ -8,6 +8,7 @@ class CatalogsController < ApplicationController
 
   # GET /catalogs/1
   def show
+    @articles = @catalog.articles params[:page]
   end
 
   # GET /catalogs/new

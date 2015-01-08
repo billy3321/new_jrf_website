@@ -4,5 +4,23 @@ p
   strong 名稱
   = @category.name
 
+table class="table"
+  thead
+    tr
+      th Title
+      th colspan="3"
+
+
+  tbody
+    - @articles.each do |article| 
+      tr
+        td = article.title
+        td = link_to 'Show', article_path(article), class: "btn"
+        td = link_to 'Edit', edit_article_path(article), class: "btn"
+        td = link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+= paginate @articles
+br
+
 = link_to '修改', edit_category_path(@category), class: "btn"
 = link_to '回到列表', categories_path, class: "btn"

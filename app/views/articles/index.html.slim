@@ -15,6 +15,7 @@ table class="table"
         td = link_to 'Edit', edit_article_path(article), class: "btn"
         td = link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 
+= paginate @articles
 br
 
 = link_to 'New Article', new_article_path(@article_group), class: "btn"
