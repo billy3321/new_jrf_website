@@ -1,0 +1,20 @@
+h1 分類二列表
+
+table class="table"
+  thead
+    tr
+      th Name
+      th colspan="3"
+
+
+  tbody
+    - @categories.each do |category| 
+      tr
+        td = category.name
+        td = link_to '顯示', category_path(category), class: "btn"
+        td = link_to '修改', edit_category_path(category), class: "btn"
+        td = link_to '刪除', category_path(category), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
+
+br
+
+= link_to '建立分類二', new_category_path, class: "btn"

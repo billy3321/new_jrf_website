@@ -1,0 +1,20 @@
+h1 分類一列表
+
+table class="table"
+  thead
+    tr
+      th Name
+      th colspan="3"
+
+
+  tbody
+    - @catalogs.each do |catalog| 
+      tr
+        td = catalog.name
+        td = link_to '顯示', catalog_path(catalog), class: "btn"
+        td = link_to '修改', edit_catalog_path(catalog), class: "btn"
+        td = link_to '刪除', catalog_path(catalog), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
+
+br
+
+= link_to '建立分類一', new_catalog_path, class: "btn"

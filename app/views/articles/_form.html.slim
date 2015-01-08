@@ -14,9 +14,54 @@ br
 
 .form-group
   h4 
-    = f.label :name, "名稱", class: "control-label col-md-3"
+    = f.label :title, "標題", class: "control-label col-md-3"
   .col-md-6
-    = f.input :name , input_html: { class: "form-control" }, label: false
+    = f.input :title , input_html: { class: "form-control" }, label: false
+.form-group
+  h4 
+    = f.label :content, "名稱", class: "control-label col-md-3"
+  .col-md-6
+    = f.cktext_area :content, label: false, input_html: { class: "form-control" }
+.form-group
+  h4 
+    = f.label :author, "作者", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :author , input_html: { class: "form-control" }, label: false
+.form-group
+  h4 
+    = f.label :published, "是否發佈", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :published, as: :boolean, label: false, input_html: { class: "form-control" }
+.form-group
+  h4 
+    = f.label :published_at, "發佈時間", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :publish_at, as: :string, input_html: { class: "form-control datepicker", value: Date.today }, label: false
+.form-group
+  h4 
+    = f.label :keywords, "關鍵字", class: "control-label col-md-3"
+  .col-md-6
+    = f.association :keywords, label: false, collection: Keyword.all, input_html: { class: 'chosen-select' }
+.form-group
+  h4 
+    = f.label :catalog_id, "分類一", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :catalog_id, collection: Catalog.all, input_html: { class: 'chosen-select' }, label: false
+.form-group
+  h4 
+    = f.label :category_id, "分類二", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :category_id, collection: Category.all, input_html: { class: 'chosen-select' }, label: false
+.form-group
+  h4 
+    = f.label :images, "FB圖片", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :images , input_html: { class: "form-control" }, label: false
+.form-group
+  h4 
+    = f.label :description, "FB描述", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :description, as: :text, input_html: { class: "form-control" }, label: false
 br
 br
 .actions

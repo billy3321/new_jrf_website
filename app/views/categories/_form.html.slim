@@ -1,0 +1,8 @@
+= render 'shared/error_messages', object: f.object
+ul class="form-list"
+  li
+    p class="snote" ＊為必填項目
+  li
+    p 分類二名稱＊
+    p = f.input :name, label: false, required: true
+  li = f.submit '確定送出', class: "form-btn", id: "button"

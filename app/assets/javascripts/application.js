@@ -13,4 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui/datepicker
+//= require chosen-jquery
+//= require ckeditor/init
 //= require_tree .
+
+var ready = function(){
+  // datepicker
+  $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+  // enable chosen js
+  $('.chosen-select').chosen({
+    search_contains: true,
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    width: '200px',
+  });
+  $(".chosen-select").trigger('chosen:updated');
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

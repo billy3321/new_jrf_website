@@ -43,26 +43,33 @@ end
 
 Article.delete_all
 
-rtepath = Rails.root.join('db', 'rte.json')
+rtepath = Rails.root.join('db', 'data', 'rte.json')
 
-File.readlines(rtepath).each do |line|                                                                                                                        ····················
-  article_data = JSON.parse(line)
-  article = Article.new
-  article.id = article_data[0]
-  article.title = article_data[1]
-  article.content = article_data[2]
-  article.published_at = Date.parse(article_data[3])
-  article.created_at = Date.parse(article_data[3])
-  unless article_data[4].empty?
-    article.category_id = Category.where(name: article_data[4]).first.id
+if File.file?(rtepath)
+  File.readlines(rtepath).each do |line|
+    article_data = JSON.parse(line)
+    article = Article.new
+    article.id = article_data[0]
+    article.title = article_data[1]
+    article.content = article_data[2]
+    if article_data[3].empty?
+      article.published_at = Date.today
+    else
+      article.published_at = Date.parse(article_data[3])
+      article.created_at = Date.parse(article_data[3])
+    end
+    unless article_data[4].empty?
+      article.category_id = Category.where(name: article_data[4]).first.try(:id)
+    end
+    article.author = article_data[5]
+    unless article_data[6].empty?
+      article.catalog_id = Catalog.where(name: article_data[6]).first.try(:id)
+    end
+    article.image = article_data[7]
+    article.description = article_data[8]
+    article.published = true
+    article.save
   end
-  article.author = article_data[5]
-  unless article_data[6].empty?
-    article.catalog_id = Catalog.where(name: article_data[6]).first.id
-  end
-  article.image = article_data[7]
-  article.description = article_data[8]
-  article.save
 end
 
 ActiveRecord::Base.connection.tables.each do |t|

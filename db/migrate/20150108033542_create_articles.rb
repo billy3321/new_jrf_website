@@ -14,8 +14,8 @@ class CreateArticles < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :articles, :users
-    add_foreign_key :articles, :catalogs
-    add_foreign_key :articles, :categories
+    #add_foreign_key :articles, :users
+    #add_foreign_key :articles, :catalogs
+    #add_foreign_key :articles, :categories
   end
 end

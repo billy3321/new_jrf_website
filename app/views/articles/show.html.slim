@@ -1,8 +1,22 @@
 p id="notice" = notice
 
 p
-  strong Name:
-  = @article.name
+  strong Title
+  = @article.title
+
+= @article.content.html_safe
+br
+= @article.author
+br
+= @article.category.try(:name)
+br
+= @article.catalog.try(:name)
+br
+- @article.keywords.each do |k|
+  = @k.name
+  br
+= @article.published_at.strftime('%Y-%m-%d')
+br
 
 
 = link_to 'Edit', edit_article_path(@article), class: "btn"

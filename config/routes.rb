@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  mount Ckeditor::Engine => '/ckeditor'
+  root 'static_pages#home'
+  match '/about',    to: 'static_pages#about',    via: 'get'
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :articles
+  resources :keywords
+  resources :catalogs
+  resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
