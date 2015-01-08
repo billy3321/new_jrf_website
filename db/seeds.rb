@@ -52,9 +52,14 @@ File.readlines(rtepath).each do |line|                                          
   article.title = article_data[1]
   article.content = article_data[2]
   article.published_at = Date.parse(article_data[3])
-  article.category_id = Category.where(name: article_data[4]).first.id
+  article.created_at = Date.parse(article_data[3])
+  unless article_data[4].empty?
+    article.category_id = Category.where(name: article_data[4]).first.id
+  end
   article.author = article_data[5]
-  article.catalog_id = Catalog.where(name: article_data[6]).first.id
+  unless article_data[6].empty?
+    article.catalog_id = Catalog.where(name: article_data[6]).first.id
+  end
   article.image = article_data[7]
   article.description = article_data[8]
   article.save
