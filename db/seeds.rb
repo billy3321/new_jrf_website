@@ -7,6 +7,59 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+Catalog.delete_all
 
-catalogs = ["自訂網頁", "最新訊息", "司法改革雜誌", "英文小組", "出版品"]
-categories = ["每週新聞", "最新活動", "評論", "司法新聞", "新聞稿", "空白", "快筆文章", nil]
+catalogs = [
+  {id: 1, name: "自訂網頁"},
+  {id: 2, name: "最新訊息"},
+  {id: 3, name: "司法改革雜誌"},
+  {id: 4, name: "英文小組"},
+  {id: 5, name: "出版品"}
+]
+
+catalogs.each do |c|
+  catalog = Catalog.new(c)
+  catalog.id = c['id']
+  catalog.save
+end
+
+Category.delete_all
+
+categories = [
+  {id: 1, name: "每週新聞"},
+  {id: 2, name: "最新活動"},
+  {id: 3, name: "評論"},
+  {id: 4, name: "司法新聞"},
+  {id: 5, name: "新聞稿"},
+  {id: 6, name: "空白"},
+  {id: 7, name: "快筆文章"}
+]
+
+categories.each do |c|
+  category = Category.new(c)
+  category.id = c['id']
+  category.save
+end
+
+Article.delete_all
+
+rtepath = Rails.root.join('db', 'rte.json')
+
+File.readlines(rtepath).each do |line|                                                                                                                        ····················
+  article_data = JSON.parse(line)
+  article = Article.new
+  article.id = article_data[0]
+  article.title = article_data[1]
+  article.content = article_data[2]
+  article.published_at = Date.parse(article_data[3])
+  article.category_id = Category.where(name: article_data[4]).first.id
+  article.author = article_data[5]
+  article.catalog_id = Catalog.where(name: article_data[6]).first.id
+  article.image = article_data[7]
+  article.description = article_data[8]
+  article.save
+end
+
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end

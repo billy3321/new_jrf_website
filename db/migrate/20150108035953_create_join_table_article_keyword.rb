@@ -1,8 +1,9 @@
 class CreateJoinTableArticleKeyword < ActiveRecord::Migration
   def change
-    create_join_table :articles, :keywords do |t|
-      # t.index [:article_id, :keyword_id]
-      # t.index [:keyword_id, :article_id]
+    create_table :articles_keywords, :id => false do |t|
+      t.references :article, null: false
+      t.references :keyword, null: false
     end
+    add_index(:articles_keywords, [:article_id, :keyword_id], unique: true)
   end
 end
