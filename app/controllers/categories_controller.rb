@@ -8,7 +8,7 @@ class CategorysController < ApplicationController
 
   # GET /categories/1
   def show
-    @articles = @category.articles params[:page]
+    @articles = @category.articles.page params[:page]
   end
 
   # GET /categories/new
