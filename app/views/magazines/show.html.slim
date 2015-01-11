@@ -1,0 +1,16 @@
+p id="notice" = notice
+
+p
+  strong Name
+  = @magazine.name
+br
+= @magazine.issue
+br
+= @magazine.volumn
+br
+= @magazine.published_at.strftime('%Y-%m-%d')
+br
+
+
+= link_to 'Edit', edit_magazine_path(@magazine), class: "btn"
+= link_to 'Back', magazines_path, class: "btn"

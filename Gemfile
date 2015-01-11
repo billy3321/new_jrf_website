@@ -38,6 +38,7 @@ gem 'mini_magick'
 gem 'settingslogic'
 gem 'ckeditor'
 gem 'pg'
+gem 'ransack'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,10 +1,10 @@
-- if @article.errors.any? 
+- if @magazine_article.errors.any? 
   .error_explanation
     h2 
-      = pluralize(@article.errors.count, "error") 
-      prohibited this article from being saved:
+      = pluralize(@magazine_article.errors.count, "error") 
+      prohibited this magazine_article from being saved:
     ul
-      - @article.errors.full_messages.each do |message|
+      - @magazine_article.errors.full_messages.each do |message|
       li = message
 p
 br
@@ -12,6 +12,16 @@ br
 br
 br
 
+.form-group
+  h4 
+    = f.label :magazine_id, "雜誌", class: "control-label col-md-3"
+  .col-md-6
+   = f.input :magazine_id, collection: Magazine.all, label: false
+.form-group
+  h4 
+    = f.label :column_id, "專欄", class: "control-label col-md-3"
+  .col-md-6
+   = f.input :column_id, collection: Column.all, label: false
 .form-group
   h4 
     = f.label :title, "標題", class: "control-label col-md-3"
@@ -29,9 +39,9 @@ br
     = f.input :author , input_html: { class: "form-control" }, label: false
 .form-group
   h4 
-    = f.label :published, "是否發佈", class: "control-label col-md-3"
+    = f.label :comment, "評論", class: "control-label col-md-3"
   .col-md-6
-    = f.input :published, as: :boolean, label: false, input_html: { class: "form-control" }
+    = f.cktext_area :comment, label: false, input_html: { class: "form-control" }
 .form-group
   h4 
     = f.label :published_at, "發佈時間", class: "control-label col-md-3"
@@ -42,26 +52,7 @@ br
     = f.label :keywords, "關鍵字", class: "control-label col-md-3"
   .col-md-6
     = f.association :keywords, label: false, collection: Keyword.all, input_html: { class: 'chosen-select' }
-.form-group
-  h4 
-    = f.label :catalog_id, "分類一", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :catalog_id, collection: Catalog.all, label: false
-.form-group
-  h4 
-    = f.label :category_id, "分類二", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :category_id, collection: Category.all, label: false
-.form-group
-  h4 
-    = f.label :image, "FB圖片", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :image , input_html: { class: "form-control" }, label: false
-.form-group
-  h4 
-    = f.label :description, "FB描述", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :description, as: :text, input_html: { class: "form-control" }, label: false
+
 br
 br
 .actions

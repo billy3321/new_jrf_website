@@ -1,0 +1,34 @@
+- if @magazine.errors.any? 
+  .error_explanation
+    h2 
+      = pluralize(@magazine.errors.count, "error") 
+      prohibited this magazine from being saved:
+    ul
+      - @magazine.errors.full_messages.each do |message|
+      li = message
+p
+br
+br
+br
+br
+
+.form-group
+  h4 
+    = f.label :published_at, "發佈時間", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :publish_at, as: :string, input_html: { class: "form-control datepicker", value: Date.today }, label: false
+.form-group
+  h4 
+    = f.label :volumn, "卷", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :volumn , input_html: { class: "form-control" }, label: false
+.form-group
+  h4 
+    = f.label :issue, "期", class: "control-label col-md-3"
+  .col-md-6
+    = f.input :issue , input_html: { class: "form-control" }, label: false
+br
+br
+.actions
+  = f.submit '確定送出' , class: "btn btn-default btn-primary col-md-offset-3"
+  

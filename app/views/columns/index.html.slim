@@ -1,0 +1,21 @@
+h1 Listing columns
+
+table class="table"
+  thead
+    tr
+      th Title
+      th colspan="3"
+
+
+  tbody
+    - @columns.each do |column| 
+      tr
+        td = column.name
+        td = link_to 'Show', column_path(column), class: "btn"
+        td = link_to 'Edit', edit_column_path(column), class: "btn"
+        td = link_to 'Destroy', column_path(column), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+= paginate @columns
+br
+
+= link_to 'New Column', new_column_path(@column_group), class: "btn"

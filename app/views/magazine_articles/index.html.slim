@@ -1,0 +1,25 @@
+h1 Listing magazine_articles
+
+= search_form_for @q do |f|
+  = f.search_field :title_or_content_cont
+  = f.submit "search"
+
+table class="table"
+  thead
+    tr
+      th Title
+      th colspan="3"
+
+
+  tbody
+    - @magazine_articles.each do |magazine_article| 
+      tr
+        td = magazine_article.title
+        td = link_to 'Show', magazine_article_path(magazine_article), class: "btn"
+        td = link_to 'Edit', edit_magazine_article_path(magazine_article), class: "btn"
+        td = link_to 'Destroy', magazine_article_path(magazine_article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+= paginate @magazine_articles
+br
+
+= link_to 'New Magazine Article', new_magazine_article_path(@magazine_article_group), class: "btn"

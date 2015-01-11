@@ -1,0 +1,21 @@
+h1 Listing magazines
+
+table class="table"
+  thead
+    tr
+      th Title
+      th colspan="3"
+
+
+  tbody
+    - @magazines.each do |magazine| 
+      tr
+        td = magazine.name
+        td = link_to 'Show', magazine_path(magazine), class: "btn"
+        td = link_to 'Edit', edit_magazine_path(magazine), class: "btn"
+        td = link_to 'Destroy', magazine_path(magazine), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+= paginate @magazines
+br
+
+= link_to 'New Magazine', new_magazine_path(@magazine_group), class: "btn"

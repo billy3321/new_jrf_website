@@ -1,0 +1,27 @@
+p id="notice" = notice
+
+p
+  strong Title
+  = @magazine_article.title
+
+= @magazine_article.content.try(:html_safe)
+br
+= @magazine_article.author
+br
+= @magazine_article.comment.try(:html_safe)
+br
+= @magazine_article.magazine.volumn
+br
+= @magazine_article.magazine.issue
+br
+= @magazine_article.column.name
+br
+= @magazine_article.magazine.published_at.strftime('%Y-%m-%d')
+br
+- @magazine_article.keywords.each do |k|
+  = k.name
+  br
+
+
+= link_to 'Edit', edit_magazine_article_path(@magazine_article), class: "btn"
+= link_to 'Back', magazine_articles_path, class: "btn"

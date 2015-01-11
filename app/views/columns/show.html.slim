@@ -1,0 +1,9 @@
+p id="notice" = notice
+
+p
+  strong Name
+  = @column.name
+
+
+= link_to 'Edit', edit_column_path(@column), class: "btn"
+= link_to 'Back', columns_path, class: "btn"

@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+include ActionView::Helpers
 
 Catalog.delete_all
 
@@ -69,6 +69,44 @@ if File.file?(rtepath)
     article.description = article_data[8]
     article.published = true
     article.save
+  end
+end
+
+Magazine.delete_all
+Column.delete_all
+MagazineArticle.delete_all
+
+magazinepath = Rails.root.join('db', 'data', 'magazines.json')
+#["標題","作者","卷","期","日期","專欄","全文","註釋"]
+if File.file?(magazinepath)
+  File.readlines(magazinepath).each do |line|
+    magazine_article_data = JSON.parse(line)
+    magazine_article = MagazineArticle.new
+    magazine = Magazine.where(issue: magazine_article_data[3]).first
+    unless magazine
+      magazine = Magazine.new
+      magazine.volumn = magazine_article_data[2]
+      magazine.issue = magazine_article_data[3]
+      magazine.id = magazine_article_data[3]
+      published_at = Date.parse(magazine_article_data[4])
+      magazine.published_at = published_at
+      magazine.name = "司改雜誌第#{magazine_article_data[3]}期"
+      magazine.created_at = published_at
+      magazine.save
+    end
+    magazine_article.magazine = magazine
+    column = Column.where(name: magazine_article_data[5]).first
+    unless column
+      column = Column.new
+      column.name = magazine_article_data[5]
+      column.save
+    end
+    magazine_article.column = column
+    magazine_article.title = magazine_article_data[0].gsub(/\n/, '')
+    magazine_article.author = magazine_article_data[1]
+    magazine_article.content = simple_format(magazine_article_data[6]).gsub(/\n/, '')
+    magazine_article.comment = simple_format(magazine_article_data[7]).gsub(/\n/, '')
+    magazine_article.save
   end
 end
 

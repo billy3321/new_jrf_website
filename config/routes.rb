@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :keywords
   resources :catalogs
   resources :categories
+  resources :magazines
+  resources :magazine_articles
+  resources :columns
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
