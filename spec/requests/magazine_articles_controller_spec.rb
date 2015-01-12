@@ -42,7 +42,7 @@ describe "MagazineArticle" do
   describe "#update" do
     it "success" do
       magazine_article
-      update_data = { :name => "new_title" }
+      update_data = { :title => "new_title" }
       put "/magazine_articles/#{magazine_article.id}", :magazine_article => update_data
       expect(response).to be_redirect
       magazine_article.reload

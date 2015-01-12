@@ -11,7 +11,7 @@ describe "Article" do
       title: "new_article_title",
       content: "new_article_content",
       author: "new_article_author",
-      published_at: Date.today,
+      published_at: Date.today.strftime('%Y-%m-%d'),
       image: "new_article_image",
       description: "new_article_description",
       category_id: category.id,
@@ -19,8 +19,6 @@ describe "Article" do
       keyword_ids: [keyword.id]
     }
   end
-
-
 
   describe "#new" do
     it "success" do

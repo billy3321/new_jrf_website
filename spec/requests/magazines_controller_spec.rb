@@ -8,7 +8,7 @@ describe "Magazine" do
     {
       issue: 30,
       volumn: "new_magazine_volumn",
-      published_at: Date.today,
+      published_at: Date.today.strftime('%Y-%m-%d'),
       name: "司改雜誌第30期"
     }
   end
@@ -43,7 +43,7 @@ describe "Magazine" do
       put "/magazines/#{magazine.id}", :magazine => update_data
       expect(response).to be_redirect
       magazine.reload
-      expect(magazine.issue).to match(update_data[:issue])
+      expect(magazine.issue).to eq(update_data[:issue])
     end
   end
 

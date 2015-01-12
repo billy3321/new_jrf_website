@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :column do
-    sequence(:column)  { |n| "Column #{n}" }
+    sequence(:name) { |n| "Column #{n}" }
   end
 end

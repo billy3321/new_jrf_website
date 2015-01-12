@@ -1,4 +1,4 @@
-class CategorysController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :set_category, except: [:index, :new]
 
   # GET /categories

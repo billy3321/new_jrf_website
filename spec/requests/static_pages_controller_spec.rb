@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Static pages" do
+describe "Static page" do
 
   describe "Index" do
     it "should have content" do

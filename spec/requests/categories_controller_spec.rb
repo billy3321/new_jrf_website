@@ -12,14 +12,14 @@ describe "Category" do
 
   describe "#new" do
     it "success" do
-      get "/categorys/new"
+      get "/categories/new"
       expect(response).to be_success
     end
   end
 
   describe "#edit" do
     it "success" do
-      get "/categorys/#{category.id}/edit"
+      get "/categories/#{category.id}/edit"
       expect(response).to be_success
     end
   end
@@ -27,7 +27,7 @@ describe "Category" do
   describe "#create" do
     it "success" do
       expect {
-        post "/categorys", :category => new_category
+        post "/categories", :category => new_category
       }.to change { Category.count }.by(1)
       expect(response).to be_redirect
     end
@@ -37,7 +37,7 @@ describe "Category" do
     it "success" do
       category
       update_data = { :name => "new_name" }
-      put "/categorys/#{category.id}", :category => update_data
+      put "/categories/#{category.id}", :category => update_data
       expect(response).to be_redirect
       category.reload
       expect(category.name).to match(update_data[:name])
@@ -48,7 +48,7 @@ describe "Category" do
     it "success" do
       category
       expect {
-        delete "/categorys/#{category.id}"
+        delete "/categories/#{category.id}"
       }.to change { Category.count }.by(-1)
       expect(response).to be_redirect
     end
