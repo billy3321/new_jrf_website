@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Column do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:column) {FactoryGirl.create(:column)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :column
+    }.to change { Column.count }.by(1)
+  end
 end

@@ -1,25 +1,25 @@
 p id="notice" = notice
 
 p
-  strong Title
-  = @magazine_article.title
+  strong = @magazine_article.title
 
-= @magazine_article.content.try(:html_safe)
 br
-= @magazine_article.author
+p = @magazine_article.content.try(:html_safe)
 br
-= @magazine_article.comment.try(:html_safe)
+p = @magazine_article.author
 br
-= @magazine_article.magazine.volumn
+p = @magazine_article.comment.try(:html_safe)
 br
-= @magazine_article.magazine.issue
+p = @magazine_article.magazine.volumn
 br
-= @magazine_article.column.name
+p = @magazine_article.magazine.issue
 br
-= @magazine_article.magazine.published_at.strftime('%Y-%m-%d')
+p = @magazine_article.column.name
+br
+p = @magazine_article.magazine.published_at.strftime('%Y-%m-%d')
 br
 - @magazine_article.keywords.each do |k|
-  = k.name
+  p = k.name
   br
 
 

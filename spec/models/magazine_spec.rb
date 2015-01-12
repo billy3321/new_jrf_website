@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Magazine do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:magazine) {FactoryGirl.create(:magazine)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :magazine
+    }.to change { Magazine.count }.by(1)
+  end
 end

@@ -4,6 +4,7 @@ p
   strong 名稱
   = @keyword.name
 
+p 相關文章
 table class="table"
   thead
     tr
@@ -20,6 +21,25 @@ table class="table"
         td = link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 
 = paginate @articles
+br
+p 相關雜誌文章
+
+table class="table"
+  thead
+    tr
+      th Title
+      th colspan="3"
+
+
+  tbody
+    - @magazine_articles.each do |magazine_article| 
+      tr
+        td = article.title
+        td = link_to 'Show', magazine_article_path(magazine_article), class: "btn"
+        td = link_to 'Edit', edit_magazine_article_path(magazine_article), class: "btn"
+        td = link_to 'Destroy', magazine_article_path(magazine_article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+= paginate @magazine_articles
 br
 
 = link_to '修改', edit_keyword_path(@keyword), class: "btn"

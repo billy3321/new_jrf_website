@@ -1,0 +1,20 @@
+doctype html
+
+html
+  head
+    title New JRF Website
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+
+  body
+    - if notice
+      p class="alert alert-success" = notice
+
+    - if alert
+      p class="alert alert-danger" = alert
+
+    = render 'layouts/header'
+    .container
+      = yield

@@ -1,21 +1,20 @@
 p id="notice" = notice
 
 p
-  strong Title
-  = @article.title
-
-= @article.content.html_safe
+  strong = @article.title
 br
-= @article.author
+p = @article.content.html_safe
 br
-= @article.category.try(:name)
+p = @article.author
 br
-= @article.catalog.try(:name)
+p = @article.category.try(:name)
+br
+p = @article.catalog.try(:name)
 br
 - @article.keywords.each do |k|
-  = k.name
+  p = k.name
   br
-= @article.published_at.strftime('%Y-%m-%d')
+p = @article.published_at.strftime('%Y-%m-%d')
 br
 
 
