@@ -21,5 +21,4 @@ dump.rdb
 config/database.yml
 config/config.yml
 public/uploads/
-db/data/rte.json
-db/data/magazines.json
+#db/data/*.json

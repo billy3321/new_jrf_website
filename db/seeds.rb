@@ -110,6 +110,21 @@ if File.file?(magazinepath)
   end
 end
 
+epaperpath = Rails.root.join('db', 'data', 'epapers.json')
+
+if File.file?(epaperpath)
+  File.readlines(epaperpath).each do |line|
+    epaper_data = JSON.parse(line)
+    epaper = Epaper.new
+    epaper.id = epaper_data[0]
+    epaper.title = epaper_data[3]
+    epaper.filename = epaper_data[2]
+    epaper.published_at = Date.parse(epaper_data[1])
+    epaper.created_at = epaper.published_at
+    epaper.save
+  end
+end
+
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end

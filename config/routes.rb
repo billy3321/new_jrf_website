@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :magazines
   resources :magazine_articles
   resources :columns
+  resources :epapers, only: [:show, :index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

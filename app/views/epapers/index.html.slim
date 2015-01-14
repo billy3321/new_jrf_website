@@ -1,0 +1,20 @@
+h1 Listing epapers
+
+table class="table"
+  thead
+    tr
+      th Title
+      th Date
+      th
+
+
+  tbody
+    - @epapers.each do |epaper| 
+      tr
+        td = epaper.title
+        td = epaper.created_at.strftime('%Y-%m-%d')
+        td = link_to 'Show', epaper_path(epaper), class: "btn"
+
+= paginate @epapers
+br
+
