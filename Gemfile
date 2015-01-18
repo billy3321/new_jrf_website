@@ -61,7 +61,7 @@ group :development, :test do
   gem 'spring'
   gem 'minitest'
   gem "capybara"
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails'
   gem 'database_cleaner'
 end
 
