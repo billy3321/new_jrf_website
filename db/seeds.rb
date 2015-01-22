@@ -110,6 +110,8 @@ if File.file?(magazinepath)
   end
 end
 
+Epaper.delete_all
+
 epaperpath = Rails.root.join('db', 'data', 'epapers.json')
 
 if File.file?(epaperpath)
@@ -119,6 +121,18 @@ if File.file?(epaperpath)
     epaper.id = epaper_data[0]
     epaper.title = epaper_data[3]
     epaper.filename = epaper_data[2]
+    e_path = Rails.root.join('db', 'epapers', epaper_data[2])
+    if File.file?(e_path)
+      content = File.read(e_path)
+      encoding = CharlockHolmes::EncodingDetector.detect(content)[:encoding]
+      unless encoding == "UTF-8"
+        ic = Iconv.new('UTF-8//IGNORE', encoding)
+        content = ic.iconv(content)
+      end
+      epaper.content = content
+    else
+      epaper.content = ''
+    end
     epaper.published_at = Date.parse(epaper_data[1])
     epaper.created_at = epaper.published_at
     epaper.save

@@ -40,6 +40,8 @@ gem 'ckeditor'
 gem 'pg'
 gem 'ransack'
 gem "twitter-bootstrap-rails"
+gem 'charlock_holmes'
+gem 'iconv'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

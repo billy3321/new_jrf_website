@@ -1,6 +1,6 @@
 p id="notice" = notice
 
-= render file: "#{Rails.root.join('epapers', @epaper.filename)}"
+= @epaper.content.html_safe
 
 
 = link_to 'Back', epapers_path, class: "btn"

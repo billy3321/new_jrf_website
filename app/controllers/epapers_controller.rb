@@ -4,7 +4,8 @@ class EpapersController < ApplicationController
 
   # GET /epapers
   def index
-    @epapers = Epaper.all.page(params[:page])
+    @q = Epaper.search(params[:q])
+    @epapers = @q.result(distinct: true).page(params[:page])
   end
 
   # GET /epapers/1
