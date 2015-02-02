@@ -43,10 +43,10 @@ end
 
 Article.delete_all
 
-rtepath = Rails.root.join('db', 'data', 'rte.json')
+rte_path = Rails.root.join('db', 'data', 'rte.json')
 
-if File.file?(rtepath)
-  File.readlines(rtepath).each do |line|
+if File.file?(rte_path)
+  File.readlines(rte_path).each do |line|
     article_data = JSON.parse(line)
     article = Article.new
     article.id = article_data[0]
@@ -76,10 +76,10 @@ Magazine.delete_all
 Column.delete_all
 MagazineArticle.delete_all
 
-magazinepath = Rails.root.join('db', 'data', 'magazines.json')
+magazine_path = Rails.root.join('db', 'data', 'magazines.json')
 #["標題","作者","卷","期","日期","專欄","全文","註釋"]
-if File.file?(magazinepath)
-  File.readlines(magazinepath).each do |line|
+if File.file?(magazine_path)
+  File.readlines(magazine_path).each do |line|
     magazine_article_data = JSON.parse(line)
     magazine_article = MagazineArticle.new
     magazine = Magazine.where(issue: magazine_article_data[3]).first
@@ -112,10 +112,10 @@ end
 
 Epaper.delete_all
 
-epaperpath = Rails.root.join('db', 'data', 'epapers.json')
+epaper_path = Rails.root.join('db', 'data', 'epapers.json')
 
-if File.file?(epaperpath)
-  File.readlines(epaperpath).each do |line|
+if File.file?(epaper_path)
+  File.readlines(epaper_path).each do |line|
     epaper_data = JSON.parse(line)
     epaper = Epaper.new
     epaper.id = epaper_data[0]
@@ -126,8 +126,10 @@ if File.file?(epaperpath)
       content = File.read(e_path)
       encoding = CharlockHolmes::EncodingDetector.detect(content)[:encoding]
       unless encoding == "UTF-8"
-        ic = Iconv.new('UTF-8//IGNORE', encoding)
-        content = ic.iconv(content)
+        #ic = Iconv.new('UTF-8//IGNORE', encoding)
+        #content = ic.iconv(content)
+        # Another way
+        content = CharlockHolmes::Converter.convert(content, encoding, 'UTF-8')
       end
       epaper.content = content
     else
