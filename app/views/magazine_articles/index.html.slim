@@ -7,14 +7,20 @@ h1 列出雜誌文章
 table class="table"
   thead
     tr
+      th number
       th Title
+      th Publish Date
       th colspan="3"
 
 
   tbody
+    - number = 0
     - @magazine_articles.each do |magazine_article| 
+      - number += 1
       tr
-        td = magazine_article.title
+        td = number
+        td = link_to magazine_article.title, magazine_article_path(magazine_article)
+        td = magazine_article.magazine.published_at.strftime('%Y-%m-%d')
         td = link_to 'Show', magazine_article_path(magazine_article), class: "btn"
         td = link_to 'Edit', edit_magazine_article_path(magazine_article), class: "btn"
         td = link_to 'Destroy', magazine_article_path(magazine_article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
