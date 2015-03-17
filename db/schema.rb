@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 20150114085218) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "catalog_id"
-    t.integer  "category_id"
     t.string   "author"
     t.date     "published_at"
     t.string   "image"
@@ -31,8 +29,6 @@ ActiveRecord::Schema.define(version: 20150114085218) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "articles", ["catalog_id"], name: "index_articles_on_catalog_id", using: :btree
-  add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "articles_keywords", id: false, force: :cascade do |t|
@@ -43,19 +39,17 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   add_index "articles_keywords", ["article_id", "keyword_id"], name: "index_articles_keywords_on_article_id_and_keyword_id", unique: true, using: :btree
 
   create_table "catalogs", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   add_index "catalogs", ["name"], name: "index_catalogs_on_name", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string  "name"
+    t.integer "catalog_id"
   end
 
+  add_index "categories", ["catalog_id"], name: "index_categories_on_catalog_id", using: :btree
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -90,11 +84,11 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   end
 
   create_table "keywords", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string  "name"
+    t.integer "category_id"
   end
 
+  add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree
   add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
 
   create_table "keywords_magazine_articles", force: :cascade do |t|

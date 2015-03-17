@@ -4,8 +4,6 @@ class CreateArticles < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.references :user, index: true
-      t.references :catalog, index: true
-      t.references :category, index: true
       t.string :author
       t.date :published_at
       t.string :image
