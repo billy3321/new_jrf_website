@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150114085218) do
 
   create_table "catalogs", force: :cascade do |t|
     t.string "name"
+    t.string "image"
   end
 
   add_index "catalogs", ["name"], name: "index_catalogs_on_name", unique: true, using: :btree
@@ -86,6 +87,10 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   create_table "keywords", force: :cascade do |t|
     t.string  "name"
     t.integer "category_id"
+    t.boolean "show",        default: false
+    t.string  "image"
+    t.string  "title"
+    t.text    "description"
   end
 
   add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree

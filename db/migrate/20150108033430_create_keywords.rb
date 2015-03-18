@@ -3,7 +3,7 @@ class CreateKeywords < ActiveRecord::Migration
     create_table :keywords do |t|
       t.string :name
       t.references :category, index: true
-      t.boolean :show
+      t.boolean :show, default: false
       t.string :image
       t.string :title
       t.text :description
