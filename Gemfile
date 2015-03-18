@@ -42,6 +42,9 @@ gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'charlock_holmes'
 gem 'iconv'
+gem "font-awesome-rails"
+gem 'fontello_rails_converter'
+gem 'magnific-popup-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
