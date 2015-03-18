@@ -17,7 +17,8 @@
 //= require jquery-ui/datepicker
 //= require chosen-jquery
 //= require ckeditor/init
-//= require_tree .
+//= require magnific-popup
+
 
 var ready = function(){
   // datepicker
