@@ -44,16 +44,6 @@ br
     = f.association :keywords, label: false, collection: Keyword.all, input_html: { class: 'chosen-select' }
 .form-group
   h4 
-    = f.label :catalog_id, "分類一", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :catalog_id, collection: Catalog.all, label: false
-.form-group
-  h4 
-    = f.label :category_id, "分類二", class: "control-label col-md-3"
-  .col-md-6
-    = f.input :category_id, collection: Category.all, label: false
-.form-group
-  h4 
     = f.label :image, "FB圖片", class: "control-label col-md-3"
   .col-md-6
     = f.input :image , input_html: { class: "form-control" }, label: false

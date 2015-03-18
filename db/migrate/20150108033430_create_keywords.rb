@@ -3,6 +3,10 @@ class CreateKeywords < ActiveRecord::Migration
     create_table :keywords do |t|
       t.string :name
       t.references :category, index: true
+      t.boolean :show
+      t.string :image
+      t.string :title
+      t.text :description
     end
     add_index :keywords, :name, unique: true
   end

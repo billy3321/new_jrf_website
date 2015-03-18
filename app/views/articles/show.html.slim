@@ -7,10 +7,6 @@ p = @article.content.html_safe
 br
 p = @article.author
 br
-p = @article.category.try(:name)
-br
-p = @article.catalog.try(:name)
-br
 - @article.keywords.each do |k|
   p = k.name
   br
