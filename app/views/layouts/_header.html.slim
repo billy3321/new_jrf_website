@@ -1,32 +1,44 @@
-div class="navbar navbar-default" role="navigation"
-  .container-fluid
-    .navbar-header
-      a class="navbar-brand" href="#" Practice Blog
-    .navbar-collapse.collapse
-      ul class="nav navbar-nav"
-        li
-          = link_to "首頁", root_path
-        li
-          = link_to "關於", about_path
-        li
-          = link_to "所有文章", articles_path
-        li
-          = link_to "所有雜誌文章", magazine_articles_path
-        li
-          = link_to "所有電子報", epapers_path
-        li
-          = link_to "所有關鍵字", keywords_path
-
-      ul class="nav navbar-nav navbar-right"
-        - if user_signed_in?
-          li 
-            = link_to "修改資料", edit_user_registration_path
-          li
-            = link_to "登出", destroy_user_session_path, :method => :delete
-        - else
-          li
-            = link_to "註冊", new_user_registration_path
-          li
-            = link_to "登入", new_user_session_path
-
+header.header.fixed.clearfix
+  .container
+    .row
+      .col-md-3
+        .header-left.clearfix
+          .logo
+            = link_to image_tag("logo.png", alt: "財團法人民間司法改革基金會", id: 'logo'), root_path
+          .site-slogan 建立值得人民信賴的司法
+      .col-md-9
+        .header-right.clearfix
+          .main-navigation.animated
+            nav.navbar.navbar-default role="navigation"
+              .container-fluid
+                .navbar-header
+                  button.navbar-toggle type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .collapse.navbar-collapse#navbar-collapse-1
+                  ul.nav.navbar-nav.navbar-right
+                    - @catalogs.each do |catalog|
+                      li.dropdown.mega-menu
+                        = link_to catalog.name, catalog_path(catalog), class: "dropdown-toggle", data: { toggle: "dropdown"}
+                        ul.dropdown-menu
+                          li
+                            .row
+                              .col-lg-4.col-md-3.hidden-sm
+                                h4.hidden-xs
+                                = image_tag(catalog.image)
+                              .col-lg-8.col-md-9
+                                h3.hidden-xs = catalog.name
+                                .row
+                                  - catalog.categories.each do |category|
+                                    .col-sm-3
+                                      .divider
+                                      h4 = category.name
+                                      ul.menu
+                                        - category.keywords.each do |keyword|
+                                          li
+                                            = link_to keyword_path(keyword) do
+                                              i.icon-right-open
+                                              = keyword.name
 

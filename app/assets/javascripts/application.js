@@ -18,6 +18,7 @@
 //= require chosen-jquery
 //= require ckeditor/init
 //= require magnific-popup
+//= require owl.carousel
 
 
 var ready = function(){

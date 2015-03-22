@@ -53,6 +53,6 @@ class CatalogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalog_params
-      params.require(:catalog).permit(:name)
+      params.require(:catalog).permit(:name, :image, :published)
     end
 end

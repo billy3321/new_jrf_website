@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   add_index "articles_keywords", ["article_id", "keyword_id"], name: "index_articles_keywords_on_article_id_and_keyword_id", unique: true, using: :btree
 
   create_table "catalogs", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
+    t.string  "name"
+    t.string  "image"
+    t.boolean "published", default: true
   end
 
   add_index "catalogs", ["name"], name: "index_catalogs_on_name", unique: true, using: :btree
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   create_table "categories", force: :cascade do |t|
     t.string  "name"
     t.integer "catalog_id"
+    t.boolean "published",  default: true
   end
 
   add_index "categories", ["catalog_id"], name: "index_categories_on_catalog_id", using: :btree
@@ -87,7 +89,8 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   create_table "keywords", force: :cascade do |t|
     t.string  "name"
     t.integer "category_id"
-    t.boolean "show",        default: false
+    t.boolean "showed",      default: false
+    t.boolean "published",   default: true
     t.string  "image"
     t.string  "title"
     t.text    "description"
@@ -106,6 +109,7 @@ ActiveRecord::Schema.define(version: 20150114085218) do
   create_table "magazine_articles", force: :cascade do |t|
     t.integer  "magazine_id"
     t.integer  "column_id"
+    t.string   "image"
     t.string   "title"
     t.string   "author"
     t.text     "content"

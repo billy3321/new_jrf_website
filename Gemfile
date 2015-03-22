@@ -45,6 +45,9 @@ gem 'iconv'
 gem "font-awesome-rails"
 gem 'fontello_rails_converter'
 gem 'magnific-popup-rails'
+gem 'owlcarousel-rails'
+gem "animate-rails"
+gem 'google-webfonts'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
