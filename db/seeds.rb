@@ -5,10 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'open-uri'
+
+def get_img_url_from_html(html)
+  doc = Nokogiri::HTML(html)
+  img_url = nil
+  og_img = doc.css("meta[property='og:image']").first
+  if og_img
+    img_url = og_img.attributes["content"]
+  end
+  if img_url.blank?
+    img = doc.xpath("//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'ad.') or contains(.,'?'))]][1]")
+    if img.any?
+      img_url = img.first.attr('src')
+    end
+  end
+  img_url = nil if img_url.blank?
+  return img_url
+end
+
 include ActionView::Helpers
 
 Catalog.delete_all
 Category.delete_all
+Keyword.delete_all
 Article.delete_all
 Magazine.delete_all
 Column.delete_all
@@ -22,6 +42,7 @@ end
 catalogs = [
   {
     name: '建立信賴的司法',
+    image: 'trust.jpg',
     categories: [
       {
         name: '司法改革藍圖',
@@ -40,13 +61,28 @@ catalogs = [
         name: '司法民主化',
         keywords: [
           {
-            name: '人民參與審判'
+            name: '人民參與審判',
+            title: '人民參與審判：不只讓你看，更讓你判！',
+            description: '人民參與審判制度，根據人民介入的力道深淺，可概分為英美實施的陪審制、德日實施的參審制。目前台灣司法院想推動的叫觀審制，有一點點綜合的味道，但人民的介入程度，卻都是最淺的。',
+            image: 'jury-image.jpg',
+            cover: 'jury-cover.jpg',
+            showed: true
+          }
+        ]
+      }, {
+        name: '司法品質監督',
+        keywords: [
+          {
+            name: '鑑定制度改革'
+          }, {
+            name: '律師制度改革'
           }
         ]
       }
     ]
   }, {
     name: '監督法官檢察官',
+    image: 'supervise.jpg',
     categories: [
       {
         name: '檢舉不適任法官檢察官',
@@ -72,6 +108,7 @@ catalogs = [
     ]
   }, {
     name: '冤案救援',
+    image: 'rescue.jpg',
     categories: [
       {
         name: '救援個案',
@@ -99,12 +136,16 @@ catalogs = [
     ]
   }, {
     name: '實現社會正義',
+    image: 'justice.jpg',
     categories: [
       {
         name: '控訴國家暴力',
         keywords: [
           {
-            name: '反黑箱服貿案'
+            name: '反黑箱服貿案',
+            showed: true,
+            image: '318-image.jpg',
+            cover: '318-cover.jpg'
           }, {
             name: '反核四案'
           }, {
@@ -126,6 +167,7 @@ catalogs = [
 catalogs.each do |c|
   catalog = Catalog.new
   catalog.name = c[:name]
+  catalog.image = File.open(Rails.root.join('db', 'data', 'images', 'catalogs', c[:image])) if c[:image]
   catalog.save
   c[:categories].each do |cc|
     category = Category.new
@@ -135,6 +177,11 @@ catalogs.each do |c|
     cc[:keywords].each do |k|
       keyword = Keyword.new
       keyword.name = k[:name]
+      keyword.title = k[:title] if k[:title]
+      keyword.description = k[:description] if k[:description]
+      keyword.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+      keyword.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+      keyword.showed = true if k[:showed]
       keyword.category_id = category.id
       keyword.save
     end
@@ -157,7 +204,14 @@ if File.file?(rte_path)
       article.created_at = Date.parse(article_data[3])
     end
     article.author = article_data[5]
-    article.image = article_data[7]
+    if article_data[7]
+      article.remote_image_url = article_data[7]
+    else
+      url = get_img_url_from_html(article_data[2])
+      if url
+        article.remote_image_url = url
+      end
+    end
     article.description = article_data[8]
     article.published = true
     article.save
@@ -195,6 +249,10 @@ if File.file?(magazine_path)
     magazine_article.title = magazine_article_data[0].gsub(/\n/, '')
     magazine_article.author = magazine_article_data[1]
     magazine_article.content = simple_format(magazine_article_data[6]).gsub(/\n/, '')
+    img_url = get_img_url_from_html(magazine_article.content)
+    if img_url
+      magazine_article.remote_image_url = img_url
+    end
     magazine_article.comment = simple_format(magazine_article_data[7]).gsub(/\n/, '')
     magazine_article.save
   end
@@ -222,6 +280,10 @@ if File.file?(epaper_path)
         content = CharlockHolmes::Converter.convert(content, encoding, 'UTF-8')
       end
       epaper.content = content
+      img_url = get_img_url_from_html(content)
+      if img_url
+        epaper.remote_image_url = img_url
+      end
     else
       epaper.content = ''
     end

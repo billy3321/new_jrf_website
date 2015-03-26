@@ -5,6 +5,7 @@ class CreateEpapers < ActiveRecord::Migration
       t.string :filename
       t.text :content
       t.date :published_at
+      t.string :image
 
       t.timestamps null: false
     end

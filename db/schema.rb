@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150114085218) do
     t.string   "filename"
     t.text     "content"
     t.date     "published_at"
+    t.string   "image"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150114085218) do
     t.boolean "showed",      default: false
     t.boolean "published",   default: true
     t.string  "image"
+    t.string  "cover"
     t.string  "title"
     t.text    "description"
   end

@@ -5,8 +5,8 @@ html lang="zh"
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = google_webfonts_link_tag "PT Serif", "Open Sans" => [400,700,300]
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag :application, media: 'all', 'data-turbolinks-track' => true
+    
     = csrf_meta_tags
 
 
@@ -48,50 +48,5 @@ html lang="zh"
 
     = render 'layouts/header'
     = yield
-  footer#footer
-    .footer
-      .container
-        .row
-          .col-md-12
-            .footer-content
-              .logo-footer = image_tag('logo-footer.png', id: "logo-footer", alt: "財團法人民間司法改革基金會")
-            .row
-              .col-sm-4
-                p 民間司法改革基金會成立於1995年11月。主要工作為法案推動、監督評鑑、個案追蹤與教育推廣。改革的力量必須由下而上，只有經由民間的推力，才能讓改革的夢想成為真實，最終建立人民信賴的司法。
-                p
-                  = link_to image_tag("https://i.creativecommons.org/l/by-sa/4.0/88x31.png", alt: "創用 CC 授權條款", style: "border-width:0"), "http://creativecommons.org/licenses/by-sa/4.0/", rel: "license"
-                  br
-                  | 網站內容由
-                  span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" 民間司法改革基金會
-                  | 製作，以
-                  = link_to "創用CC 姓名標示-相同方式分享 4.0 國際 授權條款", "http://creativecommons.org/licenses/by-sa/4.0/", rel: "license"
-                  | 釋出。
-              .col-sm-4
-                ul.list-icon
-                  li
-                    i.fa.fa-phone.pr-10
-                    | 02-2523-1178
-                  li
-                    i.fa.fa-fax.pr-10
-                    | 02-2531-9373
-                  li
-                    i.fa.fa-envelope-o.pr-10
-                    = mail_to "contact@jrf.org.tw"
-                  li
-                    i.fa.fa-map-marker.pr-10
-                    p
-                      | 104-56台北市中山區松江路90巷3號7樓
-                      = link_to "https://www.google.com.tw/maps/place/104%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E6%9D%BE%E6%B1%9F%E8%B7%AF90%E5%B7%B73%E8%99%9F/@25.0506453,121.5320561,17z/data=!3m1!4b1!4m2!3m1!1s0x3442a96145428ecd:0xa5eb2a4406a3a002", target: "_blank" do
-                        span.badge Map
-                      br
-                      | Fl.7, No.3, Lane 90, Song-Chiang Rd., Taipei City 10456, Taiwan
-              .col-sm-4
-                h4 style="color:#b73c5a" 申訴不適任法官、檢察官
-                ul.list-icons
-                  li 來會請務必先電話預約
-                  li
-                    i.fa.fa-phone.pr-10
-                    | 02-2542-1958（週一~週五 14:00~17:30）
-                  li
-                    i.fa.fa-envelope-o.pr-10
-                    = mail_to "case@jrf.org.tw"
+    = render 'layouts/footer'
+    = javascript_include_tag :application, 'data-turbolinks-track' => true

@@ -26,19 +26,38 @@ header.header.fixed.clearfix
                           li
                             .row
                               .col-lg-4.col-md-3.hidden-sm
-                                h4.hidden-xs
-                                = image_tag(catalog.image)
-                              .col-lg-8.col-md-9
-                                h3.hidden-xs = catalog.name
+                                = image_tag(catalog.image.try(:url))
+                              .col-lg-8.col-md-12
                                 .row
                                   - catalog.categories.each do |category|
-                                    .col-sm-3
-                                      .divider
-                                      h4 = category.name
-                                      ul.menu
-                                        - category.keywords.each do |keyword|
-                                          li
-                                            = link_to keyword_path(keyword) do
-                                              i.icon-right-open
-                                              = keyword.name
+                                    - if catalog.categories.length == 2
+                                      .col-sm-6
+                                        h4 = category.name
+                                        .divider
+                                        ul.menu
+                                          - category.keywords.each do |keyword|
+                                            li
+                                              = link_to keyword_path(keyword) do
+                                                i.icon-right-open
+                                                = keyword.name
+                                    - elsif catalog.categories.length == 3
+                                      .col-sm-4
+                                        .divider
+                                        h4 = category.name
+                                        ul.menu
+                                          - category.keywords.each do |keyword|
+                                            li
+                                              = link_to keyword_path(keyword) do
+                                                i.icon-right-open
+                                                = keyword.name
+                                    - elsif catalog.categories.length == 4
+                                      .col-sm-3
+                                        .divider
+                                        h4 = category.name
+                                        ul.menu
+                                          - category.keywords.each do |keyword|
+                                            li
+                                              = link_to keyword_path(keyword) do
+                                                i.icon-right-open
+                                                = keyword.name
 

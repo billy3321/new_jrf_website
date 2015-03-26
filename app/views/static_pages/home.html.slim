@@ -5,7 +5,7 @@
         ul
           - @keywords.each do |k|
             li.dark-translucent-bg data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="#{k.name}"
-              = image_tag k.image, alt: k.name, data: {bgposition: "center top", bgfit: "cover", bgrepeat: "no-repeat"}
+              = image_tag k.cover.try(:url), alt: k.name, data: {bgposition: "center top", bgfit: "cover", bgrepeat: "no-repeat"}
               .tp-caption.very_large_text.sft.tp-resizeme data-x="center" data-y="0" data-speed="700" data-start="200" data-end="10000" data-endspeed="600"
                 h1 = k.name
               .tp-caption.small_thin_white.sfb.tp-resizeme data-x="center" data-y="100" data-speed="700" data-start="400" data-end="10000" data-endspeed="600"
@@ -28,16 +28,16 @@
           .row.col-md-12
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'http://www.jrf.org.tw/newjrf/img/v_lawer.png', alt: "義務律師"
-                = link_to image_tag('http://www.jrf.org.tw/newjrf/img/v_lawer_word.png', class: "overlay img-circle")
+                = image_tag 'v_lawer.png', alt: "義務律師"
+                = link_to image_tag('v_lawer_word.png', class: "overlay img-circle")
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'http://www.jrf.org.tw/newjrf/img/v_donation.png', alt: "捐款支持"
-                = link_to image_tag('http://www.jrf.org.tw/newjrf/img/v_donation_word.png', class: "overlay img-circle")
+                = image_tag 'v_donation.png', alt: "捐款支持"
+                = link_to image_tag('v_donation_word.png', class: "overlay img-circle")
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'http://www.jrf.org.tw/newjrf/img/v_join.png', alt: "加入志工"
-                = link_to image_tag('http://www.jrf.org.tw/newjrf/img/v_join_word.png', class: "overlay img-circle")
+                = image_tag 'v_join.png', alt: "加入志工"
+                = link_to image_tag('v_join_word.png', class: "overlay img-circle")
 
   section.main-container.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
     .white-bg.section
@@ -52,7 +52,7 @@
               .masonry-grid-item.col-sm-6.col-md-4
                 article.clearfix.blogpost
                   .overlay-container
-                    = link_to image_tag(a.image), article_path(a)
+                    = link_to image_tag(a.image.try(:url)), article_path(a)
                   .blogpost-body
                     .post-info
                       span.day = a.published_at.strftime('%d')
@@ -65,7 +65,7 @@
                           i.fa.fa-user.pr-5
                           | by
                           = a.user.try(:name)
-                      = a.content
+                      = a.description
                       footer.clearfix
                         ul.links.pull-left
                           - a.keywords.each do |k|

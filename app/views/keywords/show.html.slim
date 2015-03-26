@@ -1,3 +1,43 @@
+.container
+  .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
+    p.text-center
+      = image_tag(@keyword.image.try(:url), width: "100%")
+    .fb-like
+    h1.title.text-center = @keyword.title
+    = @keyword.content.try(:html_safe)
+
+.gray-bg.section
+  .container
+    .row
+      .main.col-md-12
+        h2 相關訊息
+        - @keyword.articles.each do |a|
+          .masonry-grid.row
+            .masonry-grid-item.col-sm-6.col-md-4
+              article.clearfix.blogpost
+                .overlay-container
+                  = link_to image_tag(a.image), article_path(a)
+                .blogpost-body
+                  .post-info
+                    span.day = a.published_at.strftime('%d')
+                    span.month = a.published_at.strftime('%m %Y')
+                  .blogspot-content
+                    header
+                      h4.title
+                        = link_to a.title, article_path(a)
+                      .submitted
+                        i.fa.fa-user.pr-5
+                        | by
+                        = a.user.try(:name)
+                    = a.content.try(:html_safe)
+                    footer.clearfix
+                      ul.links.pull-left
+                        - a.keywords.each do |k|
+                          li
+                            i.fa.fa-tags.pr-5
+                            = link_to k.name, keyword_path(k)
+
+
 p id="notice" = notice
 
 p
