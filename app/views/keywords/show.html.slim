@@ -1,3 +1,5 @@
+p#notice = notice
+
 .container
   .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
     p.text-center
@@ -11,7 +13,7 @@
     .row
       .main.col-md-12
         h2 相關訊息
-        - @keyword.articles.each do |a|
+        - @articles.each do |a|
           .masonry-grid.row
             .masonry-grid-item.col-sm-6.col-md-4
               article.clearfix.blogpost
@@ -36,51 +38,4 @@
                           li
                             i.fa.fa-tags.pr-5
                             = link_to k.name, keyword_path(k)
-
-
-p id="notice" = notice
-
-p
-  strong 名稱
-  = @keyword.name
-
-p 相關文章
-table class="table"
-  thead
-    tr
-      th Title
-      th colspan="3"
-
-
-  tbody
-    - @articles.each do |article| 
-      tr
-        td = article.title
-        td = link_to 'Show', article_path(article), class: "btn"
-        td = link_to 'Edit', edit_article_path(article), class: "btn"
-        td = link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
-
-= paginate @articles
-br
-p 相關雜誌文章
-
-table class="table"
-  thead
-    tr
-      th Title
-      th colspan="3"
-
-
-  tbody
-    - @magazine_articles.each do |magazine_article| 
-      tr
-        td = article.title
-        td = link_to 'Show', magazine_article_path(magazine_article), class: "btn"
-        td = link_to 'Edit', edit_magazine_article_path(magazine_article), class: "btn"
-        td = link_to 'Destroy', magazine_article_path(magazine_article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
-
-= paginate @magazine_articles
-br
-
-= link_to '修改', edit_keyword_path(@keyword), class: "btn"
-= link_to '回到列表', keywords_path, class: "btn"
+      = paginate @articles

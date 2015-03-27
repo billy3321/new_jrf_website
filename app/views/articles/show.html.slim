@@ -1,3 +1,50 @@
+.container
+  .masonry-grid.row
+    .masonry-grid-item.col-md-12
+      article.clearfix.blogpost.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="200"
+        .blogpost-body
+          .post-info
+            span.day = @article.published_at.strftime('%d')
+            span.month = @article.published_at.strftime('%m %Y')
+          .row
+            header
+              h2.title = @article.title
+              .submitted
+                i.fa.fa-user.pr-1
+                = @article.user.try(:name)
+            p.text-center = image_tag(@article.image), width: "100%"
+
+.container
+  .container
+    .row.col-lg-12
+      = social_share_button_tag(@article.title)
+      = @article.content.try(:html_safe)
+
+.container
+  #disqus_thread
+
+.gray-bg.section
+  .container
+    h2 相關訊息
+    .masonry-grid.row
+      - @article.keywords[0].articles.first(3).each do |a|
+        .masonry-grid-item.col-sm-6.col-md-4
+          article.clearfix.blogpost
+            .overlay-container
+              = link_to image_tag(a.image)
+            .blogpost-body
+              .post-info
+                span.day = @article.published_at.strftime('%d')
+                span.month = @article.published_at.strftime('%m %Y')
+              .blogpost-content
+                header
+                  h4.title = link_to a.title, article_path(a)
+                  .submitted
+                    i.fa.fa-user.pr-5
+                    | by
+                    = a.user.try(:name)
+
+
 p id="notice" = notice
 
 p
@@ -16,3 +63,8 @@ br
 
 = link_to 'Edit', edit_article_path(@article), class: "btn"
 = link_to 'Back', articles_path, class: "btn"
+
+
+
+
+

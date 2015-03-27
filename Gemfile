@@ -49,6 +49,8 @@ gem 'owlcarousel-rails'
 gem "animate-rails"
 gem 'google-webfonts'
 gem 'modernizr-rails'
+gem 'social-share-button'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
