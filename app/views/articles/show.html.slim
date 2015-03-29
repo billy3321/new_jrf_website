@@ -12,7 +12,7 @@
               .submitted
                 i.fa.fa-user.pr-1
                 = @article.user.try(:name)
-            p.text-center = image_tag(@article.image), width: "100%"
+            p.text-center = image_tag(@article.image, width: "100%")
 
 .container
   .container
@@ -27,22 +27,23 @@
   .container
     h2 相關訊息
     .masonry-grid.row
-      - @article.keywords[0].articles.first(3).each do |a|
-        .masonry-grid-item.col-sm-6.col-md-4
-          article.clearfix.blogpost
-            .overlay-container
-              = link_to image_tag(a.image)
-            .blogpost-body
-              .post-info
-                span.day = @article.published_at.strftime('%d')
-                span.month = @article.published_at.strftime('%m %Y')
-              .blogpost-content
-                header
-                  h4.title = link_to a.title, article_path(a)
-                  .submitted
-                    i.fa.fa-user.pr-5
-                    | by
-                    = a.user.try(:name)
+      - if @article.keywords.first
+        - @article.keywords.first.articles.first(3).each do |a|
+          .masonry-grid-item.col-sm-6.col-md-4
+            article.clearfix.blogpost
+              .overlay-container
+                = link_to image_tag(a.image)
+              .blogpost-body
+                .post-info
+                  span.day = @article.published_at.strftime('%d')
+                  span.month = @article.published_at.strftime('%m %Y')
+                .blogpost-content
+                  header
+                    h4.title = link_to a.title, article_path(a)
+                    .submitted
+                      i.fa.fa-user.pr-5
+                      | by
+                      = a.user.try(:name)
 
 
 p id="notice" = notice
