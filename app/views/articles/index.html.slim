@@ -1,25 +1,19 @@
-h1 列出所有文章
+p#notice = notice
 
-= search_form_for @q do |f|
-  = f.search_field :title_or_content_cont
-  = f.submit "搜尋"
+.white-bg.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
+  .container
+    .row.col-md-12
+      .filters
+        ul.nav.nav-tabs
+          li.active
+            = link_to "所有", "#", data: {filter: "*"}
+          - @kinds.each do |k|
+            li
+              = link_to k.name, "#", data: {filter: ".jrf-#{k.en_name}"}
+      .masonry-grid.isotope-container.row
+        - @articles.each do |a|
+          = render partial: 'shared/article_block', locals: { a: a }
 
-table class="table"
-  thead
-    tr
-      th Title
-      th colspan="3"
-
-
-  tbody
-    - @articles.each do |article| 
-      tr
-        td = article.title
-        td = link_to 'Show', article_path(article), class: "btn"
-        td = link_to 'Edit', edit_article_path(article), class: "btn"
-        td = link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
-
-= paginate @articles
-br
-
-= link_to 'New Article', new_article_path(@article_group), class: "btn"
+      .row.text-center
+        .col-md-10.col-md-offset-1
+          = paginate @articles

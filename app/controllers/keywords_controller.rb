@@ -8,8 +8,14 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1
   def show
-    @articles = @keyword.articles.page params[:page]
-    @magazine_articles = @keyword.magazine_articles.page params[:page]
+    @articles = @keyword.articles.page params[:articles_page]
+    @videos = @keyword.videos.page params[:videos_page]
+    @kinds = []
+    @articles.each do |a|
+      unless @kinds.include? a.kind
+        @kinds << a.kind if a.kind
+      end
+    end
   end
 
   # GET /keywords/new

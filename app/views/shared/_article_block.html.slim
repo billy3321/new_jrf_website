@@ -1,0 +1,32 @@
+- if a.kind
+  .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{a.kind.en_name}"
+    article.clearfix.blogpost
+      .overlay-container
+        = link_to image_tag(a.image), article_path(a)
+      .blogpost-body
+        .post-info
+          span.day = a.published_at.try(:strftime, '%d')
+          span.month = a.published_at.try(:strftime, '%m %Y')
+        .blogpost-content
+          header
+            h4.title = link_to a.title, article_path(a)
+            .submitted
+              i.fa.fa-user.pr-5
+              | by
+              = a.user.try(:name)
+- else
+  .masonry-grid-item.isotope-item.col-sm-6.col-md-4
+    article.clearfix.blogpost
+      .overlay-container
+        = link_to image_tag(a.image), article_path(a)
+      .blogpost-body
+        .post-info
+          span.day = a.published_at.try(:strftime, '%d')
+          span.month = a.published_at.try(:strftime, '%m %Y')
+        .blogpost-content
+          header
+            h4.title = link_to a.title, article_path(a)
+            .submitted
+              i.fa.fa-user.pr-5
+              | by
+              = a.user.try(:name)

@@ -34,9 +34,41 @@ Magazine.delete_all
 Column.delete_all
 MagazineArticle.delete_all
 Epaper.delete_all
+Kind.delete_all
+Video.delete_all
+Faq.delete_all
+ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
+ActiveRecord::Base.connection.execute("Delete from keywords_videos;");
+ActiveRecord::Base.connection.execute("Delete from keywords_magazine_articles;");
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
+
+kinds = [
+  {
+    name: '新聞稿',
+    en_name: 'news'
+  }, {
+    name: '活動',
+    en_name: 'active'
+  }, {
+    name: '評論',
+    en_name: 'article'
+  }
+]
+
+kinds.each do |k|
+  kind = Kind.new
+  kind.name = k[:name]
+  kind.en_name = k[:en_name]
+  kind.title = k[:title] if k[:title]
+  kind.description = k[:description] if k[:description]
+  kind.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+  kind.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+  kind.showed = true if k[:showed]
+  kind.save
 end
 
 catalogs = [
@@ -73,9 +105,21 @@ catalogs = [
         name: '司法品質監督',
         keywords: [
           {
+            name: '違憲審查制度改革'
+          }, {
+            name: '最高法院法庭觀察'
+          }, {
             name: '鑑定制度改革'
           }, {
+            name: '《訴訟影音資料法》增訂'
+          }, {
+            name: '監聽制度改革'
+          }, {
+            name: '落實偵查不公開'
+          }, {
             name: '律師制度改革'
+          }, {
+            name: '其他法案推動'
           }
         ]
       }
@@ -89,6 +133,8 @@ catalogs = [
         keywords: [
           {
             name: '申訴中心'
+          }, {
+            name: '法官檢察官監督網'
           }
         ]
       }, {
@@ -100,8 +146,15 @@ catalogs = [
             name: '法官制度改革法案'
           }, {
             name: '法官個案評鑑'
+          }
+        ]
+      }, {
+        name: '檢察官制度改革',
+        keywords: [
+          {
+            name: '檢察官個案評鑑'
           }, {
-            name: '法官檢察官監督網'
+            name: '檢察官制度相關法案'
           }
         ]
       }
@@ -159,10 +212,50 @@ catalogs = [
       }, {
         name: '人頭帳戶案',
         keywords: []
+      }, {
+        name: '監所制度改革',
+        keywords: [
+          {
+            name: '監獄行刑法'
+          }, {
+            name: '羈押法'
+          }
+        ]
+      }
+    ]
+  }, {
+    name: '法治紮根',
+    image: 'justice.jpg',
+    categories: [
+      {
+        name: '教育推廣',
+        keywords: [
+          {
+            name: '學生暑期營隊'
+          }, {
+            name: '鄉民說法'
+          }, {
+            name: '實習計畫'
+          }, {
+            name: '校園模擬法庭'
+          }
+        ]
+      }, {
+        name: '出版品',
+        kinds: [
+          {
+            name: '電子報',
+            en_name: 'epaper'
+          }, {
+            name: '書籍',
+            en_name: 'book'
+          }
+        ]
       }
     ]
   }
 ]
+
 
 catalogs.each do |c|
   catalog = Catalog.new
@@ -174,19 +267,37 @@ catalogs.each do |c|
     category.name = cc[:name]
     category.catalog_id = catalog.id
     category.save
-    cc[:keywords].each do |k|
-      keyword = Keyword.new
-      keyword.name = k[:name]
-      keyword.title = k[:title] if k[:title]
-      keyword.description = k[:description] if k[:description]
-      keyword.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
-      keyword.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
-      keyword.showed = true if k[:showed]
-      keyword.category_id = category.id
-      keyword.save
+    if cc[:keywords] and cc[:keywords].any?
+      cc[:keywords].each do |k|
+        keyword = Keyword.new
+        keyword.name = k[:name]
+        keyword.title = k[:title] if k[:title]
+        keyword.description = k[:description] if k[:description]
+        keyword.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+        keyword.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+        keyword.showed = true if k[:showed]
+        keyword.category_id = category.id
+        keyword.save
+      end
+    end
+    if cc[:kinds] and cc[:kinds].any?
+      cc[:kinds].each do |k|
+        kind = Kind.new
+        kind.name = k[:name]
+        kind.en_name = k[:en_name]
+        kind.title = k[:title] if k[:title]
+        kind.description = k[:description] if k[:description]
+        kind.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+        kind.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+        kind.showed = true if k[:showed]
+        kind.category_id = category.id
+        kind.save
+      end
     end
   end
 end
+
+
 
 rte_path = Rails.root.join('db', 'data', 'rte.json')
 

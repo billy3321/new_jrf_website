@@ -50,6 +50,8 @@ gem "animate-rails"
 gem 'google-webfonts'
 gem 'modernizr-rails'
 gem 'social-share-button'
+gem 'unicode-display_width'
+
 
 
 # Use ActiveModel has_secure_password

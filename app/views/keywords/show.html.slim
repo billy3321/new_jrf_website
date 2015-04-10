@@ -2,40 +2,75 @@ p#notice = notice
 
 .container
   .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
-    p.text-center
-      = image_tag(@keyword.image.try(:url), width: "100%")
-    .fb-like
+    .embed-responsive embed-responsive-16by9
+      = image_tag(@keyword.image.try(:url), class: "embed-responsive-item", alt: "")
+    = social_share_button_tag(@keyword.title)
     h1.title.text-center = @keyword.title
+    .seperator
     = @keyword.content.try(:html_safe)
 
-.gray-bg.section
+
+- if @keyword.faqs.any?
   .container
+    .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
+      h2 FAQ
+      .seperator-2
+      .panel-group#accordion-faq
+        - @keyword.faqs.each do |faq|
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                = link_to "#collapseOne", data: { toggle: "collapse", parent: "#accordion-faq" }, class: "collapsed" do
+                  i.fa.fa-question-circle.pr-10
+                  = faq.question
+            #collapseOne.panel-collapse.collapse
+              .panel-body
+                = faq.answer.try(:html_safe)
+
+
+- if @keyword.articles.any?
+  .container
+    .separator-2
+    .filters
+      ul.nav.nav-tabs
+        li.active
+          = link_to "所有", "#", data: {filter: "*"}
+        - @kinds.each do |k|
+          li
+            = link_to k.name, "#", data: {filter: ".jrf-#{k.en_name}"}
     .row
-      .main.col-md-12
-        h2 相關訊息
-        - @articles.each do |a|
-          .masonry-grid.row
-            .masonry-grid-item.col-sm-6.col-md-4
-              article.clearfix.blogpost
+      .block.clearfix.isotope-container
+        - @keyword.articles.each do |a|
+          .list-with-image.isotope-item.col-md-4 class="jrf-#{a.kind.en_name}"
+            .overlay-container
+              = image_tag(a.image, alt: "")
+              = link_to article_path(a), class: "overlay small" do
+                i.fa.fa-link
+                span = a.kind.name
+            h2
+              = link_to a.title, article_path(a)
+            p.small a.published_at.strftime('%Y-%m-%d')
+    .row.text-center
+      .col-md-10.col-md-offset-1
+        = paginate @articles, param_name: "articles_page"
+
+- if @videos.any?
+  .section.gray-bg
+    .container
+      h2 相關影音
+      .separator-2
+        .row
+          - @videos.each do |v|
+            .col-md-4
+              .image-box.mb-20
                 .overlay-container
-                  = link_to image_tag(a.image), article_path(a)
-                .blogpost-body
-                  .post-info
-                    span.day = a.published_at.strftime('%d')
-                    span.month = a.published_at.strftime('%m %Y')
-                  .blogspot-content
-                    header
-                      h4.title
-                        = link_to a.title, article_path(a)
-                      .submitted
-                        i.fa.fa-user.pr-5
-                        | by
-                        = a.user.try(:name)
-                    = a.content.try(:html_safe)
-                    footer.clearfix
-                      ul.links.pull-left
-                        - a.keywords.each do |k|
-                          li
-                            i.fa.fa-tags.pr-5
-                            = link_to k.name, keyword_path(k)
-      = paginate @articles
+                  .embed-responsive.embed-responsive-16by9
+                    iframe.embed-responsive-item sec="//www.youtube.com/embed/#{v.youtube_id}"
+                .image-box-body
+                  h4.title.margin-clear
+                    = link_to v.title, video_path(v)
+                  p.small.margin-clear = v.published_at.strftime('%Y-%m-%d')
+
+    .row.text-center
+      .col-md-10.col-md-offset-1
+        = paginate @videos, param_name: "videos_page"

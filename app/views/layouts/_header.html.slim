@@ -40,24 +40,39 @@ header.header.fixed.clearfix
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
+                                          - category.kinds.each do |kind|
+                                            li
+                                              = link_to kind_path(kind) do
+                                                i.icon-right-open
+                                                = kind.name
                                     - elsif catalog.categories.length == 3
                                       .col-sm-4
-                                        .divider
                                         h4 = category.name
+                                        .divider
                                         ul.menu
                                           - category.keywords.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
+                                          - category.kinds.each do |kind|
+                                            li
+                                              = link_to kind_path(kind) do
+                                                i.icon-right-open
+                                                = kind.name
                                     - elsif catalog.categories.length == 4
                                       .col-sm-3
-                                        .divider
                                         h4 = category.name
+                                        .divider
                                         ul.menu
                                           - category.keywords.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
+                                          - category.kinds.each do |kind|
+                                            li
+                                              = link_to kind_path(kind) do
+                                                i.icon-right-open
+                                                = kind.name
 

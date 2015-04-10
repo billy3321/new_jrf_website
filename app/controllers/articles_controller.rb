@@ -6,6 +6,12 @@ class ArticlesController < ApplicationController
   def index
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    @kinds = []
+    @articles.each do |a|
+      unless @kinds.include? a.kind
+        @kinds << a.kind if a.kind
+      end
+    end
   end
 
   # GET /articles/1

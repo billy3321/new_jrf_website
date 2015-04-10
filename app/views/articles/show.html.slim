@@ -1,4 +1,4 @@
-.container
+section.container
   .masonry-grid.row
     .masonry-grid-item.col-md-12
       article.clearfix.blogpost.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="200"
@@ -11,8 +11,9 @@
               h2.title = @article.title
               .submitted
                 i.fa.fa-user.pr-1
-                = @article.user.try(:name)
-            p.text-center = image_tag(@article.image, width: "100%")
+                = @article.author
+            .embed-responsive.embed-responsive-16by9
+              = image_tag(@article.image, alt: "")
 
 .container
   .container
@@ -29,43 +30,5 @@
     .masonry-grid.row
       - if @article.keywords.first
         - @article.keywords.first.articles.first(3).each do |a|
-          .masonry-grid-item.col-sm-6.col-md-4
-            article.clearfix.blogpost
-              .overlay-container
-                = link_to image_tag(a.image)
-              .blogpost-body
-                .post-info
-                  span.day = @article.published_at.strftime('%d')
-                  span.month = @article.published_at.strftime('%m %Y')
-                .blogpost-content
-                  header
-                    h4.title = link_to a.title, article_path(a)
-                    .submitted
-                      i.fa.fa-user.pr-5
-                      | by
-                      = a.user.try(:name)
-
-
-p id="notice" = notice
-
-p
-  strong = @article.title
-br
-p = @article.content.html_safe
-br
-p = @article.author
-br
-- @article.keywords.each do |k|
-  p = k.name
-  br
-p = @article.published_at.strftime('%Y-%m-%d')
-br
-
-
-= link_to 'Edit', edit_article_path(@article), class: "btn"
-= link_to 'Back', articles_path, class: "btn"
-
-
-
-
+          = render partial: 'shared/article_block', locals: { a: a }
 

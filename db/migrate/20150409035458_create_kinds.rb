@@ -1,7 +1,8 @@
-class CreateKeywords < ActiveRecord::Migration
+class CreateKinds < ActiveRecord::Migration
   def change
-    create_table :keywords do |t|
+    create_table :kinds do |t|
       t.string :name
+      t.string :en_name
       t.references :category, index: true
       t.boolean :showed, default: false
       t.boolean :published, default: true
@@ -11,6 +12,5 @@ class CreateKeywords < ActiveRecord::Migration
       t.text :description
       t.text :content
     end
-    add_index :keywords, :name, unique: true
   end
 end

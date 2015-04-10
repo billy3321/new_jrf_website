@@ -1,0 +1,31 @@
+.white-bg.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
+  .container
+    .row.col-md-12
+      h1.title.text-center = @kind.name
+      .separator
+        .masonry-grid.row
+          - @articles.each do |a|
+            .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{k.en_name}"
+              article.clearfix.blogpost
+                .overlay-container
+                  = link_to image_tag(a.image), article_path(a)
+                .blogpost-body
+                  .post-info
+                    span.day = @article.published_at.strftime('%d')
+                    span.month = @article.published_at.strftime('%m %Y')
+                  .blogpost-content
+                    header
+                      h4.title = link_to a.title, article_path(a)
+                      .submitted
+                        i.fa.fa-user.pr-5
+                        | by
+                        = a.user.try(:name)
+                footer.clearfix
+                  ul.links.pull-left
+                    - a.keywords.each do |k|
+                      li
+                        i.fa.fa-tags.pr-5
+                        = link_to k.name, keyword_path(k)
+  .row-text-center
+    .col-md-10.col-md-offset-1
+      = paginate @articles
