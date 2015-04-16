@@ -19,6 +19,7 @@
  *= require settings
  *= require extralayers
  *= require magnific-popup
+ *= require animate
  *= require animations
  *= require owl.carousel
  *= require owl.theme
