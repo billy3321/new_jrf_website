@@ -698,15 +698,7 @@ tbody {
 	z-index: 3;
 	position: relative;
 }
-.parallax-bg {
-	background: url("../images/parallax-bg.jpg") 50% 0px no-repeat;
-}
-.parallax-bg-2 {
-	background: url("../images/parallax-bg-2.jpg") 50% 0px no-repeat;
-}
-.parallax-bg-3 {
-	background: url("../images/parallax-bg-3.jpg") 50% 0px no-repeat;
-}
+
 
 /* Custom Grid
 ---------------------------------- */
@@ -3195,7 +3187,6 @@ ul.pagination li > a:focus {
 	text-align: center;
 	width: 100%;
 	color: #000000;
-	font-style: italic;
 }
 .overlay-links {
 	display: block;
