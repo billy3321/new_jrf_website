@@ -14,13 +14,11 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require jquery-ui/datepicker
-//= require chosen-jquery
 //= require ckeditor/init
 //= require modernizr
 //= require jquery.themepunch.tools.min
-//= require jquery.themepunch.revolution.min
-//= require isotope.pkgd.min
+//= require jquery.themepunch.revolution
+//= require isotope.pkgd
 //= require owl.carousel
 //= require magnific-popup
 //= require jquery.appear
@@ -29,6 +27,9 @@
 //= require jquery.validate
 //= require template
 //= require custom
+//= require jquery-ui/datepicker
+//= require chosen-jquery
+//= require social-share-button
 
 var ready = function(){
   // datepicker

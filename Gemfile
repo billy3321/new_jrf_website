@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem "bundler", ">= 1.8.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
@@ -42,17 +42,32 @@ gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'charlock_holmes'
 gem 'iconv'
-gem "font-awesome-rails"
+# gem "font-awesome-rails"
 gem 'fontello_rails_converter'
-gem 'magnific-popup-rails'
+# gem 'magnific-popup-rails'
 gem 'owlcarousel-rails'
-gem "animate-rails"
-gem 'google-webfonts'
-gem 'modernizr-rails'
+# gem "animate-rails"
+# gem 'google-webfonts'
+# gem 'modernizr-rails'
 gem 'social-share-button'
 gem 'unicode-display_width'
 
-
+source 'https://rails-assets.org' do
+  # gem 'rails-assets-jquery'
+  # gem 'rails-assets-bootstrap'
+  gem 'rails-assets-fontawesome'
+  # gem 'rails-assets-owlcarousel'
+  gem 'rails-assets-magnific-popup'
+  gem 'rails-assets-animate.css'
+  gem 'rails-assets-owl-carousel'
+  gem 'rails-assets-modernizr'
+  gem 'rails-assets-isotope'
+  gem 'rails-assets-jquery-appear'
+  gem 'rails-assets-mhuggins--jquery-countTo'
+  gem 'rails-assets-jquery.parallax'
+  gem 'rails-assets-jquery.validate'
+  gem 'rails-assets-html.sortable'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

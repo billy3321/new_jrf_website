@@ -2,7 +2,7 @@
  * Author:HtmlCoder
  * Author URI:http://www.htmlcoder.me
  * Author e-mail:htmlcoder.me@gmail.com
- * Version: 1.1.0
+ * Version: 1.2.0
  * Created:October 2014
  * License URI:http://support.wrapbootstrap.com/
  * File Description: Initializations of plugins 
@@ -210,58 +210,112 @@
 				hideAllCaptionAtLilmit:0,
 				startWithSlide:0
 			});
+			
+			if ($(".transparent.header").length>0 || $(".offcanvas-container").length>0) {
+				$('.slider-banner-container .slider-banner-fullscreen').show().revolution({
+					delay:10000,
+					startwidth:1140,
+					startheight:520,
+					fullWidth:"off",
+					fullScreen:"on",
+					fullScreenOffsetContainer: "",
+					fullScreenOffset: "",
 
-			$('.slider-banner-container .slider-banner-fullscreen').show().revolution({
-				delay:10000,
-				startwidth:1140,
-				startheight:520,
-				fullWidth:"off",
-				fullScreen:"on",
-				fullScreenOffsetContainer: "",
-				fullScreenOffset: "82px",
+					navigationArrows:"solo",
+					
+					navigationStyle: "preview4",
+					navigationHAlign:"center",
+					navigationVAlign:"bottom",
+					navigationHOffset:0,
+					navigationVOffset:20,
 
-				navigationArrows:"solo",
-				
-				navigationStyle: "preview4",
-				navigationHAlign:"center",
-				navigationVAlign:"bottom",
-				navigationHOffset:0,
-				navigationVOffset:20,
+					soloArrowLeftHalign:"left",
+					soloArrowLeftValign:"center",
+					soloArrowLeftHOffset:20,
+					soloArrowLeftVOffset:0,
 
-				soloArrowLeftHalign:"left",
-				soloArrowLeftValign:"center",
-				soloArrowLeftHOffset:20,
-				soloArrowLeftVOffset:0,
+					soloArrowRightHalign:"right",
+					soloArrowRightValign:"center",
+					soloArrowRightHOffset:20,
+					soloArrowRightVOffset:0,
 
-				soloArrowRightHalign:"right",
-				soloArrowRightValign:"center",
-				soloArrowRightHOffset:20,
-				soloArrowRightVOffset:0,
+					spinner:"spinner4",
+					
+					stopLoop:"off",
+					stopAfterLoops:-1,
+					stopAtSlide:-1,
+					onHoverStop: "off",
 
-				spinner:"spinner4",
-				
-				stopLoop:"off",
-				stopAfterLoops:-1,
-				stopAtSlide:-1,
-				onHoverStop: "off",
+					shuffle:"off",
+					hideTimerBar:"on",
 
-				shuffle:"off",
-				hideTimerBar:"on",
+					autoHeight:"off",						
+					forceFullWidth:"off",						
+											
+					hideThumbsOnMobile:"off",
+					hideNavDelayOnMobile:1500,						
+					hideBulletsOnMobile:"off",
+					hideArrowsOnMobile:"off",
+					hideThumbsUnderResolution:0,
+					
+					hideSliderAtLimit:0,
+					hideCaptionAtLimit:0,
+					hideAllCaptionAtLilmit:0,
+					startWithSlide:0
+				});
+			} else {
+				$('.slider-banner-container .slider-banner-fullscreen').show().revolution({
+					delay:10000,
+					startwidth:1140,
+					startheight:520,
+					fullWidth:"off",
+					fullScreen:"on",
+					fullScreenOffsetContainer: "",
+					fullScreenOffset: "82px",
 
-				autoHeight:"off",						
-				forceFullWidth:"off",						
-										
-				hideThumbsOnMobile:"off",
-				hideNavDelayOnMobile:1500,						
-				hideBulletsOnMobile:"off",
-				hideArrowsOnMobile:"off",
-				hideThumbsUnderResolution:0,
-				
-				hideSliderAtLimit:0,
-				hideCaptionAtLimit:0,
-				hideAllCaptionAtLilmit:0,
-				startWithSlide:0
-			});
+					navigationArrows:"solo",
+					
+					navigationStyle: "preview4",
+					navigationHAlign:"center",
+					navigationVAlign:"bottom",
+					navigationHOffset:0,
+					navigationVOffset:20,
+
+					soloArrowLeftHalign:"left",
+					soloArrowLeftValign:"center",
+					soloArrowLeftHOffset:20,
+					soloArrowLeftVOffset:0,
+
+					soloArrowRightHalign:"right",
+					soloArrowRightValign:"center",
+					soloArrowRightHOffset:20,
+					soloArrowRightVOffset:0,
+
+					spinner:"spinner4",
+					
+					stopLoop:"off",
+					stopAfterLoops:-1,
+					stopAtSlide:-1,
+					onHoverStop: "off",
+
+					shuffle:"off",
+					hideTimerBar:"on",
+
+					autoHeight:"off",						
+					forceFullWidth:"off",						
+											
+					hideThumbsOnMobile:"off",
+					hideNavDelayOnMobile:1500,						
+					hideBulletsOnMobile:"off",
+					hideArrowsOnMobile:"off",
+					hideThumbsUnderResolution:0,
+					
+					hideSliderAtLimit:0,
+					hideCaptionAtLimit:0,
+					hideAllCaptionAtLilmit:0,
+					startWithSlide:0
+				});
+			};
 
 		};
 
@@ -457,14 +511,16 @@
 				if(($(this).scrollTop() > headerTopHeight+headerHeight) && ($(window).width() > 767)) {
 					$("body").addClass("fixed-header-on");
 					$(".header.fixed").addClass('animated object-visible fadeInDown');
-					if ($(".banner:not(.header-top)").length>0) {
-						$(".banner").css("marginTop", (headerHeight)+"px");
-					} else if ($(".page-intro").length>0) {
-						$(".page-intro").css("marginTop", (headerHeight)+"px");
-					} else if ($(".page-top").length>0) {
-						$(".page-top").css("marginTop", (headerHeight)+"px");
-					} else {
-						$("section.main-container").css("marginTop", (headerHeight)+"px");
+					if (!($(".header.transparent").length>0)) {
+						if ($(".banner:not(.header-top)").length>0) {
+							$(".banner").css("marginTop", (headerHeight)+"px");
+						} else if ($(".page-intro").length>0) {
+							$(".page-intro").css("marginTop", (headerHeight)+"px");
+						} else if ($(".page-top").length>0) {
+							$(".page-top").css("marginTop", (headerHeight)+"px");
+						} else {
+							$("section.main-container").css("marginTop", (headerHeight)+"px");
+						}
 					}
 				} else {
 					$("body").removeClass("fixed-header-on");
@@ -999,6 +1055,31 @@
 		$('.header-top .dropdown-menu input').click(function(e) {
 			e.stopPropagation(); 
 		});
+
+		// Offcanvas side navbar
+		//-----------------------------------------------
+
+		if ($("#offcanvas").length>0) {
+			$('#offcanvas').offcanvas({
+				disableScrolling: false,
+				toggle: false
+			});
+		};
+
+		if ($("#offcanvas").length>0) {
+			$('#offcanvas [data-toggle=dropdown]').on('click', function(event) {
+			// Avoid following the href location when clicking
+			event.preventDefault(); 
+			// Avoid having the menu to close when clicking
+			event.stopPropagation(); 
+			// close all the siblings
+			$(this).parent().siblings().removeClass('open');
+			// close all the submenus of siblings
+			$(this).parent().siblings().find('[data-toggle=dropdown]').parent().removeClass('open');
+			// opening the one you clicked on
+			$(this).parent().toggleClass('open');
+			});
+		};
 
 	}); // End document ready
 
