@@ -91,5 +91,6 @@ group :development, :test do
   gem "capybara"
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'sass-rails-source-maps'
 end
 
