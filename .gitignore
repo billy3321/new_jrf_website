@@ -22,4 +22,5 @@ Gemfile.lock
 config/database.yml
 config/config.yml
 public/uploads/
+public/assets/
 #db/data/*.json
