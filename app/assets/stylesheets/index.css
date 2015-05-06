@@ -13,6 +13,8 @@
  *= require bootstrap_and_overrides
  *= require fontawesome
  *= require fontello
+ *= require settings
+ *= require extralayers
  *= require magnific-popup
  *= require animate
  *= require animations
@@ -22,3 +24,4 @@
  *= require custom
  *= require_self
  */
+

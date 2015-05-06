@@ -65,13 +65,13 @@
                           i.fa.fa-user.pr-5
                           | by
                           = a.user.try(:name)
-                      = display_shorter(a.description, 200)
-                      footer.clearfix
-                        ul.links.pull-left
-                          - a.keywords.each do |k|
-                            li
-                              i.fa.fa-tags.pr-5
-                              = link_to k.name, keyword_path(k)
+                      = display_shorter(a.content, 200)
+                  footer.clearfix
+                    ul.links.pull-left
+                      - a.keywords.each do |k|
+                        li
+                          i.fa.fa-tags.pr-5
+                          = link_to k.name, keyword_path(k)
           .col-md-10.col-md-offset-1.row.text-center
             ul.pagination
               = paginate @articles

@@ -1,3 +1,31 @@
+.header-top
+  .container
+    .row
+      .col-xs-12.col-sm-12
+        .clearfix.header-top-second
+          .header-top-dropdown
+            .btn-group.dropdown
+              button.btn type="button"
+                = link_to about_path do
+                  i.fa.fa-info
+                  | 關於我們
+              button.btn type="button"
+                = link_to donate_path do
+                  i.fa.fa-heart
+                  | 支持司改
+              button.btn type="button"
+                = link_to "https://www.facebook.com/pages/%E6%B0%91%E9%96%93%E5%8F%B8%E6%B3%95%E6%94%B9%E9%9D%A9%E5%9F%BA%E9%87%91%E6%9C%83/176765029076", target: "_blank" do
+                  i.fa.fa-facebook
+                  | 粉絲頁
+              button.btn.dropdown-toggle type="button1" data-toggle="dropdown"
+                i.fa.fa-search
+                | 搜尋
+              ul.dropdown-menu.dropdown-menu-right.dropdown-animation
+                li
+                  = form_tag articles_path, method: :get, class: "search-box", role: "search" do
+                    .form-group.has-feedback
+                      = text_field_tag :q, nil, name: "q", id: "textfield", class: "form-control", type: "text", placeholder: "輸入關鍵字"
+                      i.fa.fa-search.form-control-feedback
 header.header.fixed.clearfix
   .container
     .row
