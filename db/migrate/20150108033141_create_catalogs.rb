@@ -4,6 +4,7 @@ class CreateCatalogs < ActiveRecord::Migration
       t.string :name
       t.string :image
       t.boolean :published, default: true
+      t.integer :position
     end
 
     add_index :catalogs, :name, unique: true

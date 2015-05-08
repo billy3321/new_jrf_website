@@ -3,9 +3,8 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title
       t.text :content
-      t.references :user, index: true
-      t.references :kind, index: true
       t.string :author
+      t.string :kind
       t.date :published_at
       t.string :image
       t.text :description
@@ -13,8 +12,5 @@ class CreateArticles < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    #add_foreign_key :articles, :users
-    #add_foreign_key :articles, :catalogs
-    #add_foreign_key :articles, :categories
   end
 end

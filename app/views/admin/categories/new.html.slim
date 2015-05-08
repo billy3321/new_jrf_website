@@ -1,0 +1,7 @@
+h1.text-center 新增次目錄
+pre
+  | 目錄名稱不宜過長，
+  br
+  | 將滑鼠移到專案名稱上，按住滑鼠上下拖曳到要的位置後放開即可調整排序
+= simple_form_for @category, url: admin_categorys_path do |f|
+  = render :partial => 'form', :locals => { :f => f }

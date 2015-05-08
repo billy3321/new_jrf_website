@@ -68,11 +68,15 @@ header.header.fixed.clearfix
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
-                                          - category.kinds.each do |kind|
+                                          - if category.name == '出版品'
                                             li
-                                              = link_to kind_path(kind) do
+                                              = link_to root_path do
                                                 i.icon-right-open
-                                                = kind.name
+                                                | 電子報
+                                            li
+                                              = link_to root_path do
+                                                i.icon-right-open
+                                                | 書籍
                                     - elsif catalog.categories.length == 3
                                       .col-sm-4
                                         h4 = category.name
@@ -83,11 +87,15 @@ header.header.fixed.clearfix
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
-                                          - category.kinds.each do |kind|
+                                          - if category.name == '出版品'
                                             li
-                                              = link_to kind_path(kind) do
+                                              = link_to root_path do
                                                 i.icon-right-open
-                                                = kind.name
+                                                | 電子報
+                                            li
+                                              = link_to root_path do
+                                                i.icon-right-open
+                                                | 書籍
                                     - elsif catalog.categories.length == 4
                                       .col-sm-3
                                         h4 = category.name
@@ -98,9 +106,13 @@ header.header.fixed.clearfix
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
-                                          - category.kinds.each do |kind|
+                                          - if category.name == '出版品'
                                             li
-                                              = link_to kind_path(kind) do
+                                              = link_to root_path do
                                                 i.icon-right-open
-                                                = kind.name
+                                                | 電子報
+                                            li
+                                              = link_to root_path do
+                                                i.icon-right-open
+                                                | 書籍
 

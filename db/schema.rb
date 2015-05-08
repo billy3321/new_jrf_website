@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20150409064823) do
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "user_id"
-    t.integer  "kind_id"
     t.string   "author"
+    t.string   "kind"
     t.date     "published_at"
     t.string   "image"
     t.text     "description"
@@ -29,9 +28,6 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
-
-  add_index "articles", ["kind_id"], name: "index_articles_on_kind_id", using: :btree
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "articles_keywords", id: false, force: :cascade do |t|
     t.integer "article_id", null: false
@@ -128,21 +124,6 @@ ActiveRecord::Schema.define(version: 20150409064823) do
 
   add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
 
-  create_table "kinds", force: :cascade do |t|
-    t.string  "name"
-    t.string  "en_name"
-    t.integer "category_id"
-    t.boolean "showed",      default: false
-    t.boolean "published",   default: true
-    t.string  "image"
-    t.string  "cover"
-    t.string  "title"
-    t.text    "description"
-    t.text    "content"
-  end
-
-  add_index "kinds", ["category_id"], name: "index_kinds_on_category_id", using: :btree
-
   create_table "magazine_articles", force: :cascade do |t|
     t.integer  "magazine_id"
     t.integer  "column_id"
@@ -185,21 +166,5 @@ ActiveRecord::Schema.define(version: 20150409064823) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "videos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
-    t.string   "author"
-    t.string   "youtube_url"
-    t.string   "youtube_id"
-    t.string   "image"
-    t.date     "published_at"
-    t.boolean  "published",    default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  add_index "videos", ["user_id"], name: "index_videos_on_user_id", using: :btree
 
 end

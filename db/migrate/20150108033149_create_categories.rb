@@ -4,6 +4,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
       t.references :catalog, index: true
       t.boolean :published, default: true
+      t.integer :position
     end
 
     add_index :categories, :name, unique: true

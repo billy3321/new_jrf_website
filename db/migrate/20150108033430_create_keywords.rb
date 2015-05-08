@@ -10,6 +10,7 @@ class CreateKeywords < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.text :content
+      t.integer :position
     end
     add_index :keywords, :name, unique: true
   end

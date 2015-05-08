@@ -1,0 +1,11 @@
+
+.form-group
+   = f.input :name, label: '主目錄名稱', required: true, input_html: { class: 'form-control' }
+.form-group
+  = f.input :image, as: :file, label: '主目錄圖示', input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
+  = f.input :image_cache, as: :hidden
+  = f.input :remove_image, as:  :boolean, label: '移除圖片'
+  p.help-block 建議大小448*336，檔案過大將增加開啓頁面時間
+  = image_tag(@catalog.image_url, alt:"") if @catalog.image?
+hr
+= f.button :submit, "儲存", class: "btn btn-default"

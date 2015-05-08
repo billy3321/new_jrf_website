@@ -1,0 +1,48 @@
+aside.col-md-2.gray-bg
+  .sidebar
+    h3.text-center
+      | 民間司改會
+      br
+      | 管理後台
+    p.text-center
+      = link_to destroy_user_session_path, method: :delete class: 'btn btn-info btn-sm' do
+        i.fa.fa-lock.pr-10
+        | 登出
+    .separator
+    nav
+      ul.nav.nav-pills.nav-stacked
+        li
+          = link_to '目錄排序/總覽', admin_catalogs_path
+        li.nav-divider
+        li
+          = link_to '新增主目錄', new_admin_catalogs_path
+        li
+          = link_to '修改/刪除主目錄', admin_catalogs_path
+        li.nav-divider
+        li
+          = link_to '新增次目錄'
+        li
+          = link_to '修改/刪除次目錄'
+        li.nav-divider
+        li
+          = link_to '新增專案'
+        li
+          = link_to '修改/刪除專案'
+        li.nav-divider
+        li
+          = link_to '新增文章'
+        li
+          = link_to '修改/刪除文章'
+        li.nav-divider
+        li
+          = link_to '新增影片'
+        li
+          = link_to '修改/刪除影片'
+        li.nav-divider
+        li
+          = link_to '修改介紹頁'
+        li
+          = link_to '修改捐款頁'
+        li.nav-divider
+        li
+          = link_to '後台使用者'

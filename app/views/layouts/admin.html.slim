@@ -15,20 +15,11 @@ html lang="zh-Hant-TW"
     /[if lt IE9]
       script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"
       script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
-
-
-  body.front.no-trans
-    - if notice
-      p class="alert alert-success" = notice
-    - if alert
-      p class="alert alert-danger" = alert
-    - unless ['users/sessions'].include?(params[:controller])
-      = render 'layouts/header'
-    = yield
-    = render 'layouts/footer'
-    = debug(params) if Rails.env.development?
-    - if params[:controller] == 'static_pages' and params[:action] == 'home'
-      = javascript_include_tag 'index', 'data-turbolinks-track' => true
-    - else
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
-
+  body
+    = render 'admin_header'
+    .main.col-md-10
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: "alert alert-#{key}")
+      = yield
+      = debug(params) if Rails.env.development?
+  = javascript_include_tag 'admin', media: 'all', 'data-turbolinks-track' => true

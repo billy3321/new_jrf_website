@@ -1,0 +1,35 @@
+h1.text-center 修改/刪除文章
+.form-group
+  = search_form_for @q, url: admin_articles_path do |f|
+    label 標題內容搜尋
+    = f.search_field :title_or_content_cont, class: "form-control", placeholder: "輸入"
+    = f.button :submit, '搜尋', class: "btn btn-default radius btn-sm"
+hr
+table.table
+  thead
+    tr
+      th ID
+      th 標題
+      th 關鍵字
+      th 種類
+      th 日期
+      th 編輯/刪除
+  tbody
+    - @articles.eacho do |a|
+      tr
+        td = a.id
+        td = a.title
+        td
+          - num = 0
+          - a.keywords.each do |k|
+            - if num == 0
+              - num += 1
+            - else
+              | 、
+            = link_to k.name, keyword_path(k)
+        td = a.kind.name
+        td = a.published_at.strftime('%Y-%m-%d')
+        td
+          = link_to '編輯', edit_admin_article_path(a), class: "btn radius btn-white btn-sm"
+          = link_to '刪除', admin_article_path(a), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn radius btn-default btn-sm"
+

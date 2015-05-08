@@ -34,7 +34,6 @@ Magazine.delete_all
 Column.delete_all
 MagazineArticle.delete_all
 Epaper.delete_all
-Kind.delete_all
 Video.delete_all
 Faq.delete_all
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
@@ -46,30 +45,30 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 
-kinds = [
-  {
-    name: '新聞稿',
-    en_name: 'news'
-  }, {
-    name: '活動',
-    en_name: 'active'
-  }, {
-    name: '評論',
-    en_name: 'article'
-  }
-]
+# kinds = [
+#   {
+#     name: '新聞稿',
+#     en_name: 'news'
+#   }, {
+#     name: '活動',
+#     en_name: 'active'
+#   }, {
+#     name: '評論',
+#     en_name: 'article'
+#   }
+# ]
 
-kinds.each do |k|
-  kind = Kind.new
-  kind.name = k[:name]
-  kind.en_name = k[:en_name]
-  kind.title = k[:title] if k[:title]
-  kind.description = k[:description] if k[:description]
-  kind.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
-  kind.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
-  kind.showed = true if k[:showed]
-  kind.save
-end
+# kinds.each do |k|
+#   kind = Kind.new
+#   kind.name = k[:name]
+#   kind.en_name = k[:en_name]
+#   kind.title = k[:title] if k[:title]
+#   kind.description = k[:description] if k[:description]
+#   kind.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+#   kind.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+#   kind.showed = true if k[:showed]
+#   kind.save
+# end
 
 catalogs = [
   {
@@ -278,20 +277,6 @@ catalogs.each do |c|
         keyword.showed = true if k[:showed]
         keyword.category_id = category.id
         keyword.save
-      end
-    end
-    if cc[:kinds] and cc[:kinds].any?
-      cc[:kinds].each do |k|
-        kind = Kind.new
-        kind.name = k[:name]
-        kind.en_name = k[:en_name]
-        kind.title = k[:title] if k[:title]
-        kind.description = k[:description] if k[:description]
-        kind.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
-        kind.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
-        kind.showed = true if k[:showed]
-        kind.category_id = category.id
-        kind.save
       end
     end
   end
