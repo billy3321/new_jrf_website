@@ -7,6 +7,8 @@ class CreateArticles < ActiveRecord::Migration
       t.string :kind
       t.date :published_at
       t.string :image
+      t.string :youtube_url
+      t.string :youtube_id
       t.text :description
       t.boolean :published, default: false
 
