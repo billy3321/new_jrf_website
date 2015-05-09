@@ -34,10 +34,8 @@ Magazine.delete_all
 Column.delete_all
 MagazineArticle.delete_all
 Epaper.delete_all
-Video.delete_all
 Faq.delete_all
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
-ActiveRecord::Base.connection.execute("Delete from keywords_videos;");
 ActiveRecord::Base.connection.execute("Delete from keywords_magazine_articles;");
 
 ActiveRecord::Base.connection.tables.each do |t|
@@ -282,6 +280,35 @@ catalogs.each do |c|
   end
 end
 
+
+articles = [
+  {
+    id: 1,
+    kind: 'system',
+    published: false,
+    published_at: Time.now,
+    image: 'logo.png',
+    title: '關於我們',
+    content: ''
+  }, {
+    id: 2,
+    kind: 'system',
+    published: false,
+    published_at: Time.now,
+    image: 'logo.png',
+    title: '捐款支持',
+    content: ''
+  }
+]
+
+articles.each do |a|
+  article = Article.new(a)
+  article.id = a[:id]
+  File.open(Rails.root.join('db', 'fixtures', a[:image])) do |f|
+    article.image = f
+  end
+  article.save
+end
 
 
 rte_path = Rails.root.join('db', 'data', 'rte.json')

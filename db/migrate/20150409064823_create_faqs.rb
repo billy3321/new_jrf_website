@@ -4,8 +4,6 @@ class CreateFaqs < ActiveRecord::Migration
       t.references :keyword, index: true
       t.string :question
       t.text :answer
-
-      t.timestamps null: false
     end
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :articles, only: [:show, :index]
-  resources :keywords, only: [:show, :index]
+  resources :keywords, only: [:show]
   resources :catalogs
   resources :categories
   # resources :kinds, only: [:show, :index]
@@ -16,9 +16,19 @@ Rails.application.routes.draw do
   resources :magazine_articles
   resources :columns
   resources :epapers, only: [:show, :index]
-  scope '/admin' do
+  namespace :admin do
     root 'admins#index',             via: 'get', as: 'admin'
-    resources :articles
+    resources :articles, except: [:show]
+    resources :users, only: [:index, :update]
+    resources :catalogs, except: [:show] do
+      put :sort, on: :collection
+    end
+    resources :categories, except: [:show] do
+      put :sort, on: :collection
+    end
+    resources :keywords, except: [:show] do
+      put :sort, on: :collection
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

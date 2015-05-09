@@ -5,7 +5,7 @@ aside.col-md-2.gray-bg
       br
       | 管理後台
     p.text-center
-      = link_to destroy_user_session_path, method: :delete class: 'btn btn-info btn-sm' do
+      = link_to destroy_user_session_path, method: :delete, class: 'btn btn-info btn-sm' do
         i.fa.fa-lock.pr-10
         | 登出
     .separator
@@ -15,29 +15,24 @@ aside.col-md-2.gray-bg
           = link_to '目錄排序/總覽', admin_catalogs_path
         li.nav-divider
         li
-          = link_to '新增主目錄', new_admin_catalogs_path
+          = link_to '新增主目錄', new_admin_catalog_path
         li
           = link_to '修改/刪除主目錄', admin_catalogs_path
         li.nav-divider
         li
-          = link_to '新增次目錄'
+          = link_to '新增次目錄', new_admin_category_path
         li
-          = link_to '修改/刪除次目錄'
+          = link_to '修改/刪除次目錄', admin_categories_path
         li.nav-divider
         li
-          = link_to '新增專案'
+          = link_to '新增專案', new_admin_keyword_path
         li
-          = link_to '修改/刪除專案'
+          = link_to '修改/刪除專案', admin_keywords_path
         li.nav-divider
         li
-          = link_to '新增文章'
+          = link_to '新增文章', new_admin_article_path
         li
-          = link_to '修改/刪除文章'
-        li.nav-divider
-        li
-          = link_to '新增影片'
-        li
-          = link_to '修改/刪除影片'
+          = link_to '修改/刪除文章', admin_articles_path
         li.nav-divider
         li
           = link_to '修改介紹頁'
@@ -45,4 +40,4 @@ aside.col-md-2.gray-bg
           = link_to '修改捐款頁'
         li.nav-divider
         li
-          = link_to '後台使用者'
+          = link_to '後台使用者', admin_users_path

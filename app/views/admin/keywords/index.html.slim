@@ -1,9 +1,9 @@
 h1.text-center 修改/刪除專案
-= search_form_for @q, url: admin_articles_path do |f|
+= search_form_for @q, url: admin_keywords_path do |f|
   .form-group
     label 目錄分類
     = f.select :category_id_eq, Category.all.map { |c| [ "#{c.catalog.name} > #{c.name}", c.id ] }, include_blank: true
-    = f.button :submit, "搜尋"
+    = f.submit "搜尋"
 table.table
   thead
     tr

@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
   def set_catalog
     @catalogs = Catalog.all
   end
+
+  def after_sign_in_path_for(resource)
+    if current_user.admin
+      request.env['omniauth.origin'] || stored_location_for(resource) || admin_catalogs_path
+    else
+      sign_out current_user
+      root_path
+    end
+  end
 end

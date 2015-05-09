@@ -5,57 +5,70 @@
 
 - if @articles.any?
   .container
-    h2 相關訊息
-    separator-2
+    .separator-2
     .filters
       ul.nav.nav-tabs
-        li.active
-          = link_to "所有", "#", data: {filter: "*"}
-        - @kinds.each do |k|
+        - if @kind.blank?
+          li.active
+            = link_to "所有", url_for(params.merge({k: nil}))
           li
-            = link_to k.name, "#", data: {filter: ".jrf-#{k.en_name}"}
+            = link_to "新聞稿", url_for(params.merge({k: "presses"}))
+          li
+            = link_to "活動", url_for(params.merge({k: "activities"}))
+          li
+            = link_to "活動", url_for(params.merge({k: "comments"}))
+          li
+            = link_to "電子報", url_for(params.merge({k: "epapers"}))
+          li
+            = link_to "書籍", url_for(params.merge({k: "books"}))
+        - else
+          li
+            = link_to "所有", url_for(params.merge({k: nil}))
+          - if @kind == 'presses'
+            li.active
+              = link_to "新聞稿", url_for(params.merge({k: "presses"}))
+          - else
+            li
+              = link_to "新聞稿", url_for(params.merge({k: "presses"}))
+          - if @kind == 'activities'
+            li.active
+              = link_to "活動", url_for(params.merge({k: "activities"}))
+          - else
+            li
+              = link_to "活動", url_for(params.merge({k: "activities"}))
+          - if @kind == 'comments'
+            li.active
+             = link_to "活動", url_for(params.merge({k: "comments"}))
+          - else
+            li
+              = link_to "活動", url_for(params.merge({k: "comments"}))
+          - if @kind == 'epapers'
+            li.active
+              = link_to "電子報", url_for(params.merge({k: "epapers"}))
+          - else
+            li
+              = link_to "電子報", url_for(params.merge({k: "epapers"}))
+          - if @kind == 'books'
+            li.active
+              = link_to "書籍", url_for(params.merge({k: "books"}))
+          - else
+            li
+              = link_to "書籍", url_for(params.merge({k: "books"}))
     .row
       .block.clearfix.isotope-container
         - @articles.each do |a|
-          - if a.kind
-            .list-with-image.isotope-item.col-md-4 class="jrf-#{a.kind.en_name}"
-              .overlay-container 
-                = image_tag(a.image)
-                = link_to article_path(a), class: "overlay small" do
-                  i.fa.fa-link
-                  if a.kind
-                    span = a.kind.name
-              h2 = link_to a.title, article_path(a)
-              p.small = a.published_at.strftime('%Y-%m-%d')
-          - else
-            .list-with-image.isotope-item.col-md-4
-              .overlay-container 
-                = image_tag(a.image)
-                = link_to article_path(a), class: "overlay small" do
-                  i.fa.fa-link
-              h2 = link_to a.title, article_path(a)
-              p.small = a.published_at.strftime('%Y-%m-%d')
-
-      .row.text-center
-        .col-md-10.col-md-offset-1
-          = paginate @articles, param_name: "articles_page"
-
-- if @videos.any?
-  .section.gray-bg
-    .container
-      h2 相關影音
-      .separator-2
-      .row
-        - @videos.each do |v|
-          .col-md-4
-            .image-box.mb-20
-              .overlay-container
-                .embed-responsive.embed-responsive-16by9
-                  iframe.embed-responsive-item src="//www.youtube.com/embed/#{v.youtube_id}"
-              .image-box-body
-                h4.title.margin-clear
-                  = link_to v.title, video_path(v)
-                p.small.margin-clear = v.published_at.strftime('%Y-%m-%d')
-      .row.text-center
-        .col-md-10.col-md-offset-1
-          = paginate @videos, param_name: "videos_page"
+          .list-with-image.isotope-item.col-md-4 class="jrf-#{a.kind}"
+            .overlay-container
+              - unless a.youtube_id.blank?
+                iframe.embed-responsive-item sec="//www.youtube.com/embed/#{a.youtube_id}"
+              - else
+                = image_tag(a.image, alt: "")
+              = link_to article_path(a), class: "overlay small" do
+                i.fa.fa-link
+                span = a.kind.name
+            h2
+              = link_to a.title, article_path(a)
+            p.small a.published_at.strftime('%Y-%m-%d')
+    .row.text-center
+      .col-md-10.col-md-offset-1
+        = paginate @articles

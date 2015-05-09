@@ -1,8 +1,10 @@
 .form-group
-   = f.input :title, label: '專案名稱', required: true, input_html: { class: 'form-control' }, hint: "建議小於8個字"
+   = f.input :name, label: '專案名稱', required: true, input_html: { class: 'form-control' }, hint: "建議小於8個字"
+.form-group
+   = f.input :title, label: '專案標題', required: true, input_html: { class: 'form-control' }
 .form-group
   label 目錄分類
-  = f.association :category, label: '目錄分類', label_method: :category_full_name, value_method: :id, include_blank: false 
+  = f.association :category, label: '目錄分類', label_method: :full_name, value_method: :id, include_blank: false 
 .form-group
   = f.input :showed, as: :boolean, label: '是否在首頁主打？'
 .form-group
@@ -21,7 +23,8 @@
   p.help-block 建議大小1024*768，將顯示為專案圖片
   = image_tag(@keyword.image_url, alt:"") if @keyword.image?
 .form-group
-  = f.cktext_area :description, label: '內文', required: true
+  label 內文
+  = f.cktext_area :content, label: '內文', required: true
 hr
 h3 FAQ
 p.help-block 以下FAQ不一定必填，若留空則頁面不顯示

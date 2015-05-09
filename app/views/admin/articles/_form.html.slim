@@ -1,7 +1,7 @@
 = render 'shared/error_messages', object: f.object
 .form-group
   = f.association :keywords, label: "專案分類", collection: Keyword.all, input_html: { class: 'chosen-select form-control' }
-  = f.collection_radio_buttons :kind, [['press', '新聞稿'] ,['activity', '活動'], ['issue', '議題']], :first, :last, input_html: { class: 'form-control' }, label: "類型"
+  = f.input :kind, label: "類型", collection: [['新聞稿', 'press'], ['活動', 'activity'], ['評論', 'comment'], ['電子報', 'epaper'], ['書籍', 'book']], input_html: { class: 'form-control' }
 .form-group
   = f.input :title, label: '標題', required: true, input_html: { class: 'form-control' }, hint: "建議少於30字"
 .form-group
@@ -17,8 +17,12 @@
   p.help-block 建議大小1024*768，將文章頁閱讀時顯示
   = image_tag(@article.image_url, alt:"") if @article.image?
 .form-group
-  = f.cktext_area :description, label: '簡述', required: true, hint: "此處文字在專案主打時出現在首頁中，以及供FB抓取"
+  = f.input :youtube_url, label: 'Youtube 網址', input_html: { class: 'form-control' }, hint: "Youtube 網址，若貼上則顯示youtube為主"
+.form-group
+  label 簡述
+  = f.cktext_area :description, required: true, hint: "此處文字在專案主打時出現在首頁中，以及供FB抓取"
   p.help-block 此處文字在專案主打時出現在首頁中，以供FB抓取
 .form-group
-  = f.cktext_area :description, label: '內文', required: true
+  label 內文
+  = f.cktext_area :content, label: '內文', required: true
 = f.button :submit, "儲存", class: 'btn btn-default'

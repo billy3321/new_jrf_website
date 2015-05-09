@@ -1,8 +1,11 @@
 - if a.kind
-  .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{a.kind.en_name}"
+  .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{a.kind}"
     article.clearfix.blogpost
       .overlay-container
-        = link_to image_tag(a.image), article_path(a)
+        - unless a.youtube_id.blank?
+          iframe.embed-responsive-item sec="//www.youtube.com/embed/#{a.youtube_id}"
+        - else
+          = link_to image_tag(a.image), article_path(a)
       .blogpost-body
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
@@ -25,7 +28,10 @@
   .masonry-grid-item.isotope-item.col-sm-6.col-md-4
     article.clearfix.blogpost
       .overlay-container
-        = link_to image_tag(a.image), article_path(a)
+        - unless a.youtube_id.blank?
+          iframe.embed-responsive-item sec="//www.youtube.com/embed/#{a.youtube_id}"
+        - else
+          = link_to image_tag(a.image), article_path(a)
       .blogpost-body
         .post-info
           span.day = a.published_at.try(:strftime, '%d')

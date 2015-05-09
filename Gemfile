@@ -51,6 +51,7 @@ gem 'owlcarousel-rails'
 # gem 'modernizr-rails'
 gem 'social-share-button'
 gem 'unicode-display_width'
+gem 'jquery-datetimepicker-rails'
 
 source 'https://rails-assets.org' do
   # gem 'rails-assets-jquery'

@@ -7,7 +7,7 @@ html lang="zh-Hant-TW"
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    - if params[:controller] == 'static_pages' and params[:action] == 'home'
+    - if (params[:controller] == 'static_pages' and params[:action] == 'home') or params[:controller] == 'keywords'
       = stylesheet_link_tag  'index', media: 'all', 'data-turbolinks-track' => true
     - else
       = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true

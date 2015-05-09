@@ -1,7 +1,0 @@
-h1 Editing article
-
-= simple_form_for(@article, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to 'Show', article_path(@article), class: "btn"
-= link_to 'Back', articles_path, class: "btn"

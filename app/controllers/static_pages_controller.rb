@@ -7,15 +7,15 @@ class StaticPagesController < ApplicationController
 
   def search
     q = params[:q]
-    @articles = Article.published.search(title_or_content_cont: q).result.page(params[:articles_page])
-    @videos = Video.published.search(title_or_content_cont: q).result.page(params[:videos_page])
-    @kinds = []
-    @articles.each do |a|
-      unless @kinds.include? a.kind
-        @kinds << a.kind if a.kind
-      end
-    end
-    puts @kinds
+    @articles = Article.published.search(title_or_content_cont: q).result.page(params[:page])
+    # @videos = Video.published.search(title_or_content_cont: q).result.page(params[:videos_page])
+    # @kinds = []
+    # @articles.each do |a|
+    #   unless @kinds.include? a.kind
+    #     @kinds << a.kind if a.kind
+    #   end
+    # end
+    # puts @kinds
   end
 
   def about

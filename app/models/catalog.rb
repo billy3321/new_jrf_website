@@ -9,7 +9,7 @@ class Catalog < ActiveRecord::Base
 
   def set_position
     if not self.position
-      self.position = Banner.maximum("position").to_i + 1
+      self.position = Catalog.maximum("position").to_i + 1
     end
   end
 end

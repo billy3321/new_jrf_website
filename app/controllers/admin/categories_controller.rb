@@ -1,12 +1,12 @@
-class Admin::CategorysController < Admin::BaseController
-  before_action :set_category, except: [:index, :new]
+class Admin::CategoriesController < Admin::BaseController
+  before_action :set_category, except: [:index, :new, :sort]
 
   # GET /categories
   def index
     @q = Category.search(params[:q])
     @categories = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
-      title: "文章管理"
+      title: "次分類管理"
     })
   end
 
@@ -18,21 +18,21 @@ class Admin::CategorysController < Admin::BaseController
   def new
     @category = Category.new
     set_meta_tags({
-      title: "新增文章"
+      title: "新增次分類"
     })
   end
 
   # GET /categories/1/edit
   def edit
     set_meta_tags({
-      title: "編輯文章"
+      title: "編輯次分類"
     })
   end
 
   # POST /categories
   def create
     if @category.save
-      redirect_to admin_category_url(@category), notice: '文章建立成功'
+      redirect_to admin_categories_url, notice: '次分類建立成功'
     else
       render :new
     end
@@ -41,7 +41,7 @@ class Admin::CategorysController < Admin::BaseController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to admin_category_url(@category), notice: '文章更新成功'
+      redirect_to admin_categories_url, notice: '次分類更新成功'
     else
       render :edit
     end
@@ -50,7 +50,16 @@ class Admin::CategorysController < Admin::BaseController
   # DELETE /categories/1
   def destroy
     @category.destroy
-    redirect_to admin_categories_url, notice: '文章已刪除'
+    redirect_to admin_categories_url, notice: '次分類已刪除'
+  end
+
+  def sort
+    puts category_params.to_json
+    category_params[:order].each do |key,value|
+      Category.find(value[:id]).update_attribute(:position, value[:position])
+      #Category.find(value[:id]).update_attribute(:catalog_id, value[:catalog_id])
+    end
+    render :nothing => true
   end
 
   private
@@ -62,7 +71,6 @@ class Admin::CategorysController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params.require(:category).permit(:user_id, :published, {:issue_ids => []},
-      :published_at, :kind, :image, :image_cache, :remove_image, :title, :content, :youtube_url)
+    params.require(:category).permit(:name, :published, :position, :catalog_id, :position, {order: [:id, :position, :catalog_id]})
   end
 end

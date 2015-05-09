@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.string   "kind"
     t.date     "published_at"
     t.string   "image"
+    t.string   "youtube_url"
+    t.string   "youtube_id"
     t.text     "description"
     t.boolean  "published",    default: false
     t.datetime "created_at",                   null: false
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.string  "name"
     t.string  "image"
     t.boolean "published", default: true
+    t.integer "position"
   end
 
   add_index "catalogs", ["name"], name: "index_catalogs_on_name", unique: true, using: :btree
@@ -48,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.string  "name"
     t.integer "catalog_id"
     t.boolean "published",  default: true
+    t.integer "position"
   end
 
   add_index "categories", ["catalog_id"], name: "index_categories_on_catalog_id", using: :btree
@@ -86,11 +90,9 @@ ActiveRecord::Schema.define(version: 20150409064823) do
   end
 
   create_table "faqs", force: :cascade do |t|
-    t.integer  "keyword_id"
-    t.string   "question"
-    t.text     "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "keyword_id"
+    t.string  "question"
+    t.text    "answer"
   end
 
   add_index "faqs", ["keyword_id"], name: "index_faqs_on_keyword_id", using: :btree
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.string  "title"
     t.text    "description"
     t.text    "content"
+    t.integer "position"
   end
 
   add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree
@@ -116,13 +119,6 @@ ActiveRecord::Schema.define(version: 20150409064823) do
   end
 
   add_index "keywords_magazine_articles", ["keyword_id", "magazine_article_id"], name: "keywords_magazine_articles_index", unique: true, using: :btree
-
-  create_table "keywords_videos", id: false, force: :cascade do |t|
-    t.integer "keyword_id"
-    t.integer "video_id"
-  end
-
-  add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
 
   create_table "magazine_articles", force: :cascade do |t|
     t.integer  "magazine_id"
