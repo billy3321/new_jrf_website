@@ -36,17 +36,17 @@ describe "Article" do
     end
   end
 
-  describe "#issues" do
+  describe "#comments" do
     it "success" do
-      2.times { FactoryGirl.create(:issue_article) }
-      get "/articles/issues"
+      2.times { FactoryGirl.create(:comment_article) }
+      get "/articles/comments"
       expect(response).to be_success
     end
   end
 
-  describe "#issue_show" do
+  describe "#comment_show" do
     it "success" do
-      get "/articles/#{issue_article.id}"
+      get "/articles/#{comment_article.id}"
       expect(response).to be_success
     end
   end

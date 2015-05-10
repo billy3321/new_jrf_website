@@ -13,15 +13,15 @@ class KeywordsController < ApplicationController
     else
       @issue = nil
     end
-    if @issue = 'presses'
+    if @issue == 'presses'
       @articles = @keyword.articles.presses.page params[:page]
-    elsif @issue = 'comments'
+    elsif @issue == 'comments'
       @articles = @keyword.articles.comments.page params[:page]
-    elsif @issue = 'activities'
+    elsif @issue == 'activities'
       @articles = @keyword.articles.activities.page params[:page]
-    elsif @issue = 'epapers'
+    elsif @issue == 'epapers'
       @articles = @keyword.articles.epapers.page params[:page]
-    elsif @issue = 'books'
+    elsif @issue == 'books'
       @articles = @keyword.articles.books.page params[:page]
     else
       @articles = @keyword.articles.page params[:page]

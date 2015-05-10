@@ -10,48 +10,18 @@ describe "Keyword" do
     }
   end
 
-  describe "#new" do
+  describe "#show" do
     it "success" do
-      get "/keywords/new"
+      get "/keywords/#{keyword.id}"
       expect(response).to be_success
     end
   end
 
-  describe "#edit" do
+  describe "#show_with_faq" do
     it "success" do
-      get "/keywords/#{keyword.id}/edit"
+      2.times { FactoryGirl.create(:faq, keyword: keyword) }
+      get "/keywords/#{keyword.id}"
       expect(response).to be_success
     end
   end
-
-  describe "#create" do
-    it "success" do
-      expect {
-        post "/keywords", :keyword => new_keyword
-      }.to change { Keyword.count }.by(1)
-      expect(response).to be_redirect
-    end
-  end
-
-  describe "#update" do
-    it "success" do
-      keyword
-      update_data = { :name => "new_name" }
-      put "/keywords/#{keyword.id}", :keyword => update_data
-      expect(response).to be_redirect
-      keyword.reload
-      expect(keyword.name).to match(update_data[:name])
-    end
-  end
-
-  describe "#destroy" do
-    it "success" do
-      keyword
-      expect {
-        delete "/keywords/#{keyword.id}"
-      }.to change { Keyword.count }.by(-1)
-      expect(response).to be_redirect
-    end
-  end
-
 end

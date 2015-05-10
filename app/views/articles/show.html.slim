@@ -13,8 +13,10 @@ section.container
                 i.fa.fa-user.pr-1
                 = @article.author
             .embed-responsive.embed-responsive-16by9
-              = image_tag(@article.image, alt: "")
-
+              - if @article.youtube_id
+                iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtub_id}"
+              - else
+                = image_tag(@article.image, alt: "")
 .container
   .container
     .row.col-lg-12

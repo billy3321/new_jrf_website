@@ -1,0 +1,11 @@
+.white-bg.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
+  .container
+    .row.col-md-12
+      h1.title.text-center 新聞稿
+      .separator
+        .masonry-grid.row
+          - @articles.each do |a|
+            = render partial: 'shared/article_block', locals: { a: a }
+  .row-text-center
+    .col-md-10.col-md-offset-1
+      = paginate @articles
