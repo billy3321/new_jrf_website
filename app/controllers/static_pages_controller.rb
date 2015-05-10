@@ -19,8 +19,10 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+    @article = Article.find(1)
   end
 
   def donate
+    @article = Article.find(2)
   end
 end

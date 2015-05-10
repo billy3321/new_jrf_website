@@ -1,14 +1,45 @@
 FactoryGirl.define do
   factory :article do
-    sequence(:title) { |n| "Article #{n}" }
-    sequence(:content) { |n| "Article Content #{n}" }
-    sequence(:author) { |n| "Author #{n}" }
-    sequence(:published_at) { Date.today }
-    sequence(:image) { "http://www.online-image-editor.com//styles/2014/images/example_image.png" }
-    sequence(:description) { |n| "Article Description #{n}" }
-    category { FactoryGirl.create(:category) }
-    catalog { FactoryGirl.create(:catalog) }
-    user { FactoryGirl.create(:user) }
-    keywords { [ FactoryGirl.create(:keyword) ] }
+    sequence(:title)  { |n| "Article title #{n}" }
+    sequence(:content)  { |n| "Article content #{n}" }
+    sequence(:description)  { |n| "Article description #{n}" }
+    sequence(:author)  { |n| "Article author #{n}" }
+    sequence(:published_at) { |n| n.days.ago }
+    keywords {[ FactoryGirl.create(:keyword) ]}
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'test.jpg')) }
+    published true
+  end
+
+  factory :press_article, parent: :article do
+    kind "press"
+  end
+
+  factory :activity_article, parent: :article do
+    kind "activity"
+  end
+
+  factory :comment_article, parent: :article do
+    kind "comment"
+  end
+
+  factory :epaper_article, parent: :article do
+    kind "epaper"
+  end
+
+  factory :book_article, parent: :article do
+    kind "book"
+  end
+
+  factory :about_article, parent: :article do
+    kind "system"
+    id 1
+  end
+
+  factory :donate_article, parent: :article do
+    kind "system"
+    id 2
   end
 end
+
+
+

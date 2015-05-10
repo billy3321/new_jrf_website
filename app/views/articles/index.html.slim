@@ -6,10 +6,17 @@ p#notice = notice
       .filters
         ul.nav.nav-tabs
           li.active
-            = link_to "所有", "#", data: {filter: "*"}
-          - @kinds.each do |k|
-            li
-              = link_to k.name, "#", data: {filter: ".jrf-#{k.en_name}"}
+            = link_to "所有", articles_path
+          li
+            = link_to "新聞稿", presses_articles_path
+          li
+            = link_to "活動", activities_articles_path
+          li
+            = link_to "評論", comments_articles_path
+          li
+            = link_to "電子報", epapers_articles_path
+          li
+            = link_to "書籍", books_articles_path
       .masonry-grid.isotope-container.row
         - @articles.each do |a|
           = render partial: 'shared/article_block', locals: { a: a }

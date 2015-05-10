@@ -54,7 +54,6 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def sort
-    puts category_params.to_json
     category_params[:order].each do |key,value|
       Category.find(value[:id]).update_attribute(:position, value[:position])
       #Category.find(value[:id]).update_attribute(:catalog_id, value[:catalog_id])

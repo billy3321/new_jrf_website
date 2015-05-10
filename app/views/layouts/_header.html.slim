@@ -22,10 +22,11 @@
                 | 搜尋
               ul.dropdown-menu.dropdown-menu-right.dropdown-animation
                 li
-                  = form_tag articles_path, method: :get, class: "search-box", role: "search" do
+                  = search_form_for @article_q, url: articles_path, class: "search-box", role: "search" do |f|
                     .form-group.has-feedback
-                      = text_field_tag :q, nil, name: "q", id: "textfield", class: "form-control", type: "text", placeholder: "輸入關鍵字"
+                      = f.search_field :title_or_content_cont, class: "form-control", id: "textfield", placeholder: "輸入關鍵字"
                       i.fa.fa-search.form-control-feedback
+                      = f.submit "搜尋", class: "btn btn-default radius btn-sm"
 header.header.fixed.clearfix
   .container
     .row
@@ -49,7 +50,7 @@ header.header.fixed.clearfix
                   ul.nav.navbar-nav.navbar-right
                     - @catalogs.each do |catalog|
                       li.dropdown.mega-menu
-                        = link_to catalog.name, catalog_path(catalog), class: "dropdown-toggle", data: { toggle: "dropdown"}
+                        = link_to catalog.name, "", class: "dropdown-toggle", data: { toggle: "dropdown"}
                         ul.dropdown-menu
                           li
                             .row
@@ -70,11 +71,11 @@ header.header.fixed.clearfix
                                                 = keyword.name
                                           - if category.name == '出版品'
                                             li
-                                              = link_to root_path do
+                                              = link_to epapers_articles_path do
                                                 i.icon-right-open
                                                 | 電子報
                                             li
-                                              = link_to root_path do
+                                              = link_to books_articles_path do
                                                 i.icon-right-open
                                                 | 書籍
                                     - elsif catalog.categories.length == 3
@@ -89,11 +90,11 @@ header.header.fixed.clearfix
                                                 = keyword.name
                                           - if category.name == '出版品'
                                             li
-                                              = link_to root_path do
+                                              = link_to epapers_articles_path do
                                                 i.icon-right-open
                                                 | 電子報
                                             li
-                                              = link_to root_path do
+                                              = link_to books_articles_path do
                                                 i.icon-right-open
                                                 | 書籍
                                     - elsif catalog.categories.length == 4
@@ -108,11 +109,11 @@ header.header.fixed.clearfix
                                                 = keyword.name
                                           - if category.name == '出版品'
                                             li
-                                              = link_to root_path do
+                                              = link_to epapers_articles_path do
                                                 i.icon-right-open
                                                 | 電子報
                                             li
-                                              = link_to root_path do
+                                              = link_to books_articles_path do
                                                 i.icon-right-open
                                                 | 書籍
 

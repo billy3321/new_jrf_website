@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root 'static_pages#home'
-  match '/about',    to: 'static_pages#about',    via: 'get'
+  match '/about',     to: 'static_pages#about',     via: 'get'
   match '/donate',    to: 'static_pages#donate',    via: 'get'
   match '/search',    to: 'static_pages#search',    via: 'get'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :articles, only: [:show, :index]
+  resources :articles, only: [:show, :index] do
+    get :presses, on: :collection
+    get :activities, on: :collection
+    get :comments, on: :collection
+    get :epapers, on: :collection
+    get :books, on: :collection
+  end
   resources :keywords, only: [:show]
-  resources :catalogs
-  resources :categories
+  # resources :catalogs
+  # resources :categories
   # resources :kinds, only: [:show, :index]
   resources :magazines
   resources :magazine_articles

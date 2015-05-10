@@ -1,67 +1,53 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Article" do
 
-  let(:catalog) { FactoryGirl.create(:catalog) }
-  let(:category) { FactoryGirl.create(:category) }
-  let(:keyword) { FactoryGirl.create(:keyword) }
-  let(:article) { FactoryGirl.create(:article) }
-  let(:new_article) do
-    {
-      title: "new_article_title",
-      content: "new_article_content",
-      author: "new_article_author",
-      published_at: Date.today.strftime('%Y-%m-%d'),
-      image: "new_article_image",
-      description: "new_article_description",
-      category_id: category.id,
-      catalog_id: catalog.id,
-      keyword_ids: [keyword.id]
-    }
-  end
+  let(:press_article) { FactoryGirl.create(:press_article) }
+  let(:activity_article) { FactoryGirl.create(:activity_article) }
+  let(:issue_article) { FactoryGirl.create(:issue_article) }
 
-  describe "#new" do
+  describe "#presses" do
     it "success" do
-      get "/articles/new"
+      2.times { FactoryGirl.create(:press_article) }
+      get "/articles/presses"
       expect(response).to be_success
     end
   end
 
-  describe "#edit" do
+  describe "#press_show" do
     it "success" do
-      get "/articles/#{article.id}/edit"
+      get "/articles/#{press_article.id}"
       expect(response).to be_success
     end
   end
 
-  describe "#create" do
+  describe "#activities" do
     it "success" do
-      expect {
-        post "/articles", :article => new_article
-      }.to change { Article.count }.by(1)
-      expect(response).to be_redirect
+      2.times { FactoryGirl.create(:activity_article) }
+      get "/articles/activities"
+      expect(response).to be_success
     end
   end
 
-  describe "#update" do
+  describe "#activity_show" do
     it "success" do
-      article
-      update_data = { :title => "new_title" }
-      put "/articles/#{article.id}", :article => update_data
-      expect(response).to be_redirect
-      article.reload
-      expect(article.title).to match(update_data[:title])
+      get "/articles/#{activity_article.id}"
+      expect(response).to be_success
     end
   end
 
-  describe "#destroy" do
+  describe "#issues" do
     it "success" do
-      article
-      expect {
-        delete "/articles/#{article.id}"
-      }.to change { Article.count }.by(-1)
-      expect(response).to be_redirect
+      2.times { FactoryGirl.create(:issue_article) }
+      get "/articles/issues"
+      expect(response).to be_success
     end
   end
 
+  describe "#issue_show" do
+    it "success" do
+      get "/articles/#{issue_article.id}"
+      expect(response).to be_success
+    end
+  end
 end

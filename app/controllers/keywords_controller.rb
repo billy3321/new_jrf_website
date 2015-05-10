@@ -8,7 +8,6 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1
   def show
-    
     unless params[:k].blank?
       @issue = params[:k] if ['presses', 'comments', 'activities', 'epapers', 'books'].include? params[:k]
     else
