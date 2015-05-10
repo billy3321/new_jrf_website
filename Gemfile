@@ -52,6 +52,7 @@ gem 'owlcarousel-rails'
 gem 'social-share-button'
 gem 'unicode-display_width'
 gem 'jquery-datetimepicker-rails'
+gem "cocoon"
 
 source 'https://rails-assets.org' do
   # gem 'rails-assets-jquery'

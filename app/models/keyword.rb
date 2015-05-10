@@ -19,4 +19,10 @@ class Keyword < ActiveRecord::Base
       self.position = Keyword.maximum("position").to_i + 1
     end
   end
+
+  def self.build #-> allows you to call a single method
+    keyword = self.new
+    keyword.faqs.build
+    return
+ end
 end

@@ -29,8 +29,10 @@ hr
 h3 FAQ
 p.help-block 以下FAQ不一定必填，若留空則頁面不顯示
 - unless @keyword.new_record?
-  = f.simple_fields_for :faqs do |faq|
-    = render :partial => 'faq_fields', :locals => { :f => faq }
+  #faqs
+    = f.simple_fields_for :faqs do |faq|
+      = render :partial => 'faq_fields', :locals => { :f => faq }
+    = link_to_add_association "新增FAQ", f, :faqs, class: "btn radius btn-white btn-sm"
 hr
 = f.button :submit, "儲存", class: "btn btn-default"
 

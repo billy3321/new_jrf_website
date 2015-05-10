@@ -30,6 +30,7 @@
 //= require chosen-jquery
 //= require jquery.datetimepicker
 //= require html.sortable
+//= require cocoon
 
 
 var ready_ran = 0;
@@ -40,6 +41,17 @@ set_positions = function(){
   $('.panel.panel-default').each(function(i){
       $(this).attr("data-pos",i+1);
   });
+}
+
+function remove_fields(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent().before(content.replace(regexp, new_id));
 }
 
 var ready = function(){

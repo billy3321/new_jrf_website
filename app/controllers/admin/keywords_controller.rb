@@ -1,5 +1,5 @@
 class Admin::KeywordsController < Admin::BaseController
-  before_action :set_keyword, except: [:index, :new, :sort]
+  before_action :set_keyword, except: [:index, :new, :sort, :add_faq]
 
   # GET /keywords
   def index
