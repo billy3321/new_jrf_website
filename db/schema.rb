@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150409064823) do
     t.string   "image"
     t.string   "youtube_url"
     t.string   "youtube_id"
+    t.string   "link"
     t.text     "description"
     t.boolean  "published",    default: false
     t.datetime "created_at",                   null: false
