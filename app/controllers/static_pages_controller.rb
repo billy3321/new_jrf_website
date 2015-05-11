@@ -25,4 +25,8 @@ class StaticPagesController < ApplicationController
   def donate
     @article = Article.find(2)
   end
+
+  def sitemap
+    @articles = Article.all
+  end
 end
