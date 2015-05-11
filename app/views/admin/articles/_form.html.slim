@@ -9,7 +9,9 @@
 .form-group
   = f.input :published, as: :boolean, label: '發布'
 .form-group
-  = f.input :author, label: '作者', required: true, input_html: { class: 'form-control' }, hint: "多項時請以頓號分開"
+  = f.input :author, label: '作者', required: true, input_html: { class: 'form-control' }, hint: "多項時請以頓號（、）分開"
+.form-group
+  = f.input :link, label: '連結', required: true, input_html: { class: 'form-control' }, hint: "如果是書本，請把書本連結填入"
 .form-group
   = f.input :image, as: :file, label: '大型圖示', input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
   = f.input :image_cache, as: :hidden

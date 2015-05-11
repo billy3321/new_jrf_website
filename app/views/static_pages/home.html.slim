@@ -9,7 +9,7 @@
               .tp-caption.very_large_text.sft.tp-resizeme data-x="center" data-y="0" data-speed="700" data-start="200" data-end="10000" data-endspeed="600"
                 h1 = k.title
               .tp-caption.small_thin_white.sfb.tp-resizeme data-x="center" data-y="100" data-speed="700" data-start="400" data-end="10000" data-endspeed="600"
-                = k.description
+                = k.description.try(:html_safe)
               .tp-caption.tp-resizeme.sfb data-x="center" data-y="450" data-speed="700" data-start="600" data-end="10000" data-endspeed="600"
                 = link_to keyword_path(k), class: "btn btn-white btn-lg" do
                   | 了解更多
@@ -28,74 +28,77 @@
           .row.col-md-12
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'v_lawer.png', alt: "義務律師"
-                = link_to image_tag('v_lawer_word.png', class: "overlay img-circle")
+                img alt="義務律師" src="http://www.jrf.org.tw/newjrf/img/v_lawer.png" /
+                a href="https://docs.google.com/forms/d/1XRuZ25LtTCJyD9a78JaFfiffmjtIuou7M2q7eR0GqY4/viewform" target="_blank" 
+                  img.overlay.img-circle src="http://www.jrf.org.tw/newjrf/img/v_lawer_word.png" /
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'v_donation.png', alt: "捐款支持"
-                = link_to image_tag('v_donation_word.png', class: "overlay img-circle"), donate_path
+                img alt="捐款支持" src="http://www.jrf.org.tw/newjrf/img/v_donation.png" /
+                a href="#" 
+                  img.img-circle.overlay src="http://www.jrf.org.tw/newjrf/img/v_donation_word.png" /
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                = image_tag 'v_join.png', alt: "加入志工"
-                = link_to image_tag('v_join_word.png', class: "overlay img-circle")
+                img alt="加入志工" src="http://www.jrf.org.tw/newjrf/img/v_join.png" /
+                a href="#" 
+                  img.img-circle.overlay src="http://www.jrf.org.tw/newjrf/img/v_join_word.png" /
 
-  .white-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
-    
-      .container
-        .row.col-md-12
-          h2
-            i.fa.fa-bullhorn
-            | 最新訊息
+.white-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100" 
+  .container
+    .row.col-md-12
+      h2
+        i.fa.fa-bullhorn
+        | 最新訊息
+      .separator-2
+      /! masonry grid start
+      .masonry-grid.row
+        - @articles.each do |a|
+          = render partial: 'shared/article_block', locals: { a: a }
+
+.gray-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100" 
+  .container
+    - if @epaper_article
+      .row
+        .col-md-6
+          h2.page-title
+            i.fa.fa-newspaper-o
+            | 電子報
           .separator-2
-          .masonry-grid.row
-            - @articles.each do |a|
-              .masonry-grid-item.col-sm-6.col-md-4
-                article.clearfix.blogpost
-                  .overlay-container
-                    = link_to image_tag(a.image.try(:url)), article_path(a)
-                  .blogpost-body
-                    .post-info
-                      span.day = a.published_at.strftime('%d')
-                      span.month = a.published_at.strftime('%m %Y')
-                    .blogpost-content
-                      header
-                        h4.title
-                          = link_to a.title, article_path(a)
-                        .submitted
-                          i.fa.fa-user.pr-5
-                          | by
-                          = a.user.try(:name)
-                      = display_shorter(a.content, 200)
-                  footer.clearfix
-                    ul.links.pull-left
-                      - a.keywords.each do |k|
-                        li
-                          i.fa.fa-tags.pr-5
-                          = link_to k.name, keyword_path(k)
-          .col-md-10.col-md-offset-1.row.text-center
-            ul.pagination
-              = paginate @articles
-  section.main-container.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
-    .gray-bg.section
-      .container
-        .row
-          .col-md-6
-            h2.page-title
-              i.fa.fa-newspaper-o
-              = @magazine_article.title
-            .seperator-2
-            = @magazine_article.content
-            h4.text-left
-              = link_to "閱讀全文", magazine_article_path(@magazine_article), class: "btn btn-white btn-sm"
-              = link_to "訂閱電子報", "#", class: "btn btn-white btn-sm"
-            aside.sidebar.col-md-6
-              .side.vertical-divider-left
-                .block.clearfix
-                  .embed-responsive.embed-responsive-16by9
-                    = link_to image_tag(''), '#'
-
-= link_to '雜誌文章列表', magazine_articles_path
-br
-= link_to '司改網站文章列表', articles_path
-br
-= link_to "所有電子報", epapers_path
+          h3 = link_to @epaper_article.title, article_path(@epaper_article)
+          = display_shorter(@epaper_article.content, 100)
+          h4.text-left
+            = link_to "更多電子報", epapers_articles_path, class: "btn btn-default"
+            = link_to "訂閱電子報", "https://jrf.neticrm.tw/civicrm/profile/create?gid=12&reset=1", class: "btn btn-white", target: "_blank"
+        aside.sidebar.col-md-6
+          .side
+            .block.clearfix
+              .embed-responsive.embed-responsive-16by9
+                = link_to image_tag(@epaper_article.image, class: "embed-responsive-item"), article_path(@epaper_article)
+    - if @book_articles.any?
+      .row
+        .col-md-12
+          h2.page-title
+            i.fa.fa-book
+            | 電子書
+          .separator-2
+          .owl-carousel.clients
+            - num = 0
+            - @book_articles.each do |a|
+              - num += 1
+              .client
+                = link_to image_tag(a.image, alt: a.title), a.link, data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
+                .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="#jrf-book#{num}"
+                  .modal-dialog
+                    .modal-content
+                      .modal-header
+                        button.close data-dismiss="modal" type="button" 
+                          span aria-hidden="true"  &times;
+                          span.sr-only Close
+                        h4#myModalLabel.modal-title = a.title
+                      .modal-body
+                        = a.content.try(:html_safe)
+                      .modal-footer
+                        = link_to "閱讀此書", a.link, class: "btn btn-white btn-sm", target: "_blank"
+                        button.btn.btn-sm.btn-default data-dismiss="modal" type="button"  關閉
+        h4.text-left
+          a.btn.btn-default href="kind.html"  更多書籍
+          a.btn.btn-white href="https://www.gitbook.com/@jrf-tw"  瀏覽GitBook
