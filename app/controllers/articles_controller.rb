@@ -35,6 +35,20 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
+    unless @article.published
+      not_found
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => {
+        status: "success",
+        article: JSON.parse(
+            @article.to_json({include: [:issues], except: [:published]})
+          ),
+        callback: params[:callback]
+        }
+      }
+    end
   end
 
   private

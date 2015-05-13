@@ -55,7 +55,7 @@ header.header.fixed.clearfix
                           li
                             .row
                               .col-lg-4.col-md-3.hidden-md
-                                = image_tag(catalog.image.try(:url))
+                                = image_tag(catalog.image.thumb.try(:url))
                               .col-lg-8.col-md-12
                                 .row
                                   - catalog.categories.each do |category|
