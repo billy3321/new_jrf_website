@@ -17,17 +17,17 @@ class KeywordsController < ApplicationController
       @issue = nil
     end
     if @issue == 'presses'
-      @articles = @keyword.articles.presses.page params[:page]
+      @articles = @keyword.articles.presses.publiced.page params[:page]
     elsif @issue == 'comments'
-      @articles = @keyword.articles.comments.page params[:page]
+      @articles = @keyword.articles.comments.publiced.page params[:page]
     elsif @issue == 'activities'
-      @articles = @keyword.articles.activities.page params[:page]
+      @articles = @keyword.articles.activities.publiced.page params[:page]
     elsif @issue == 'epapers'
-      @articles = @keyword.articles.epapers.page params[:page]
+      @articles = @keyword.articles.epapers.publiced.page params[:page]
     elsif @issue == 'books'
-      @articles = @keyword.articles.books.page params[:page]
+      @articles = @keyword.articles.books.publiced.page params[:page]
     else
-      @articles = @keyword.articles.page params[:page]
+      @articles = @keyword.articles.publiced.page params[:page]
     end
   end
 

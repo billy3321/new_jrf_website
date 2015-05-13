@@ -3,7 +3,6 @@
 .form-group
    = f.input :title, label: '專案標題', required: true, input_html: { class: 'form-control' }
 .form-group
-  label 目錄分類
   = f.association :category, label: '目錄分類', label_method: :full_name, value_method: :id, include_blank: false 
 .form-group
   = f.input :showed, as: :boolean, label: '是否在首頁主打？'
