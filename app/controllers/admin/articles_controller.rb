@@ -32,7 +32,7 @@ class Admin::ArticlesController < Admin::BaseController
   # POST /articles
   def create
     if @article.save
-      redirect_to admin_article_url(@article), notice: '文章建立成功'
+      redirect_to admin_articles_url, notice: '文章建立成功'
     else
       render :new
     end
@@ -41,7 +41,7 @@ class Admin::ArticlesController < Admin::BaseController
   # PATCH/PUT /articles/1
   def update
     if @article.update(article_params)
-      redirect_to admin_article_url(@article), notice: '文章更新成功'
+      redirect_to admin_articles_url, notice: '文章更新成功'
     else
       render :edit
     end

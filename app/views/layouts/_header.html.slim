@@ -54,8 +54,9 @@ header.header.fixed.clearfix
                         ul.dropdown-menu
                           li
                             .row
-                              .col-lg-4.col-md-3.hidden-md
-                                = image_tag(catalog.image.thumb.try(:url))
+                              - unless catalog.image.blank?
+                                .col-lg-4.col-md-3.hidden-md
+                                  = image_tag(catalog.image.thumb)
                               .col-lg-8.col-md-12
                                 .row
                                   - catalog.categories.each do |category|
@@ -64,7 +65,7 @@ header.header.fixed.clearfix
                                         h4 = category.name
                                         .divider
                                         ul.menu
-                                          - category.keywords.each do |keyword|
+                                          - category.keywords.published.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
@@ -83,7 +84,7 @@ header.header.fixed.clearfix
                                         h4 = category.name
                                         .divider
                                         ul.menu
-                                          - category.keywords.each do |keyword|
+                                          - category.keywords.published.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
@@ -102,7 +103,7 @@ header.header.fixed.clearfix
                                         h4 = category.name
                                         .divider
                                         ul.menu
-                                          - category.keywords.each do |keyword|
+                                          - category.keywords.published.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open

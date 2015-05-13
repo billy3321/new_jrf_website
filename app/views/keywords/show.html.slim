@@ -1,7 +1,8 @@
 .container
   .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
-    .embed-responsive embed-responsive-16by9
-      = image_tag(@keyword.image, class: "embed-responsive-item", alt: "")
+    - unless @keyword.image.blank?
+      .embed-responsive.embed-responsive-16by9
+        = image_tag(@keyword.image, class: "embed-responsive-item", alt: "")
     = social_share_button_tag(@keyword.title)
     h1.title.text-center = @keyword.title
     .seperator
@@ -85,7 +86,7 @@
               - unless a.youtube_id.blank?
                 iframe.embed-responsive-item sec="//www.youtube.com/embed/#{a.youtube_id}"
               - else
-                = image_tag(a.image, alt: "")
+                = image_tag(a.image.thumb, alt: "")
               = link_to article_path(a), class: "overlay small" do
                 i.fa.fa-link
                 span = a.kind.name
