@@ -70,6 +70,7 @@ end
 
 catalogs = [
   {
+    id: 1,
     name: '建立信賴的司法',
     image: 'trust.jpg',
     categories: [
@@ -122,6 +123,7 @@ catalogs = [
       }
     ]
   }, {
+    id: 2,
     name: '監督法官檢察官',
     image: 'supervise.jpg',
     categories: [
@@ -157,6 +159,7 @@ catalogs = [
       }
     ]
   }, {
+    id: 3,
     name: '冤案救援',
     image: 'rescue.jpg',
     categories: [
@@ -185,6 +188,7 @@ catalogs = [
       }
     ]
   }, {
+    id: 4,
     name: '實現社會正義',
     image: 'justice.jpg',
     categories: [
@@ -221,6 +225,7 @@ catalogs = [
       }
     ]
   }, {
+    id: 5,
     name: '法治紮根',
     image: 'justice.jpg',
     categories: [
@@ -257,6 +262,7 @@ catalogs = [
 catalogs.each do |c|
   catalog = Catalog.new
   catalog.name = c[:name]
+  catalog.id = c[:id]
   catalog.image = File.open(Rails.root.join('db', 'data', 'images', 'catalogs', c[:image])) if c[:image]
   catalog.save
   c[:categories].each do |cc|
