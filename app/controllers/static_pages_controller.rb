@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     @keywords = Keyword.showed
-    @articles = Article.all.page(params[:page]).per(10)
+    @articles = Article.published.page(params[:page]).per(10)
     @epaper_article = Article.epapers.first
     @book_articles = Article.books
   end
