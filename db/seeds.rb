@@ -333,7 +333,7 @@ if File.file?(rte_path)
       article.created_at = Date.parse(article_data[3])
     end
     article.author = article_data[5]
-    if article_data[7]
+    unless article_data[7].blank?
       article.remote_image_url = article_data[7]
     else
       url = get_img_url_from_html(article_data[2])
