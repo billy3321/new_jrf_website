@@ -15,14 +15,16 @@
       h2 FAQ
       .seperator-2
       .panel-group#accordion-faq
+        - num = 0
         - @keyword.faqs.each do |faq|
+          - num += 1
           .panel.panel-default
             .panel-heading
               h4.panel-title
-                = link_to "#collapseOne", data: { toggle: "collapse", parent: "#accordion-faq" }, class: "collapsed" do
+                = link_to "#collapse#{num}", data: { toggle: "collapse", parent: "#accordion-faq" }, class: "collapsed" do
                   i.fa.fa-question-circle.pr-10
                   = faq.question
-            #collapseOne.panel-collapse.collapse
+            .panel-collapse.collapse id="collapse#{num}"
               .panel-body
                 = faq.answer.try(:html_safe)
 
