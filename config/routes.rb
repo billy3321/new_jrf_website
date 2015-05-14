@@ -33,7 +33,8 @@ Rails.application.routes.draw do
       put :sort, on: :collection
     end
     resources :keywords, except: [:show] do
-      put :sort, on: :collection
+      get :order, on: :collection
+      put :sort,  on: :collection
     end
   end
 

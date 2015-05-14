@@ -1,5 +1,5 @@
 class Admin::KeywordsController < Admin::BaseController
-  before_action :set_keyword, except: [:index, :new, :sort, :add_faq]
+  before_action :set_keyword, except: [:index, :new, :sort, :add_faq, :order]
 
   # GET /keywords
   def index
@@ -13,6 +13,13 @@ class Admin::KeywordsController < Admin::BaseController
   # GET /keywords/1
   def show
     @faqs = @keyword.faqs.all
+  end
+
+  def order
+    @catalogs = Catalog.all
+    set_meta_tags({
+      title: "專案排序"
+    })
   end
 
   # GET /keywords/new
