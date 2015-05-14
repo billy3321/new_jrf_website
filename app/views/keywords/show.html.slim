@@ -89,7 +89,18 @@
                 = image_tag(a.image.thumb, alt: "")
               = link_to article_path(a), class: "overlay small" do
                 i.fa.fa-link
-                span = a.kind.name
+                - if a.kind == 'press'
+                  span 新聞稿
+                - elsif a.kind == 'activity'
+                  span 活動
+                - elsif a.kind == 'comment'
+                  span 評論
+                - elsif a.kind == 'epaper'
+                  span 電子報
+                - elsif a.kind == 'book'
+                  span 書籍
+                - else
+                  span 不明
             h2
               = link_to a.title, article_path(a)
             p.small a.published_at.strftime('%Y-%m-%d')
