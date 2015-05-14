@@ -293,7 +293,7 @@ articles = [
     kind: 'system',
     published: false,
     published_at: Time.now,
-    image: 'logo.png',
+    image: 'about.jpg',
     title: '我們對司法有一個夢',
     content: '<blockquote>
           <p>期待有一天<br>
@@ -377,7 +377,7 @@ articles = [
     kind: 'system',
     published: false,
     published_at: Time.now,
-    image: 'logo.png',
+    image: 'donate.jpg',
     title: '每一個 你，都是點亮司法黑暗的一盞燭光',
     content: '<div class="alert alert-info" role="alert">
   <p style="font-size:15px">親愛的朋友，感謝你的慷慨捐款，讓我們有更多的力量投入於監督法官、檢察官，為弱勢民眾提供司法人權的保障。</p>
