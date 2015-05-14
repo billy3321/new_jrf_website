@@ -33,7 +33,7 @@
     = f.association :keywords, label: "專案分類", collection: Keyword.all, input_html: { class: 'chosen-select form-control' }, disabled: true
     = f.input :kind, label: "類型", collection: [['系統', 'system']], input_html: { class: 'form-control' }, include_blank: false, disabled: true
   .form-group
-    = f.input :title, label: '標題', required: true, input_html: { class: 'form-control' }, hint: "建議少於30字", disabled: true
+    = f.input :title, label: '標題', required: true, input_html: { class: 'form-control' }, hint: "建議少於30字"
   .form-group
     = f.input :published_at, as: :string, label: '發布日期', input_html: { class: "datetimepicker" }, required: true, disabled: true
   .form-group
