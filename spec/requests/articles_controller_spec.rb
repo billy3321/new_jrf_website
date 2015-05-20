@@ -4,7 +4,7 @@ describe "Article" do
 
   let(:press_article) { FactoryGirl.create(:press_article) }
   let(:activity_article) { FactoryGirl.create(:activity_article) }
-  let(:issue_article) { FactoryGirl.create(:issue_article) }
+  let(:comment_article) { FactoryGirl.create(:comment_article) }
 
   describe "#presses" do
     it "success" do
