@@ -7,5 +7,7 @@
   = f.input :remove_image, as:  :boolean, label: '移除圖片'
   p.help-block 建議大小448*336，檔案過大將增加開啓頁面時間
   = image_tag(@catalog.image_url, alt:"") if @catalog.image?
+.form-group
+  = f.input :published, as: :boolean, label: '允許發布'
 hr
 = f.button :submit, "儲存", class: "btn btn-default"

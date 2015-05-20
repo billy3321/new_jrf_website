@@ -7,6 +7,8 @@
 .form-group
   = f.input :showed, as: :boolean, label: '是否在首頁主打？'
 .form-group
+  = f.input :published, as: :boolean, label: '允許發布'
+.form-group
   = f.input :cover, as: :file, label: '首頁廣告圖', input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
   = f.input :cover_cache, as: :hidden
   = f.input :remove_cover, as:  :boolean, label: '移除圖片'
