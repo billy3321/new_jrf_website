@@ -18,12 +18,12 @@
               | by
               = a.author
           = display_shorter(a.content, 50)
-    footer.clearfix
-      ul.links.pull-left
-        - a.keywords.each do |k|
-          li
-            i.fa.fa-tags.pr-5
-            = link_to k.name, keyword_path(k)
+      footer.clearfix
+        ul.links.pull-left
+          - a.keywords.each do |k|
+            li
+              i.fa.fa-tags.pr-5
+              = link_to k.name, keyword_path(k)
 - else
   .masonry-grid-item.isotope-item.col-sm-6.col-md-4
     article.clearfix.blogpost
@@ -44,9 +44,9 @@
               | by
               = a.author
           = display_shorter(a.content, 50)
-    footer.clearfix
-      ul.links.pull-left
-        - a.keywords.each do |k|
-          li
-            i.fa.fa-tags.pr-5
-            = link_to k.name, keyword_path(k)
+      footer.clearfix
+        ul.links.pull-left
+          - a.keywords.each do |k|
+            li
+              i.fa.fa-tags.pr-5
+              = link_to k.name, keyword_path(k)
