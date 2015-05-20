@@ -1,7 +1,7 @@
 .form-group
-  = f.association :catalog, label: '主目錄', label_method: :name, value_method: :id, include_blank: false 
-.form-group
   = f.input :name, label: '次目錄名稱', required: true, input_html: { class: 'form-control' }
+.form-group
+  = f.association :catalog, label: '在哪個主目錄下？', label_method: :name, value_method: :id, include_blank: false 
 .form-group
   = f.input :published, as: :boolean, label: '允許發布'
 = f.button :submit, "儲存", class: "btn btn-default"
