@@ -32,5 +32,5 @@ section.container
     .masonry-grid.row
       - if @article.keywords.first
         - @article.keywords.first.articles.first(3).each do |a|
-          = render partial: 'shared/article_block', locals: { a: a }
+          = render partial: 'shared/article_no_keywords_block', locals: { a: a }
 
