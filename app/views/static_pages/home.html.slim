@@ -53,6 +53,10 @@
       .masonry-grid.row
         - @articles.each do |a|
           = render partial: 'shared/article_block', locals: { a: a }
+    p.text-center
+      = link_to articles_path, class: "btn btn-default btn-lg" do
+        | 更多消息
+        i.fa.fa-angle-right.pl-10
 
 .gray-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100" 
   .container
