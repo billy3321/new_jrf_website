@@ -18,14 +18,15 @@ html lang="zh-Hant-TW"
 
 
   body.front.no-trans
-    - if notice
-      p class="alert alert-success" = notice
-    - if alert
-      p class="alert alert-danger" = alert
-    - unless ['users/sessions'].include?(params[:controller])
-      = render 'layouts/header'
-    = yield
-    = render 'layouts/footer'
+    .page-wrapper
+      - if notice
+        p class="alert alert-success" = notice
+      - if alert
+        p class="alert alert-danger" = alert
+      - unless ['users/sessions'].include?(params[:controller])
+        = render 'layouts/header'
+      = yield
+      = render 'layouts/footer'
     = debug(params) if Rails.env.development?
     - if params[:controller] == 'static_pages' and params[:action] == 'home'
       = javascript_include_tag 'index', 'data-turbolinks-track' => true
