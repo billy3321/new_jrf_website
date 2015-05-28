@@ -50,7 +50,7 @@
         | 最新訊息
       .separator-2
       /! masonry grid start
-      .masonry-grid.row
+      .masonry-grid.isotope-container.row
         - @articles.each do |a|
           = render partial: 'shared/article_block', locals: { a: a }
     p.text-center
