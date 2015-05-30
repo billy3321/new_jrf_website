@@ -26,7 +26,6 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require jquery-ui/datepicker
 //= require chosen-jquery
 //= require social-share-button
 //= require analytics
