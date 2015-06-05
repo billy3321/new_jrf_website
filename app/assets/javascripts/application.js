@@ -14,19 +14,16 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require ckeditor/init
 //= require modernizr
 //= require isotope.pkgd
 //= require owl.carousel
 //= require magnific-popup
 //= require jquery.appear
 //= require jquery.sharrre
-//= require jquery.countTo
 //= require jquery.parallax
 //= require jquery.validate
 //= require template
 //= require custom
-//= require chosen-jquery
 //= require social-share-button
 //= require analytics
 
@@ -39,16 +36,6 @@ var ready = function(){
   }else{
     ready_ran = 1;
   }
-  // datepicker
-  $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
-  // enable chosen js
-  $('.chosen-select').chosen({
-    search_contains: true,
-    allow_single_deselect: true,
-    no_results_text: 'No results matched',
-    width: '200px',
-  });
-  $(".chosen-select").trigger('chosen:updated');
 
   if ($("#disqus_thread").length) {
     var disqus_shortname = 'jrf-tw';
