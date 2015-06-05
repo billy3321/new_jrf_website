@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require ckeditor/init
 //= require modernizr
 //= require jquery.themepunch.tools.min
 //= require jquery.themepunch.revolution
@@ -27,21 +26,16 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require jquery-ui/datepicker
-//= require chosen-jquery
 //= require social-share-button
 
+var ready_ran = 0;
+
 var ready = function(){
-  // datepicker
-  $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
-  // enable chosen js
-  $('.chosen-select').chosen({
-    search_contains: true,
-    allow_single_deselect: true,
-    no_results_text: 'No results matched',
-    width: '200px',
-  });
-  $(".chosen-select").trigger('chosen:updated');
+  if (ready_ran == 1){
+    return;
+  }else{
+    ready_ran = 1;
+  }
 };
 
 $(document).ready(ready);
