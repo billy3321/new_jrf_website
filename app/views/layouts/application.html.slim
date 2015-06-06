@@ -8,13 +8,13 @@ html lang="zh-Hant-TW"
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     - if (params[:controller] == 'static_pages' and params[:action] == 'home') or params[:controller] == 'keywords'
-      = stylesheet_link_tag  'index', media: 'all', 'data-turbolinks-track' => true
+      = stylesheet_link_tag  'index', media: 'all'
     - else
-      = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true
+      = stylesheet_link_tag  'application', media: 'all'
     - if params[:controller] == 'static_pages' and params[:action] == 'home'
-      = javascript_include_tag 'index', 'data-turbolinks-track' => true
+      = javascript_include_tag 'index'
     - else
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = javascript_include_tag 'application'
     = display_meta_tags(default_meta_tags)
     /[if lt IE9]
       script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"

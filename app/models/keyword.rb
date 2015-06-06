@@ -5,8 +5,8 @@ class Keyword < ActiveRecord::Base
   has_and_belongs_to_many :articles, -> { uniq }
   has_and_belongs_to_many :magazine_articles, -> { uniq }
   validates_presence_of :name, message: '請填專案字名稱'
-  validates_presence_of :title, message: '請填專案標題'
-  validates_presence_of :content, message: '請填專案內文'
+  # validates_presence_of :title, message: '請填專案標題'
+  # validates_presence_of :content, message: '請填專案內文'
   validates_uniqueness_of :name, message: '請確認名稱沒有重複'
   mount_uploader :image, ImageUploader
   mount_uploader :cover, ImageUploader
