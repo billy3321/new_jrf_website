@@ -35,7 +35,6 @@ var ready = function(){
   }else{
     ready_ran = 1;
   }
-
   if ($("#disqus_thread").length) {
     var disqus_shortname = 'jrf-tw';
     (function() {
@@ -49,4 +48,3 @@ var ready = function(){
 };
 
 $(document).ready(ready);
-$(document).on('page:load', ready);

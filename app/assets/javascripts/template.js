@@ -16,7 +16,6 @@ var template = function(){
   }else{
     template_ran = 1;
   }
-
 	$(window).load(function() {
 		$("body").removeClass("no-trans");
 	});
@@ -1089,7 +1088,6 @@ var template = function(){
 };
 
 $(document).ready(template);
-$(document).on('page:load', template);
 
 if (jQuery(".btn-print").length>0) {
 	function print_window() {

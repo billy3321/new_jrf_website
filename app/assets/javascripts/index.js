@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require modernizr
 //= require jquery.themepunch.tools.min
 //= require jquery.themepunch.revolution
@@ -39,4 +38,3 @@ var ready = function(){
 };
 
 $(document).ready(ready);
-$(document).on('page:load', ready);

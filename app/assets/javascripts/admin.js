@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require ckeditor/init
 //= require modernizr
 //= require isotope.pkgd
@@ -160,4 +159,3 @@ var ready = function(){
 
 
 $(document).ready(ready);
-$(document).on('page:load', ready);
