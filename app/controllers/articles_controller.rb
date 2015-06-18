@@ -4,8 +4,33 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @q = Article.published.search(params[:q])
-    @articles = @q.result(distinct: true).page(params[:page])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.published.count
+      end
+    else
+      @q = Article.published.search(params[:q])
+      @articles = @q.result(distinct: true).page(params[:page])
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => {
+          status: "success",
+          articles: JSON.parse(
+            @articles.to_json({include: [:keywords], except: [:published]})
+          ),
+          count: @articles_count
+        },
+        callback: params[:callback]
+      }
+    end
   end
 
   def presses
