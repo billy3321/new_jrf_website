@@ -86,7 +86,7 @@
           .list-with-image.isotope-item.col-md-4 class="jrf-#{a.kind}"
             .overlay-container
               - unless a.youtube_id.blank?
-                iframe.embed-responsive-item sec="//www.youtube.com/embed/#{a.youtube_id}"
+                iframe.embed-responsive-item src="//www.youtube.com/embed/#{a.youtube_id}"
               - else
                 = image_tag(a.image.thumb, alt: "")
               = link_to article_path(a), class: "overlay small" do
