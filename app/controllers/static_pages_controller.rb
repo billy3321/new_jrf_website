@@ -17,14 +17,32 @@ class StaticPagesController < ApplicationController
     #   end
     # end
     # puts @kinds
+    set_meta_tags({
+      title: "搜尋文章",
+      og: {
+        title: "搜尋文章"
+      }
+    })
   end
 
   def about
     @article = Article.find(1)
+    set_meta_tags({
+      title: "關於我們",
+      og: {
+        title: "關於我們"
+      }
+    })
   end
 
   def donate
     @article = Article.find(2)
+    set_meta_tags({
+      title: "捐款支持",
+      og: {
+        title: "捐款支持"
+      }
+    })
   end
 
   def sitemap

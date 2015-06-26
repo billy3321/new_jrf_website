@@ -19,6 +19,13 @@ class ArticlesController < ApplicationController
       @articles = @q.result(distinct: true).page(params[:page])
     end
 
+    set_meta_tags({
+      title: "所有文章",
+      og: {
+        title: "所有文章"
+      }
+    })
+
     respond_to do |format|
       format.html
       format.json { render :json => {
@@ -36,26 +43,56 @@ class ArticlesController < ApplicationController
   def presses
     @q = Article.presses.published.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "新聞稿",
+      og: {
+        title: "新聞稿"
+      }
+    })
   end
 
   def activities
     @q = Article.activities.published.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "最新活動",
+      og: {
+        title: "最新活動"
+      }
+    })
   end
 
   def comments
     @q = Article.comments.published.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "評論文章",
+      og: {
+        title: "評論文章"
+      }
+    })
   end
 
   def epapers
     @q = Article.epapers.published.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "電子報",
+      og: {
+        title: "電子報"
+      }
+    })
   end
 
   def books
     @q = Article.books.published.search(params[:q])
     @articles = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "出版品",
+      og: {
+        title: "出版品"
+      }
+    })
   end
 
   # GET /articles/1
@@ -63,6 +100,19 @@ class ArticlesController < ApplicationController
     unless @article.published
       not_found
     end
+    keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
+    set_meta_tags({
+      title: @article.title,
+      description: @article.description,
+      keywords: keywords,
+      og: {
+        type: 'article',
+        image: @article.image,
+        title: @article.title,
+        description: @article.description
+      }
+    })
+
     respond_to do |format|
       format.html
       format.json { render :json => {

@@ -29,6 +29,15 @@ class KeywordsController < ApplicationController
     else
       @articles = @keyword.articles.published.page params[:page]
     end
+    set_meta_tags({
+      title: @keyword.title,
+      description: @keyword.description,
+      og: {
+        image: @keyword.image,
+        title: @keyword.title,
+        description: @keyword.description
+      }
+    })
   end
 
   private
