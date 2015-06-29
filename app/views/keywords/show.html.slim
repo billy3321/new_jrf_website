@@ -31,55 +31,57 @@
 
 - if @keyword.articles.any?
   .container
+    h2#more 相關訊息
     .separator-2
-    .filters
-      ul.nav.nav-tabs
-        - if @kind.blank?
-          li.active
-            = link_to "所有", url_for(params.merge({k: nil}))
-          li
-            = link_to "新聞稿", url_for(params.merge({k: "presses"}))
-          li
-            = link_to "活動", url_for(params.merge({k: "activities"}))
-          li
-            = link_to "評論", url_for(params.merge({k: "comments"}))
-          li
-            = link_to "電子報", url_for(params.merge({k: "epapers"}))
-          li
-            = link_to "書籍", url_for(params.merge({k: "books"}))
-        - else
-          li
-            = link_to "所有", url_for(params.merge({k: nil}))
-          - if @kind == 'presses'
+    .row
+      .container.section
+        ul.nav.nav-tabs.nav-justified
+          - if @kind.blank?
             li.active
-              = link_to "新聞稿", url_for(params.merge({k: "presses"}))
+              = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
+            li
+              = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+            li
+              = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+            li
+              = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+            li
+              = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+            li
+              = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
           - else
             li
-              = link_to "新聞稿", url_for(params.merge({k: "presses"}))
-          - if @kind == 'activities'
-            li.active
-              = link_to "活動", url_for(params.merge({k: "activities"}))
-          - else
-            li
-              = link_to "活動", url_for(params.merge({k: "activities"}))
-          - if @kind == 'comments'
-            li.active
-             = link_to "評論", url_for(params.merge({k: "comments"}))
-          - else
-            li
-              = link_to "評論", url_for(params.merge({k: "comments"}))
-          - if @kind == 'epapers'
-            li.active
-              = link_to "電子報", url_for(params.merge({k: "epapers"}))
-          - else
-            li
-              = link_to "電子報", url_for(params.merge({k: "epapers"}))
-          - if @kind == 'books'
-            li.active
-              = link_to "書籍", url_for(params.merge({k: "books"}))
-          - else
-            li
-              = link_to "書籍", url_for(params.merge({k: "books"}))
+              = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
+            - if @kind == 'presses'
+              li.active
+                = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+            - else
+              li
+                = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+            - if @kind == 'activities'
+              li.active
+                = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+            - else
+              li
+                = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+            - if @kind == 'comments'
+              li.active
+               = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+            - else
+              li
+                = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+            - if @kind == 'epapers'
+              li.active
+                = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+            - else
+              li
+                = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+            - if @kind == 'books'
+              li.active
+                = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
+            - else
+              li
+                = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
     .row
       .block.clearfix.isotope-container
         - @articles.each do |a|

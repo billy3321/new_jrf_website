@@ -1,6 +1,21 @@
 .white-bg.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100"
   .container
     .row.col-md-12
+      .row
+        .container.section
+          ul.nav.nav-tabs.nav-justified
+            li
+              = link_to "所有", articles_path
+            li.active
+              = link_to "新聞稿", presses_articles_path
+            li
+              = link_to "活動", activities_articles_path
+            li
+              = link_to "評論", comments_articles_path
+            li
+              = link_to "電子報", epapers_articles_path
+            li
+              = link_to "書籍", books_articles_path
       h1.title.text-center 新聞稿
       .separator
       .masonry-grid.row
