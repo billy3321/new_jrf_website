@@ -19,6 +19,7 @@
  *= require owl.carousel
  *= require style
  *= require skins/red
+ *= require social-share-button
  *= require custom
  *= require_self
  */

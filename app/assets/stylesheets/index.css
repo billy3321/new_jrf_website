@@ -22,6 +22,7 @@
  *= require style
  *= require skins/red
  *= require custom
+ *= require social-share-button
  *= require_self
  */
 

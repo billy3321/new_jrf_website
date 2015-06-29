@@ -5,7 +5,7 @@ section.container
         .blogpost-body
           .post-info
             span.day = @article.published_at.strftime('%d')
-            span.month = @article.published_at.strftime('%m %Y')
+            span.month = @article.published_at.strftime('%-m月 %Y')
           .row
             header
               h2.title = @article.title
@@ -22,6 +22,11 @@ section.container
     .row.col-lg-12
       = social_share_button_tag(@article.title)
       = @article.content.try(:html_safe)
+      - if @article.keywords.any?
+        p.text-center
+          = link_to keyword_path(@article.keywords.first), class: "btn btn-default btn-lg" do
+            | 了解此議題
+            i.fa.fa-angle-right.pl-10
 
 .container
   #disqus_thread
