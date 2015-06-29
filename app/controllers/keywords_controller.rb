@@ -12,19 +12,19 @@ class KeywordsController < ApplicationController
       not_found
     end
     unless params[:k].blank?
-      @issue = params[:k] if ['presses', 'comments', 'activities', 'epapers', 'books'].include? params[:k]
+      @kind = params[:k] if ['presses', 'comments', 'activities', 'epapers', 'books'].include? params[:k]
     else
-      @issue = nil
+      @kind = nil
     end
-    if @issue == 'presses'
+    if @kind == 'presses'
       @articles = @keyword.articles.presses.published.page params[:page]
-    elsif @issue == 'comments'
+    elsif @kind == 'comments'
       @articles = @keyword.articles.comments.published.page params[:page]
-    elsif @issue == 'activities'
+    elsif @kind == 'activities'
       @articles = @keyword.articles.activities.published.page params[:page]
-    elsif @issue == 'epapers'
+    elsif @kind == 'epapers'
       @articles = @keyword.articles.epapers.published.page params[:page]
-    elsif @issue == 'books'
+    elsif @kind == 'books'
       @articles = @keyword.articles.books.published.page params[:page]
     else
       @articles = @keyword.articles.published.page params[:page]
