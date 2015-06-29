@@ -10,7 +10,7 @@
       .blogpost-body
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
-          span.month = a.published_at.try(:strftime, '%m %Y')
+          span.month = a.published_at.try(:strftime, '%-m月 %Y')
         .blogpost-content
           header
             h4.title = link_to a.title, article_path(a)
@@ -31,7 +31,7 @@
       .blogpost-body
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
-          span.month = a.published_at.try(:strftime, '%m %Y')
+          span.month = a.published_at.try(:strftime, '%-m月 %Y')
         .blogpost-content
           header
             h4.title = link_to a.title, article_path(a)
