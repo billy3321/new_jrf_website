@@ -17,6 +17,10 @@ defaults: &defaults
   google_analytics:
     id: ""
 
+  url:
+    host: ""
+    protocol: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"

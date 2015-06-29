@@ -33,7 +33,7 @@ class KeywordsController < ApplicationController
       title: @keyword.title,
       description: @keyword.description,
       og: {
-        image: @keyword.image,
+        image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
         title: @keyword.title,
         description: @keyword.description
       }

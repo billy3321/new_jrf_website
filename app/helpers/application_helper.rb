@@ -26,7 +26,7 @@ module ApplicationHelper
         title: '財團法人民間司法改革基金會',
         description: ' ',
         type: 'website',
-        image: "",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
         site_name: '財團法人民間司法改革基金會'
       }
     }

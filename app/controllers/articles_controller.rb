@@ -107,7 +107,7 @@ class ArticlesController < ApplicationController
       keywords: keywords,
       og: {
         type: 'article',
-        image: @article.image,
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
         description: @article.description
       }
