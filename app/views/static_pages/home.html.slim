@@ -1,4 +1,4 @@
-.banner
+.banner.hidden-xs
   .slideshow
     .slider-banner-container
       .slider-banner-fullscreen
@@ -15,7 +15,7 @@
                   | 了解更多
                   i.fa.fa-angle-right.pl-10
 
-.page-top.gray-bg
+.page-top.gray-bg.hidden-xs
   .container
     .row
       .col-md-8.col-md-offset-2
@@ -24,23 +24,21 @@
           p
             | 每一個
             strong 你
+            br
             | ，都是點亮司法黑暗的一盞燭光
           .row.col-md-12
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                img alt="義務律師" src="http://www.jrf.org.tw/newjrf/img/v_lawer.png" /
-                a href="https://docs.google.com/forms/d/1XRuZ25LtTCJyD9a78JaFfiffmjtIuou7M2q7eR0GqY4/viewform" target="_blank" 
-                  img.overlay.img-circle src="http://www.jrf.org.tw/newjrf/img/v_lawer_word.png" /
+                = image_tag('v_lawer.png', alt: "義務律師")
+                = link_to image_tag('v_lawer_word.png', class: "overlay img-circle"), "https://jrf.neticrm.tw/civicrm/profile/create?gid=34&reset=1", target: "_blank"
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                img alt="捐款支持" src="http://www.jrf.org.tw/newjrf/img/v_donation.png" /
-                a href="#" 
-                  img.img-circle.overlay src="http://www.jrf.org.tw/newjrf/img/v_donation_word.png" /
+                = image_tag('v_donation.png', alt: "捐款支持")
+                = link_to image_tag('v_donation_word.png', class: "overlay img-circle"), "#", target: "_blank"
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
-                img alt="加入志工" src="http://www.jrf.org.tw/newjrf/img/v_join.png" /
-                a href="#" 
-                  img.img-circle.overlay src="http://www.jrf.org.tw/newjrf/img/v_join_word.png" /
+                = image_tag('v_join.png', alt: "加入志工")
+                = link_to image_tag('v_join_word.png', class: "overlay img-circle"), "#", target: "_blank"
 
 .white-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100" 
   .container

@@ -33,7 +33,7 @@
   .container
     h2#more 相關訊息
     .separator-2
-    .row
+    .row.hidden-xs
       .container.section
         ul.nav.nav-tabs.nav-justified
           - if @kind.blank?
@@ -85,7 +85,7 @@
     .row
       .block.clearfix.isotope-container
         - @articles.each do |a|
-          .list-with-image.isotope-item.col-md-4 class="jrf-#{a.kind}"
+          .list-with-image.isotope-item.col-md-4.col-sm-6 class="jrf-#{a.kind}"
             .overlay-container
               - if a.image.blank?
                 = image_tag("jrf-img.png", alt: "")
