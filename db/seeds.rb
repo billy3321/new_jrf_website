@@ -259,32 +259,32 @@ catalogs = [
 ]
 
 
-catalogs.each do |c|
-  catalog = Catalog.new
-  catalog.name = c[:name]
-  catalog.id = c[:id]
-  catalog.image = File.open(Rails.root.join('db', 'data', 'images', 'catalogs', c[:image])) if c[:image]
-  catalog.save
-  c[:categories].each do |cc|
-    category = Category.new
-    category.name = cc[:name]
-    category.catalog_id = catalog.id
-    category.save
-    if cc[:keywords] and cc[:keywords].any?
-      cc[:keywords].each do |k|
-        keyword = Keyword.new
-        keyword.name = k[:name]
-        keyword.title = k[:title] if k[:title]
-        keyword.description = k[:description] if k[:description]
-        keyword.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
-        keyword.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
-        keyword.showed = true if k[:showed]
-        keyword.category_id = category.id
-        keyword.save
-      end
-    end
-  end
-end
+# catalogs.each do |c|
+#   catalog = Catalog.new
+#   catalog.name = c[:name]
+#   catalog.id = c[:id]
+#   catalog.image = File.open(Rails.root.join('db', 'data', 'images', 'catalogs', c[:image])) if c[:image]
+#   catalog.save
+#   c[:categories].each do |cc|
+#     category = Category.new
+#     category.name = cc[:name]
+#     category.catalog_id = catalog.id
+#     category.save
+#     if cc[:keywords] and cc[:keywords].any?
+#       cc[:keywords].each do |k|
+#         keyword = Keyword.new
+#         keyword.name = k[:name]
+#         keyword.title = k[:title] if k[:title]
+#         keyword.description = k[:description] if k[:description]
+#         keyword.image = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:image])) if k[:image]
+#         keyword.cover = File.open(Rails.root.join('db', 'data', 'images', 'keywords', k[:cover])) if k[:cover]
+#         keyword.showed = true if k[:showed]
+#         keyword.category_id = category.id
+#         keyword.save
+#       end
+#     end
+#   end
+# end
 
 
 articles = [
