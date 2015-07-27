@@ -60,7 +60,26 @@ header.header.fixed.clearfix
                               .col-lg-8.col-md-12
                                 .row
                                   - catalog.categories.each do |category|
-                                    - if catalog.categories.length == 2
+                                    - if catalog.categories.length == 1
+                                      .col-sm-12
+                                        h4 = category.name
+                                        .divider
+                                        ul.menu
+                                          - category.keywords.published.each do |keyword|
+                                            li
+                                              = link_to keyword_path(keyword) do
+                                                i.icon-right-open
+                                                = keyword.name
+                                          - if category.name == '出版品'
+                                            li
+                                              = link_to epapers_articles_path do
+                                                i.icon-right-open
+                                                | 電子報
+                                            li
+                                              = link_to books_articles_path do
+                                                i.icon-right-open
+                                                | 書籍
+                                    - elsif catalog.categories.length == 2
                                       .col-sm-6
                                         h4 = category.name
                                         .divider
