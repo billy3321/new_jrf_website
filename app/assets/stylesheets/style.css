@@ -28,7 +28,7 @@ html {
 	height: 100%;
 }
 body {
-	font-family: 'Open Sans', ;
+	font-family: 'Open Sans', Helvetica, Arial, "Source Han Sans TC", "Microsoft Jhenghei", sans-serif;
 	font-size: 16px;
 	line-height: 1.60;
 	color: #666666;
@@ -46,7 +46,7 @@ h5,
 h6 {
 	color: #343434;
 	line-height: 1.2;
-	font-family:"微軟正黑體";
+	font-family: "Source Han Sans TC", "Microsoft Jhenghei", sans-serif;
 }
 h1 a,
 h2 a,
