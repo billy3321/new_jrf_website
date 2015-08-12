@@ -158,7 +158,7 @@ var ready = function(){
   });
 
   if (typeof(CKEDITOR) != undefined) {
-    CKEDITOR.config.extraAllowedContent = 'i dl dt dd';
+    CKEDITOR.config.extraAllowedContent = 'i dl dt dd data-toggle[*]{*} data-parent[*]{*}';
     CKEDITOR.dtd.$removeEmpty['i'] = false;
   }
 };
