@@ -30,7 +30,6 @@
 //= require jquery.datetimepicker
 //= require html.sortable
 //= require cocoon
-//= require_tree ./ckeditor
 
 
 var ready_ran = 0;
@@ -158,8 +157,9 @@ var ready = function(){
   });
 
   if (typeof(CKEDITOR) != undefined) {
-    CKEDITOR.config.extraAllowedContent = 'i dl dt dd data-toggle[*]{*} data-parent[*]{*}';
-    CKEDITOR.dtd.$removeEmpty['i'] = false;
+    // CKEDITOR.config.extraAllowedContent = 'i dl dt dd data-toggle[*]{*} data-parent[*]{*}';
+    CKEDITOR.config.allowedContent = true ;
+    CKEDITOR.dtd.$removeEmpty['i'] = false ;
   }
 };
 
