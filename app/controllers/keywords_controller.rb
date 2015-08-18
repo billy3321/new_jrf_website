@@ -75,6 +75,7 @@ class KeywordsController < ApplicationController
         keyword: JSON.parse(@keyword.to_json(
         except: [:published, :created_at, :updated_at],
         include: {
+          faqs: {},
           articles: {except: [:published], include: [:keywords]}
         }))},
         callback: params[:callback]
