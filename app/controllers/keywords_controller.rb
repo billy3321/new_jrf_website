@@ -9,7 +9,10 @@ class KeywordsController < ApplicationController
   # GET /keywords/1
   def show
     unless @keyword.published
-      not_found
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
     end
     unless params[:k].blank?
       @kind = params[:k] if ['presses', 'comments', 'activities', 'epapers', 'books'].include? params[:k]
@@ -38,6 +41,18 @@ class KeywordsController < ApplicationController
         description: @keyword.description
       }
     })
+    respond_to do |format|
+      format.html
+      format.json {render :json => {
+        status: "success",
+        keyword: JSON.parse(@keyword.to_json(
+        except: [:published, :created_at, :updated_at],
+        include: {
+          articles: {except: [:published], include: [:keywords]}
+        }))},
+        callback: params[:callback]
+      }
+    end
   end
 
   private
