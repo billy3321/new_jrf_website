@@ -205,7 +205,7 @@ class ArticlesController < ApplicationController
       format.json { render :json => {
         status: "success",
         article: JSON.parse(
-            @article.to_json({include: [:issues], except: [:published]})
+            @article.to_json({include: [:keywords], except: [:published]})
           ),
         callback: params[:callback]
         }
