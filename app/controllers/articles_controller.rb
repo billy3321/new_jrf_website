@@ -48,9 +48,9 @@ class ArticlesController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         @articles = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.offset(params[:offset]).limit(params[:limit])
+          .offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.count
+          .count
       else
         @articles = Article.presses.published.offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.presses.published.count
@@ -87,9 +87,9 @@ class ArticlesController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         @articles = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.offset(params[:offset]).limit(params[:limit])
+          .offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.count
+          .count
       else
         @articles = Article.activities.published.offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.activities.published.count
@@ -126,9 +126,9 @@ class ArticlesController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         @articles = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.offset(params[:offset]).limit(params[:limit])
+          .offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.count
+          .count
       else
         @articles = Article.comments.published.offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.comments.published.count
@@ -165,9 +165,9 @@ class ArticlesController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         @articles = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.offset(params[:offset]).limit(params[:limit])
+          .offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.count
+          .count
       else
         @articles = Article.epapers.published.offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.epapers.published.count
@@ -204,9 +204,9 @@ class ArticlesController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         @articles = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.offset(params[:offset]).limit(params[:limit])
+          .offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
-          .published.count
+          .count
       else
         @articles = Article.books.published.offset(params[:offset]).limit(params[:limit])
         @articles_count = Article.books.published.count
