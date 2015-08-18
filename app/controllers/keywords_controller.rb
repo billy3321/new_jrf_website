@@ -3,7 +3,34 @@ class KeywordsController < ApplicationController
 
   # GET /keywords
   def index
-    @keywords = Keyword.all.page params[:page]
+    if params[:format] == "json"
+      if params[:query]
+        query = "%#{params[:query]}%"
+        @keywords = Keyword.published.where("name LIKE ?", query)
+          .limit(params[:limit]).offset(params[:offset])
+        count = Keyword.published.where("name LIKE ?", query).count
+      else
+        @keywords = Keyword.published.limit(params[:limit]).offset(params[:offset])
+        count = Keyword.published.count
+      end
+    else
+      if user_signed_in? and current_user.admin?
+        @keywords = Keyword.all.page params[:page]
+      else
+        @keywords = Keyword.published.page params[:page]
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => {
+          status: "success",
+          keyword: @keywords,
+          count: count
+        },
+        callback: params[:callback]
+      }
+    end
   end
 
   # GET /keywords/1
