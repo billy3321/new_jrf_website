@@ -45,12 +45,24 @@ class ArticlesController < ApplicationController
   end
 
   def presses
-    if user_signed_in? and current_user.admin?
-      @q = Article.presses.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.presses.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.presses.published.count
+      end
     else
-      @q = Article.presses.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Article.presses.search(params[:q])
+      else
+        @q = Article.presses.published.search(params[:q])
+      end
+      @articles = @q.result(distinct: true).page(params[:page])
     end
-    @articles = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "新聞稿",
       og: {
@@ -72,12 +84,24 @@ class ArticlesController < ApplicationController
   end
 
   def activities
-    if user_signed_in? and current_user.admin?
-      @q = Article.activities.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.activities.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.activities.published.count
+      end
     else
-      @q = Article.activities.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Article.activities.search(params[:q])
+      else
+        @q = Article.activities.published.search(params[:q])
+      end
+      @articles = @q.result(distinct: true).page(params[:page])
     end
-    @articles = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "最新活動",
       og: {
@@ -99,12 +123,24 @@ class ArticlesController < ApplicationController
   end
 
   def comments
-    if user_signed_in? and current_user.admin?
-      @q = Article.comments.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.comments.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.comments.published.count
+      end
     else
-      @q = Article.comments.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Article.comments.search(params[:q])
+      else
+        @q = Article.comments.published.search(params[:q])
+      end
+      @articles = @q.result(distinct: true).page(params[:page])
     end
-    @articles = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "評論文章",
       og: {
@@ -126,12 +162,24 @@ class ArticlesController < ApplicationController
   end
 
   def epapers
-    if user_signed_in? and current_user.admin?
-      @q = Article.epapers.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.epapers.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.epapers.published.count
+      end
     else
-      @q = Article.epapers.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Article.epapers.search(params[:q])
+      else
+        @q = Article.epapers.published.search(params[:q])
+      end
+      @articles = @q.result(distinct: true).page(params[:page])
     end
-    @articles = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "電子報",
       og: {
@@ -153,12 +201,24 @@ class ArticlesController < ApplicationController
   end
 
   def books
-    if user_signed_in? and current_user.admin?
-      @q = Article.books.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @articles = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+          .published.count
+      else
+        @articles = Article.books.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.books.published.count
+      end
     else
-      @q = Article.books.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Article.books.search(params[:q])
+      else
+        @q = Article.books.published.search(params[:q])
+      end
+      @articles = @q.result(distinct: true).page(params[:page])
     end
-    @articles = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "出版品",
       og: {
