@@ -4,7 +4,7 @@ class Admin::KeywordsController < Admin::BaseController
   # GET /keywords
   def index
     @q = Keyword.search(params[:q])
-    @keywords = @q.result(distinct: true).page(params[:page])
+    @keywords = @q.result(distinct: true)
     set_meta_tags({
       title: "專案管理"
     })
