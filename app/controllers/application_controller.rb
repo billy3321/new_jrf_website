@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def sanitize(str)
+    ActionView::Base.full_sanitizer.sanitize(str)
+  end
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end

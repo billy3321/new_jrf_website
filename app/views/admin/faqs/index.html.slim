@@ -1,0 +1,11 @@
+.main.col-md-10
+  h1.text-center 調整FAQ排序
+  pre
+    | 將滑鼠移到FAQ名稱上，按住滑鼠上下拖曳到要的位置後放開即可調整排序
+  .sortable-faq
+    - @faqs.each do |faq|
+      .panel.panel-default.gray-bg data-id="#{faq.id}"
+        h2 = faq.question
+        .content
+          = faq.answer.try(:html_safe)
+

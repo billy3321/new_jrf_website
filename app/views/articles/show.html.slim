@@ -1,7 +1,7 @@
 section.container
   .masonry-grid.row
     .masonry-grid-item.col-xs-12
-      article.clearfix.blogpost.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="200"
+      article.clearfix.blogpost
         .blogpost-body
           .post-info
             span.day = @article.published_at.strftime('%d')
@@ -17,7 +17,7 @@ section.container
                 - if @article.youtube_id
                   iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}"
                 - else
-                  = image_tag(@article.image, alt: "", class: "embed-responsive-item")
+                  = image_tag(@article.image.banner, alt: "", class: "embed-responsive-item")
 .container
   .container
     .row.col-lg-12

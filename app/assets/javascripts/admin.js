@@ -156,6 +156,32 @@ var ready = function(){
     });
   });
 
+  // after the order changes
+  $('.sortable-faq').sortable().bind('sortupdate', function(e, ui) {
+    // array to store new order
+    updated_order = [];
+    // set the updated positions
+    set_positions();
+
+    // populate the updated_order array with the new task positions
+    $('.panel.panel-default').each(function(i){
+        updated_order.push({ id: $(this).data("id"), position: i+1 });
+    });
+
+    // send the updated order via ajax
+    $.ajax({
+      type: "PUT",
+      url: '/admin/faqs/sort',
+      data: {
+        _method: 'put',
+        faq: {
+          order: updated_order
+        },
+        authenticity_token: window._token
+      }
+    });
+  });
+
   if (typeof(CKEDITOR) != undefined) {
     // CKEDITOR.config.extraAllowedContent = 'i dl dt dd data-toggle[*]{*} data-parent[*]{*}';
     CKEDITOR.config.allowedContent = true ;

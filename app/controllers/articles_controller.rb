@@ -250,13 +250,13 @@ class ArticlesController < ApplicationController
     keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
     set_meta_tags({
       title: @article.title,
-      description: @article.description,
+      description: sanitize(@article.description),
       keywords: keywords,
       og: {
         type: 'article',
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
-        description: @article.description
+        description: sanitize(@article.description)
       }
     })
 

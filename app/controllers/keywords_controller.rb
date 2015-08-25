@@ -61,11 +61,11 @@ class KeywordsController < ApplicationController
     end
     set_meta_tags({
       title: @keyword.title,
-      description: @keyword.description,
+      description: sanitize(@keyword.description),
       og: {
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
         title: @keyword.title,
-        description: @keyword.description
+        description: sanitize(@keyword.description)
       }
     })
     respond_to do |format|

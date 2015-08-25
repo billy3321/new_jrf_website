@@ -35,7 +35,9 @@ Rails.application.routes.draw do
     resources :keywords, except: [:show] do
       get :order, on: :collection
       put :sort,  on: :collection
+      resources :faqs, only: [:index]
     end
+    match 'faqs/sort',  to: 'faqs#sort',  via: 'put'
   end
 
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'

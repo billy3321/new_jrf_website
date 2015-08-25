@@ -12,7 +12,7 @@
   = f.input :cover, as: :file, label: '首頁廣告圖', input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
   = f.input :cover_cache, as: :hidden
   = f.input :remove_cover, as:  :boolean, label: '移除圖片'
-  p.help-block 建議大小1024*768，將顯示為首頁廣告
+  p.help-block 建議大小1600*900，將顯示為首頁廣告
   = image_tag(@keyword.cover_url, alt:"") if @keyword.cover?
 .form-group
   label 首頁專案介紹
@@ -31,7 +31,7 @@ hr
 h3 FAQ
 p.help-block FAQ不一定必填，若留空則頁面不顯示。欲新增請至「修改/刪除專案」頁面。
 - unless @keyword.new_record?
-  #faqs
+  #faqs.sortable-faq
     = f.simple_fields_for :faqs do |faq|
       = render :partial => 'faq_fields', :locals => { :f => faq }
     = link_to_add_association "新增FAQ", f, :faqs, class: "btn radius btn-white btn-sm"

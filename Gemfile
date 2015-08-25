@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem "bundler", ">= 1.8.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -39,6 +39,7 @@ gem 'mini_magick'
 gem 'settingslogic'
 gem 'ckeditor'
 gem 'pg'
+gem 'compass'
 gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'charlock_holmes'
