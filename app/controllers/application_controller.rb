@@ -23,8 +23,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def sanitize(str)
-    ActionView::Base.full_sanitizer.sanitize(str)
+  def sanitize(html)
+    Nokogiri::HTML(html).text
   end
 
   def not_found
