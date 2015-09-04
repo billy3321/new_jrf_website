@@ -3,7 +3,6 @@
     - unless @keyword.image.blank?
       .embed-responsive.embed-responsive-16by9
         = image_tag(@keyword.image.banner, class: "embed-responsive-item", alt: "", width: "100%")
-    = social_share_button_tag(@keyword.title)
     h1.title.text-center = @keyword.title
     .seperator
     = @keyword.content.try(:html_safe)

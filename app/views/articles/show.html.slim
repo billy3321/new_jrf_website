@@ -21,7 +21,6 @@ section.container
 .container
   .container
     .row.col-lg-12
-      = social_share_button_tag(@article.title)
       = @article.content.try(:html_safe)
       - if @article.keywords.any?
         p.text-center

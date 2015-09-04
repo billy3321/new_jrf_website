@@ -17,7 +17,6 @@
 .container
   .container
     .row.col-lg-12
-      = social_share_button_tag(@video.title)
       = @video.content.try(:html_safe)
 .container
   #disqus_thread

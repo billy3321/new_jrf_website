@@ -1,7 +1,6 @@
 .container
   .row.col-lg-12 data-animation-effect="fadeInUpSmall" data-effect-delay="200"
     p.text-center = image_tag(@article.image.banner, width: "100%", alt: "")
-    = social_share_button_tag("關於民間司法改革基金會")
     h1.title.text-center = @article.title
     = @article.content.try(:html_safe)
 
