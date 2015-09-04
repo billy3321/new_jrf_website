@@ -17,6 +17,9 @@ defaults: &defaults
   google_analytics:
     id: ""
 
+  google_gtm:
+    id: ""
+
   url:
     host: ""
     protocol: ""

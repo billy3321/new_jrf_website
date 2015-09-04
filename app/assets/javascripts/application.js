@@ -23,8 +23,7 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require social-share-button
-//= require analytics
+//= require gtm
 
 
 var ready_ran = 0;
