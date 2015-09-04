@@ -25,7 +25,7 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require social-share-button
+//= require gtm
 
 var ready_ran = 0;
 
