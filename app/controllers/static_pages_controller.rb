@@ -30,7 +30,8 @@ class StaticPagesController < ApplicationController
     set_meta_tags({
       title: "關於我們",
       og: {
-        title: "關於我們"
+        title: "關於我們",
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
       }
     })
   end
@@ -40,7 +41,8 @@ class StaticPagesController < ApplicationController
     set_meta_tags({
       title: "捐款支持",
       og: {
-        title: "捐款支持"
+        title: "捐款支持",
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
       }
     })
   end

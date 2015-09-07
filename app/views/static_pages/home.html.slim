@@ -88,10 +88,10 @@
               - num += 1
               .client
                 - if a.image.blank?
-                  = link_to image_tag("jrf-img.png", alt: a.title), a.link, data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
+                  = link_to image_tag("jrf-img.png", alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
                 - else
-                  = link_to image_tag(a.image, alt: a.title), a.link, data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
-                .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="#jrf-book#{num}"
+                  = link_to image_tag(a.image, alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
+                .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="jrf-book#{num}"
                   .modal-dialog
                     .modal-content
                       .modal-header
@@ -107,4 +107,3 @@
         h4.text-left
           = link_to "更多書籍", books_articles_path, class: "btn btn-default"
           = link_to "瀏覽GitBook", "https://www.gitbook.com/@jrf-tw", class: "btn btn-white", target: "_blank"
-
