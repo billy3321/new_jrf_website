@@ -35,7 +35,7 @@ section.container
   .container
     h2 相關訊息
     .masonry-grid.row
-      - if @article.keywords.first
-        - @article.keywords.first.articles.first(3).each do |a|
+      - if @articles.any?
+        - @articles.each do |a|
           = render partial: 'shared/article_no_keywords_block', locals: { a: a }
 
