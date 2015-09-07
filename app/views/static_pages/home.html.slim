@@ -75,6 +75,7 @@
             .block.clearfix
               .embed-responsive.embed-responsive-16by9
                 = link_to image_tag(@epaper_article.image, class: "embed-responsive-item"), article_path(@epaper_article)
+
     - if @book_articles.any?
       .row
         .col-md-12
@@ -88,22 +89,10 @@
               - num += 1
               .client
                 - if a.image.blank?
-                  = link_to image_tag("jrf-img.png", alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
+                  = link_to image_tag("jrf-img.png", alt: a.title), article_path(a)
                 - else
-                  = link_to image_tag(a.image.thumb, alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
-                .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="jrf-book#{num}"
-                  .modal-dialog
-                    .modal-content
-                      .modal-header
-                        button.close data-dismiss="modal" type="button" 
-                          span aria-hidden="true"  &times;
-                          span.sr-only Close
-                        h4#myModalLabel.modal-title = a.title
-                      .modal-body
-                        = a.content.try(:html_safe)
-                      .modal-footer
-                        = link_to "閱讀此書", a.link, class: "btn btn-white btn-sm", target: "_blank"
-                        button.btn.btn-sm.btn-default data-dismiss="modal" type="button"  關閉
+                  = link_to image_tag(a.image.thumb, alt: a.title), article_path(a)
+                h4.text-center = a.title
         h4.text-left
           = link_to "更多書籍", books_articles_path, class: "btn btn-default"
           = link_to "瀏覽GitBook", "https://www.gitbook.com/@jrf-tw", class: "btn btn-white", target: "_blank"
