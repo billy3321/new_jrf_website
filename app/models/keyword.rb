@@ -11,7 +11,7 @@ class Keyword < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :cover, ImageUploader
   scope :published, -> { where(published: true) }
-  scope :showed, -> { where(showed: true) }
+  scope :showed, -> { unscoped.where(showed: true).order(show_position: :asc) }
   default_scope { order(position: :asc) }
   delegate :catalog, to: :category
 

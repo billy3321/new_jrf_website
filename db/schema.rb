@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824062059) do
+ActiveRecord::Schema.define(version: 20150907060005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,14 +102,15 @@ ActiveRecord::Schema.define(version: 20150824062059) do
   create_table "keywords", force: :cascade do |t|
     t.string  "name"
     t.integer "category_id"
-    t.boolean "showed",      default: false
-    t.boolean "published",   default: true
+    t.boolean "showed",        default: false
+    t.boolean "published",     default: true
     t.string  "image"
     t.string  "cover"
     t.string  "title"
     t.text    "description"
     t.text    "content"
     t.integer "position"
+    t.integer "show_position", default: 0,     null: false
   end
 
   add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree

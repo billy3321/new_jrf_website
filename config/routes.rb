@@ -34,7 +34,9 @@ Rails.application.routes.draw do
     end
     resources :keywords, except: [:show] do
       get :order, on: :collection
+      get :show_order, on: :collection
       put :sort,  on: :collection
+      put :show_sort,  on: :collection
       resources :faqs, only: [:index]
     end
     match 'faqs/sort',  to: 'faqs#sort',  via: 'put'

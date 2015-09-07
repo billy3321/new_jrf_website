@@ -1,5 +1,5 @@
 class Admin::KeywordsController < Admin::BaseController
-  before_action :set_keyword, except: [:index, :new, :sort, :add_faq, :order]
+  before_action :set_keyword, except: [:index, :new, :sort, :add_faq, :order, :show_sort, :show_order]
 
   # GET /keywords
   def index
@@ -19,6 +19,13 @@ class Admin::KeywordsController < Admin::BaseController
     @catalogs = Catalog.all
     set_meta_tags({
       title: "專案排序"
+    })
+  end
+
+  def show_order
+    @keywords = Keyword.showed
+    set_meta_tags({
+      title: "首頁顯示專案排序"
     })
   end
 
@@ -66,6 +73,13 @@ class Admin::KeywordsController < Admin::BaseController
   def sort
     keyword_params[:order].each do |key,value|
       Keyword.find(value[:id]).update_attribute(:position, value[:position])
+    end
+    render :nothing => true
+  end
+
+  def show_sort
+    keyword_params[:order].each do |key,value|
+      Keyword.find(value[:id]).update_attribute(:show_position, value[:position])
     end
     render :nothing => true
   end
