@@ -31,11 +31,11 @@ section.container
 .container
   #disqus_thread
 
-.gray-bg.section
-  .container
-    h2 相關訊息
-    .masonry-grid.row
-      - if @articles.any?
+- if @articles.any?
+  .gray-bg.section
+    .container
+      h2 相關訊息
+      .masonry-grid.row
         - @articles.each do |a|
           = render partial: 'shared/article_no_keywords_block', locals: { a: a }
 
