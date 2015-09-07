@@ -90,7 +90,7 @@
                 - if a.image.blank?
                   = link_to image_tag("jrf-img.png", alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
                 - else
-                  = link_to image_tag(a.image, alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
+                  = link_to image_tag(a.image.thumb, alt: a.title), "#", data: {target: "#jrf-book#{num}", toggle: "modal"}, target: "_blank"
                 .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="jrf-book#{num}"
                   .modal-dialog
                     .modal-content
