@@ -4,4 +4,11 @@ ul
   .sortable-showed-keyword
     - @keywords.each do |keyword|
       li
-        .panel.panel-default.gray-bg data-id="#{keyword.id}" = "#{keyword.catalog.name} > #{keyword.category.name} > #{keyword.name}"
+        .panel.panel-default.gray-bg data-id="#{keyword.id}"
+        h4 = "#{keyword.catalog.name} > #{keyword.category.name} > #{keyword.name}"
+        .row
+          .col-sm-4
+            = image_tag(keyword.cover)
+          .col-sm-8
+            h5 = keyword.title
+            = keyword.description.try(:html_safe)
