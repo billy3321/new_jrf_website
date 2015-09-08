@@ -10,10 +10,10 @@
                 h1 = k.title
               .tp-caption.small_thin_white.sfb.tp-resizeme data-x="center" data-y="100" data-speed="700" data-start="400" data-end="10000" data-endspeed="600"
                 = k.description.try(:html_safe)
-              .tp-caption.tp-resizeme.sfb data-x="center" data-y="450" data-speed="700" data-start="600" data-end="10000" data-endspeed="600"
-                = link_to keyword_path(k), class: "btn btn-white btn-lg" do
-                  | 了解更多
-                  i.fa.fa-angle-right.pl-10
+                p.text-center
+                  = link_to keyword_path(k), class: "btn btn-white btn-lg" do
+                    | 了解更多
+                    i.fa.fa-angle-right.pl-10
 
 .page-top.gray-bg.hidden-xs
   .container
