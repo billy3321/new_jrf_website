@@ -12,3 +12,6 @@ File Description: Place here your custom CSS styles
 	font-size: 18px;
 	line-height: 1.9;
 }
+.title {
+	margin:20px;
+}
