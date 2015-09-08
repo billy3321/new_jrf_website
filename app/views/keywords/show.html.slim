@@ -4,7 +4,7 @@
       .embed-responsive.embed-responsive-16by9
         = image_tag(@keyword.image.banner, class: "embed-responsive-item", alt: "", width: "100%")
     h1.title.text-center = @keyword.title
-    .seperator
+    .separator
     = @keyword.content.try(:html_safe)
 
 
@@ -12,7 +12,7 @@
   .container
     .row.col-lg-12
       h2 FAQ
-      .seperator-2
+      .separator-2
       .panel-group#accordion-faq
         - num = 0
         - @keyword.faqs.each do |faq|
