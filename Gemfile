@@ -55,6 +55,7 @@ gem 'social-share-button'
 gem 'unicode-display_width'
 gem 'jquery-datetimepicker-rails'
 gem "cocoon"
+gem 'carrierwave-imageoptimizer'
 
 source 'https://rails-assets.org' do
   # gem 'rails-assets-jquery'
