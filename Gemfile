@@ -97,5 +97,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'sass-rails-source-maps'
+  gem "bullet"
+  gem 'simplecov'
 end
 
