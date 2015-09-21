@@ -2262,11 +2262,11 @@ zoom: 1;
 
 @font-face {
   font-family: 'revicons';
-  src: url('revicons.eot?5510888');
-  src: url('revicons.eot?5510888#iefix') format('embedded-opentype'),
-       url('revicons.woff?5510888') format('woff'),
-       url('revicons.ttf?5510888') format('truetype'),
-       url('revicons.svg?5510888#revicons') format('svg');
+  src: asset-url('revicons.eot?5510888');
+  src: asset-url('revicons.eot?5510888#iefix') format('embedded-opentype'),
+       asset-url('revicons.woff?5510888') format('woff'),
+       asset-url('revicons.ttf?5510888') format('truetype'),
+       asset-url('revicons.svg?5510888#revicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
