@@ -6,20 +6,20 @@ class ArticlesController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.count
       else
-        @articles = Article.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.published.count
+        @articles = Article.includes(:keywords).published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.search(params[:q])
+        @q = Article.includes(:keywords).search(params[:q])
         @articles = @q.result(:distinct => true).page(params[:page])
       else
-        @q = Article.published.search(params[:q])
+        @q = Article.includes(:keywords).published.search(params[:q])
         @articles = @q.result(:distinct => true).page(params[:page])
       end
     end
@@ -47,19 +47,19 @@ class ArticlesController < ApplicationController
   def presses
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).presses.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .count
       else
-        @articles = Article.presses.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.presses.published.count
+        @articles = Article.includes(:keywords).presses.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).presses.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.presses.search(params[:q])
+        @q = Article.includes(:keywords).presses.search(params[:q])
       else
-        @q = Article.presses.published.search(params[:q])
+        @q = Article.includes(:keywords).presses.published.search(params[:q])
       end
       @articles = @q.result(distinct: true).page(params[:page])
     end
@@ -86,19 +86,19 @@ class ArticlesController < ApplicationController
   def activities
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).activities.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .count
       else
-        @articles = Article.activities.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.activities.published.count
+        @articles = Article.includes(:keywords).activities.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).activities.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.activities.search(params[:q])
+        @q = Article.includes(:keywords).activities.search(params[:q])
       else
-        @q = Article.activities.published.search(params[:q])
+        @q = Article.includes(:keywords).activities.published.search(params[:q])
       end
       @articles = @q.result(distinct: true).page(params[:page])
     end
@@ -125,19 +125,19 @@ class ArticlesController < ApplicationController
   def comments
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).comments.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .count
       else
-        @articles = Article.comments.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.comments.published.count
+        @articles = Article.includes(:keywords).comments.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).comments.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.comments.search(params[:q])
+        @q = Article.includes(:keywords).comments.search(params[:q])
       else
-        @q = Article.comments.published.search(params[:q])
+        @q = Article.includes(:keywords).comments.published.search(params[:q])
       end
       @articles = @q.result(distinct: true).page(params[:page])
     end
@@ -164,19 +164,19 @@ class ArticlesController < ApplicationController
   def epapers
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).epapers.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .count
       else
-        @articles = Article.epapers.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.epapers.published.count
+        @articles = Article.includes(:keywords).epapers.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).epapers.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.epapers.search(params[:q])
+        @q = Article.includes(:keywords).epapers.search(params[:q])
       else
-        @q = Article.epapers.published.search(params[:q])
+        @q = Article.includes(:keywords).epapers.published.search(params[:q])
       end
       @articles = @q.result(distinct: true).page(params[:page])
     end
@@ -203,19 +203,19 @@ class ArticlesController < ApplicationController
   def books
     if params[:format] == "json"
       if params[:query]
-        @articles = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles = Article.includes(:keywords).books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
+        @articles_count = Article.includes(:keywords).books.published.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .count
       else
-        @articles = Article.books.published.offset(params[:offset]).limit(params[:limit])
-        @articles_count = Article.books.published.count
+        @articles = Article.includes(:keywords).books.published.offset(params[:offset]).limit(params[:limit])
+        @articles_count = Article.includes(:keywords).books.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Article.books.search(params[:q])
+        @q = Article.includes(:keywords).books.search(params[:q])
       else
-        @q = Article.books.published.search(params[:q])
+        @q = Article.includes(:keywords).books.published.search(params[:q])
       end
       @articles = @q.result(distinct: true).page(params[:page])
     end

@@ -44,7 +44,7 @@ gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'charlock_holmes'
 gem 'iconv'
-# gem "font-awesome-rails"
+gem "font-awesome-rails"
 gem 'fontello_rails_converter'
 # gem 'magnific-popup-rails'
 gem 'owlcarousel-rails'
@@ -60,7 +60,7 @@ gem 'carrierwave-imageoptimizer'
 source 'https://rails-assets.org' do
   # gem 'rails-assets-jquery'
   # gem 'rails-assets-bootstrap'
-  gem 'rails-assets-fontawesome'
+  # gem 'rails-assets-fontawesome'
   # gem 'rails-assets-owlcarousel'
   gem 'rails-assets-magnific-popup'
   gem 'rails-assets-animate.css'

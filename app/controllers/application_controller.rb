@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_catalog
-    @catalogs = Catalog.all
+    @catalogs = Catalog.includes(:categories).all
   end
 
   def set_article_q

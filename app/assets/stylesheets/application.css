@@ -11,7 +11,7 @@
  * file per style scope.
  *
  *= require bootstrap_and_overrides
- *= require fontawesome
+ *= require font-awesome
  *= require fontello
  *= require magnific-popup
  *= require animate
