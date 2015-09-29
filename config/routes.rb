@@ -42,9 +42,18 @@ Rails.application.routes.draw do
     match 'faqs/sort',  to: 'faqs#sort',  via: 'put'
   end
 
+  namespace :api do
+    resources :articles, only: [:show, :index]
+    resources :keywords, only: [:show, :index]
+    resources :catalogs, only: [:show, :index]
+  end
+
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'
   match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
   match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]
+
+  get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
