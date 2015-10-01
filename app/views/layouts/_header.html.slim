@@ -1,7 +1,28 @@
 .header-top
   .container
     .row
-      .col-xs-12.col-sm-12
+      .col-xs-2.col-sm-6
+        .header-top-first.clearfix
+          ul.social-links.clearfix.hidden-xs
+            li.youtube
+              = link_to "https://www.youtube.com/user/JRF25231178", target: "_blank" do
+                i.fa.fa-youtube-play
+            li.facebook
+              = link_to "https://www.facebook.com/jrf.tw", target: "_blank" do
+                i.fa.fa-facebook
+          .social-links.hidden-lg.hidden-md.hidden-sm
+            .btn-group.dropdown
+              button.btn.dropdown-toggle data-toggle="dropdown" type="button"
+                i.fa.fa-share-alt
+              ul.dropdown-menu.dropdown-animation
+                li.youtube
+                  = link_to "https://www.youtube.com/user/JRF25231178", target: "_blank" do
+                    i.fa.fa-youtube-play
+                li.facebook
+                  = link_to "https://www.facebook.com/jrf.tw", target: "_blank" do
+                    i.fa.fa-facebook
+
+      .col-xs-10.col-sm-6
         .clearfix.header-top-second
           .header-top-dropdown
             .btn-group.dropdown
@@ -14,9 +35,9 @@
                   i.fa.fa-heart
                   | 支持司改
               button.btn type="button"
-                = link_to "https://www.facebook.com/pages/%E6%B0%91%E9%96%93%E5%8F%B8%E6%B3%95%E6%94%B9%E9%9D%A9%E5%9F%BA%E9%87%91%E6%9C%83/176765029076", target: "_blank" do
-                  i.fa.fa-facebook
-                  | 粉絲頁
+                = link_to "https://jrf.neticrm.tw/civicrm/profile/create?gid=12&reset=1", target: "_blank" do
+                  i.fa.fa-envelope
+                  | 電子報
               button.btn.dropdown-toggle type="button1" data-toggle="dropdown"
                 i.fa.fa-search
                 | 搜尋
