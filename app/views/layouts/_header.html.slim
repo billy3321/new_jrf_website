@@ -21,6 +21,12 @@
                 li.facebook
                   = link_to "https://www.facebook.com/jrf.tw", target: "_blank" do
                     i.fa.fa-facebook
+                li.pinterest
+                  = link_to "https://jrf.neticrm.tw/civicrm/profile/create?gid=12&reset=1", target: "_blank" do
+                    i.fa.fa-envelope
+                li.vimeo
+                  = link_to "http://line.me/ti/p/%40rkh0402z", target: "_blank" do
+                    i.fa.fa-comment
 
       .col-xs-10.col-sm-6
         .clearfix.header-top-second
@@ -34,10 +40,6 @@
                 = link_to donate_path do
                   i.fa.fa-heart
                   | 支持司改
-              button.btn type="button"
-                = link_to "https://jrf.neticrm.tw/civicrm/profile/create?gid=12&reset=1", target: "_blank" do
-                  i.fa.fa-envelope
-                  | 電子報
               button.btn.dropdown-toggle type="button1" data-toggle="dropdown"
                 i.fa.fa-search
                 | 搜尋
