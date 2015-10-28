@@ -16,6 +16,8 @@ section.container
               .embed-responsive.embed-responsive-16by9
                 - if @article.youtube_id
                   iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}"
+                - elsif @article.image.blank?
+                  = image_tag("jrf-img.png", alt: "", class: "embed-responsive-item")
                 - else
                   = image_tag(@article.image.banner, alt: "", class: "embed-responsive-item")
 .container
