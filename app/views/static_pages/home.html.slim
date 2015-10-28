@@ -33,11 +33,11 @@
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
                 = image_tag('v_donation.png', alt: "捐款支持")
-                = link_to image_tag('v_donation_word.png', class: "overlay img-circle"), "#", target: "_blank"
+                = link_to image_tag('v_donation_word.png', class: "overlay img-circle"), donate_path(anchor: "online")
             .col-xs-4.col-sm-4.col-md-4
               .overlay-container
                 = image_tag('v_join.png', alt: "加入志工")
-                = link_to image_tag('v_join_word.png', class: "overlay img-circle"), "#", target: "_blank"
+                = link_to image_tag('v_join_word.png', class: "overlay img-circle"), "https://jrf.neticrm.tw/civicrm/profile/create?gid=11&reset=1", target: "_blank"
 
 .white-bg.section.object-non-visible data-animation-effect="fadeInUpSmall" data-effect-delay="100" 
   .container
