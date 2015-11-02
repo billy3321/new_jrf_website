@@ -24,6 +24,9 @@ defaults: &defaults
     host: ""
     protocol: ""
 
+  rollbar:
+    access_token: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"
