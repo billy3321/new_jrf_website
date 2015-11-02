@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_catalog, :set_article_q
 
+  def append_info_to_payload(payload)
+    super
+    payload[:request_id] = request.uuid
+    payload[:user_id] = current_user.id if current_user
+    if request.env['HTTP_CF_CONNECTING_IP']
+      payload[:ip] = request.env['HTTP_CF_CONNECTING_IP']
+    else
+      payload[:ip] = request.env['REMOTE_ADDR']
+    end
+  end
+
   private
 
   def set_catalog
