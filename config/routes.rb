@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     match 'faqs/sort',  to: 'faqs#sort',  via: 'put'
   end
 
-  namespace :api do
+  namespace :api, defaults: { format: 'json' } do
     resources :articles, only: [:show, :index]
     resources :keywords, only: [:show, :index]
     resources :catalogs, only: [:show, :index]

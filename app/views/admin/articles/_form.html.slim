@@ -49,7 +49,7 @@
     p.help-block 建議大小1024*768，將文章頁閱讀時顯示
     = image_tag(@article.image_url, alt:"") if @article.image?
   .form-group
-    = f.input :youtube_url, label: 'Youtube 網址', input_html: { class: 'form-control' }, disabled: true
+    = f.input :youtube_url, label: 'Youtube 網址', input_html: { class: 'form-control' }
   .form-group
     label 簡述
     = f.cktext_area :description, required: true, hint: "此處文字在專案主打時出現在首頁中，以及供FB抓取"
