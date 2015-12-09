@@ -72,7 +72,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-magnific-popup'
   gem 'rails-assets-animate.css'
   gem 'rails-assets-owl-carousel'
-  gem 'rails-assets-modernizr'
+  gem 'rails-assets-modernizr', '~> 2.8.3'
   gem 'rails-assets-isotope'
   gem 'rails-assets-jquery-appear'
   gem 'rails-assets-mhuggins--jquery-countTo'
