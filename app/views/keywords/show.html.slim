@@ -108,4 +108,4 @@
             p.small = a.published_at.strftime('%Y-%m-%d')
     .row.text-center
       .col-md-10.col-md-offset-1
-        = paginate @articles
+        = paginate @articles, params: { anchor: 'more' }
