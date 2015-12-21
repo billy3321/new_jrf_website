@@ -2,8 +2,8 @@ section.container
   .container
     .row
       .main.col-md-9
-        .masonry-grid
-          .masonry-grid-item
+        .masonry-grid.row
+          .masonry-grid-item.col-xs-12
             article.clearfix.blogpost
               .blogpost-body
                 .post-info
@@ -35,14 +35,13 @@ section.container
               .tags-cloud
                 .tag
                   = link_to k.name, keyword_path(k)
-          - if @related_articles.any?
-            .block.clearfix
+          .block.clearfix
+            - if @related_articles.any?
               h3.title
                 i.fa.fa-comments
                 | 相關訊息
               - @related_articles.each do |a|
                 = render partial: 'shared/article_side_block', locals: { a: a }
-          .block.clearfix
             h3.title
               i.fa.fa-bullhorn
               | 最新訊息
