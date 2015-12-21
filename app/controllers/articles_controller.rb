@@ -249,13 +249,14 @@ class ArticlesController < ApplicationController
     end
     keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
     if @article.keywords.first
-      @articles = @article.keywords.first.articles.first(4).reject { |a| [@article].include? a }
-      if @articles.length > 3
-        @articles = @articles.first(3)
+      @related_articles = @article.keywords.first.articles.first(4).reject { |a| [@article].include? a }
+      if @related_articles.length > 3
+        @related_articles = @related_articles.first(3)
       end
     else
-      @articles = []
+      @related_articles = []
     end
+    @lastest_articles = Article.first(3)
     set_meta_tags({
       title: @article.title,
       description: sanitize(@article.description),
