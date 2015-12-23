@@ -40,6 +40,7 @@ section.container
               h3.title
                 i.fa.fa-comments
                 | 相關訊息
+              .separator
               - @related_articles.each do |a|
                 = render partial: 'shared/article_side_block', locals: { a: a }
             h3.title
