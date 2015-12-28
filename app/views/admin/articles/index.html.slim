@@ -28,7 +28,7 @@ table.table
               | 、
             = link_to k.name, keyword_path(k)
         td = a.kind
-        td = a.published_at.strftime('%Y-%m-%d')
+        td = a.published_at.try(:strftime, '%Y-%m-%d')
         td
           = link_to '編輯', edit_admin_article_path(a), class: "btn radius btn-white btn-sm"
           = link_to '刪除', admin_article_path(a), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn radius btn-default btn-sm"
