@@ -13,6 +13,7 @@ class Article < ActiveRecord::Base
   scope :books, -> { where(kind: 'book') }
   before_save :update_youtube_values
   validate :check_content
+  validates_presence_of :published_at
 
   def update_youtube_values
     if self.youtube_url.blank?
