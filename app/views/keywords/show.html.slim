@@ -38,48 +38,48 @@
             li.active
               = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
             li
-              = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+              = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
             li
-              = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+              = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
             li
-              = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+              = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
             li
-              = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+              = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
             li
-              = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
+              = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
           - else
             li
-              = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
+              = link_to "所有", url_for(params.merge({k: nil, page: nil, anchor: 'more'}))
             - if @kind == 'presses'
               li.active
                 = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
             - else
               li
-                = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+                = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
             - if @kind == 'activities'
               li.active
                 = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
             - else
               li
-                = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+                = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
             - if @kind == 'comments'
               li.active
                = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
             - else
               li
-                = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+                = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
             - if @kind == 'epapers'
               li.active
                 = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
             - else
               li
-                = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+                = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
             - if @kind == 'books'
               li.active
                 = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
             - else
               li
-                = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
+                = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
     .row
       .block.clearfix.isotope-container
         - @articles.each do |a|
@@ -105,7 +105,7 @@
                   span 不明
             h2
               = link_to a.title, article_path(a)
-            p.small = a.published_at.strftime('%Y-%m-%d')
+            p.small = a.published_at.try(:strftime, '%Y-%m-%d')
     .row.text-center
       .col-md-10.col-md-offset-1
         = paginate @articles, params: { anchor: 'more' }
