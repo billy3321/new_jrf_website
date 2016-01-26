@@ -190,7 +190,7 @@ describe "Admin/Catalog" do
     describe "#create" do
       it "success" do
         post "/admin/catalogs", :catalog => new_catalog
-        expect(response).to be_redirect
+        expect(response).to be_success
       end
     end
 

@@ -190,7 +190,7 @@ describe "Admin/Category" do
     describe "#create" do
       it "success" do
         post "/admin/categories", :category => new_category
-        expect(response).to be_redirect
+        expect(response).to be_success
       end
     end
 
