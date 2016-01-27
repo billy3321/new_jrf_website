@@ -2,32 +2,9 @@ footer#footer
   .footer
     .container
       .footer-content
-        .logo-footer = image_tag('logo-footer.png', id: "logo-footer", alt: "財團法人民間司法改革基金會")
         .row
           .col-sm-6
             p 民間司法改革基金會成立於1995年11月。主要工作為法案推動、監督評鑑、個案追蹤與教育推廣。改革的力量必須由下而上，只有經由民間的推力，才能讓改革的夢想成為真實，最終建立人民信賴的司法。
-            .row
-              .col-sm-4
-                ul.list-icons
-                  li
-                    i.fa.fa-phone.pr-10
-                    = link_to "02-2523-1178", "tel:0225231178"
-                  li
-                    i.fa.fa-fax.pr-10
-                    = link_to "02-2531-9373", "fax:0225319373"
-                  li
-                    i.fa.fa-envelope-o.pr-10
-                    = mail_to "contact@jrf.org.tw"
-              .col-sm-8
-                ul.list-icons
-                  li
-                    i.fa.fa-map-marker.pr-10
-                    | 104-56台北市中山區松江路90巷3號7樓
-                    = link_to "https://www.google.com.tw/maps/place/104%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E6%9D%BE%E6%B1%9F%E8%B7%AF90%E5%B7%B73%E8%99%9F/@25.0506453,121.5320561,17z/data=!3m1!4b1!4m2!3m1!1s0x3442a96145428ecd:0xa5eb2a4406a3a002", target: "_blank" do
-                      span.badge Map
-                    br
-                    | Fl.7, No.3, Lane 90, Song-Chiang Rd., Taipei City 10456, Taiwan
-          .col-sm-6
             p
               | 網站內容由
               span property="cc:attributionName" xmlns:cc="http://creativecommons.org/ns#" 民間司法改革基金會
@@ -35,3 +12,31 @@ footer#footer
               = link_to "創用CC 姓名標示-相同方式分享 4.0 國際 授權條款", "http://creativecommons.org/licenses/by-sa/4.0/", rel: "license"
               | 釋出。
             = link_to image_tag("https://licensebuttons.net/l/by-sa/4.0/88x31.png", alt: "創用 CC 授權條款", style: "border-width:0"), "http://creativecommons.org/licenses/by-sa/4.0/", rel: "license"
+          .col-sm-3
+            h4 台北辦公室
+            ul.list-icons
+              li
+                i.fa.fa-phone.pr-10
+                = link_to "02-2523-1178", "tel:0225231178"
+              li
+                i.fa.fa-fax.pr-10
+                = link_to "02-2531-9373", "fax:0225319373"
+              li
+                i.fa.fa-envelope-o.pr-10
+                = mail_to "contact@jrf.org.tw"
+              li
+                i.fa.fa-map-marker.pr-10
+                | 104-56台北市中山區松江路90巷3號7樓
+                = link_to 'https://goo.gl/maps/EiTjRjG1mDo', target: '_blank' do
+                  span.badge Map
+          .col-sm-3
+            h4 台中辦公室
+            ul.list-icons
+              li
+                i.fa.fa-phone.pr-10
+                = link_to "04-2329-2371", "tel:0423292371"
+              li
+                i.fa.fa-map-marker.pr-10
+                | 40758台中市西屯區臺灣大道2段845號
+                = link_to 'https://goo.gl/maps/M75AeapDGS62', target: '_blank' do
+                  span.badge Map

@@ -38,11 +38,11 @@
         .clearfix.header-top-second
           .header-top-dropdown
             .btn-group.dropdown
-              button.btn type="button"
+              button.btn type="button" onclick="window.location('/about')"
                 = link_to about_path do
                   i.fa.fa-info
                   | 關於我們
-              button.btn type="button"
+              button.btn type="button" onclick="window.location('/donate')"
                 = link_to donate_path do
                   i.fa.fa-heart
                   | 支持司改
