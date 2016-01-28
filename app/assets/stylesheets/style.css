@@ -130,22 +130,7 @@ blockquote {
 	padding: 10px 10px 10px 0;
 	margin-left: 40px;
 }
-blockquote:after {
-	content: "“";
-	width: 25px;
-	height: 25px;
-	line-height: 64px;
-	font-size: 64px;
-	font-family: 'PT Serif', serif;
-	position: absolute;
-	top: 12px;
-	left: -45px;
-}
-.blockquote:before {
-	font-family: 'PT Serif', serif;
-	content: "“";
-	font-size: 40px;
-}
+
 blockquote.inline {
 	padding: 0;
 }
