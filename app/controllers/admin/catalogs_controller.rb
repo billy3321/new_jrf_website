@@ -3,7 +3,7 @@ class Admin::CatalogsController < Admin::BaseController
 
   # GET /catalogs
   def index
-    @q = Catalog.search(params[:q])
+    @q = Catalog.includes(:categories).search(params[:q])
     @catalogs = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "主分類管理"
