@@ -38,21 +38,10 @@ blockquote:before {
 	position: absolute;
 	top: 12px;
 	left: -45px;
-	font-family: 'PT Serif', serif;
-}
-blockquote:before {
-	content: "“";
-	width: 25px;
-	height: 25px;
-	line-height: 64px;
-	font-size: 64px;
-	position: absolute;
-	top: 12px;
-	left: -45px;
-	font-family: 'PT Serif', serif;
+	font: italic 400%/1 Cochin,Georgia,"Times New Roman", serif;
 }
 .blockquote:after {
-	font-family: 'PT Serif', serif;
+	font: italic 400%/1 Cochin,Georgia,"Times New Roman", serif;
 	content: "”";
 	font-size: 64px;
 	position: absolute;
