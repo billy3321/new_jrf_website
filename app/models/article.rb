@@ -56,7 +56,7 @@ class Article < ActiveRecord::Base
   end
 
   def fix_content
-    content = content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/")
+    self.content = self.content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/")
   end
 
   def check_content
