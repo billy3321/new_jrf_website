@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   scope :comments, -> { where(kind: 'comment') }
   scope :epapers, -> { where(kind: 'epaper') }
   scope :books, -> { where(kind: 'book') }
-  before_save :update_youtube_values
+  before_save :update_youtube_values, :fix_content
   validate :check_content
   validates_presence_of :published_at
 
@@ -53,6 +53,10 @@ class Article < ActiveRecord::Base
       errors.add(:base, 'youtube網址錯誤')
       return false
     end
+  end
+
+  def fix_content
+    content = content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/")
   end
 
   def check_content

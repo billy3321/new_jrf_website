@@ -15,7 +15,7 @@ class Keyword < ActiveRecord::Base
   default_scope { order(position: :asc) }
   delegate :catalog, to: :category
 
-  before_save :set_position
+  before_save :set_position, :fix_content
 
   def set_position
     if not self.position
@@ -27,5 +27,9 @@ class Keyword < ActiveRecord::Base
     keyword = self.new
     keyword.faqs.build
     return
- end
+  end
+
+  def fix_content
+    content = content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/")
+  end
 end
