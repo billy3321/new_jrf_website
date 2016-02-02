@@ -16,7 +16,10 @@
             .submitted
               i.fa.fa-user.pr-5
               = a.author
-          = display_shorter(a.content, 50)
+          - if a.description.present?
+            = display_shorter(a.description, 50)
+          - else
+            = display_shorter(a.content, 50)
       footer.clearfix
         ul.links.pull-left
           - a.keywords.each do |k|
@@ -41,7 +44,10 @@
             .submitted
               i.fa.fa-user.pr-5
               = a.author
-          = display_shorter(a.content, 50)
+          - if a.description.present?
+            = display_shorter(a.description, 50)
+          - else
+            = display_shorter(a.content, 50)
       footer.clearfix
         ul.links.pull-left
           - a.keywords.each do |k|
