@@ -21,14 +21,12 @@ h1.title {
 .navbar-default .navbar-nav > li > a {
 	font-size: 18px;
 }
-
 .nav-tabs > li > a {
 	font-size: 18px;
 }
 h4 {
 	font-size: 20px;
-	}
-
+}
 blockquote:before {
 	content: "“";
 	width: 25px;
@@ -38,10 +36,10 @@ blockquote:before {
 	position: absolute;
 	top: 12px;
 	left: -45px;
-	font: italic 400%/1 Cochin,Georgia,"Times New Roman", serif;
+	font: italic 400%/1 Cochin, Georgia, "Times New Roman", serif;
 }
 .blockquote:after {
-	font: italic 400%/1 Cochin,Georgia,"Times New Roman", serif;
+	font: italic 400%/1 Cochin, Georgia, "Times New Roman", serif;
 	content: "”";
 	font-size: 64px;
 	position: absolute;
@@ -50,4 +48,7 @@ blockquote:before {
 }
 .blockquote {
 	margin-right:40px;
+}
+h2, h3 {
+	font-weight: 700;
 }
