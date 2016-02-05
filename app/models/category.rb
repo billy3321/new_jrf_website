@@ -17,4 +17,9 @@ class Category < ActiveRecord::Base
       self.position = Category.maximum("position").to_i + 1
     end
   end
+
+  def chunk_keywords
+    max_length = ( self.keywords.published.length + self.width - 1 ) / self.width
+    self.keywords.published.each_slice(max_length).to_a
+  end
 end

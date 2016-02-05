@@ -70,6 +70,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params.require(:category).permit(:name, :published, :position, :catalog_id, :position, {order: [:id, :position, :catalog_id]})
+    params.require(:category).permit(:name, :published, :position, :width, :catalog_id, :position, {order: [:id, :position, :catalog_id]})
   end
 end

@@ -14,4 +14,8 @@ class Catalog < ActiveRecord::Base
       self.position = Catalog.maximum("position").to_i + 1
     end
   end
+
+  def width_unit
+    12 / self.categories.published.sum(:width)
+  end
 end

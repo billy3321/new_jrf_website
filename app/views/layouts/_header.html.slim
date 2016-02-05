@@ -89,10 +89,11 @@ header.header.fixed.clearfix
                               .col-lg-8.col-md-12
                                 .row
                                   - catalog.categories.each do |category|
-                                    - if catalog.categories.length == 1
-                                      .col-sm-12
-                                        h4 = category.name
-                                        .divider
+                                    - width = catalog.width_unit * category.width
+                                    div class="col-sm-#{width}"
+                                      h4 = category.name
+                                      .divider
+                                      - if category.width == 1
                                         ul.menu
                                           - category.keywords.published.each do |keyword|
                                             li
@@ -108,61 +109,14 @@ header.header.fixed.clearfix
                                               = link_to books_articles_path do
                                                 i.icon-right-open
                                                 | 書籍
-                                    - elsif catalog.categories.length == 2
-                                      .col-sm-6
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-                                    - elsif catalog.categories.length == 3
-                                      .col-sm-4
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-                                    - elsif catalog.categories.length == 4
-                                      .col-sm-3
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-
+                                      - else
+                                        .row
+                                          - sub_width = 12 / category.width
+                                          - category.chunk_keywords.each do |keywords|
+                                            div class="col-sm-#{sub_width}"
+                                              ul.menu
+                                                - keywords.each do |keyword|
+                                                  li
+                                                    = link_to keyword_path(keyword) do
+                                                      i.icon-right-open
+                                                      = keyword.name
