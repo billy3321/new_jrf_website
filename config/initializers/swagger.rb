@@ -8,17 +8,17 @@ end
 Swagger::Docs::Config.register_apis({
   "1.0" => {
     # the extension used for the API
-    :api_extension_type => :json,
+    api_extension_type: :json,
     # :controller_base_path => 'api',
     # the output location where your .json files are written to
-    :api_file_path => "public/apidocs",
+    api_file_path: "public/apidocs",
     # the URL base path to your API
-    :base_path => "#{Setting.url.protocol}://#{Setting.url.host}/",
+    base_path: "#{Setting.url.protocol}://#{Setting.url.host}/",
     # if you want to delete all .json files at each generation
-    :clean_directory => true,
+    clean_directory: true,
     # add custom attributes to api-docs
-    :attributes => {
-      :info => {
+    attributes: {
+      info: {
         "title" => "民間司改會",
         "description" => "民間司改會官方網站",
         "contact" => "contact@jrf.org.tw",

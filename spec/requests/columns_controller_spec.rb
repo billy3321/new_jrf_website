@@ -6,7 +6,7 @@ describe "Column" do
   let(:column) { FactoryGirl.create(:column) }
   let(:new_column) do
     {
-      :name => "new_column_name",
+      name: "new_column_name",
     }
   end
 
@@ -27,7 +27,7 @@ describe "Column" do
   describe "#create" do
     it "success" do
       expect {
-        post "/columns", :column => new_column
+        post "/columns", column: new_column
       }.to change { Column.count }.by(1)
       expect(response).to be_redirect
     end
@@ -36,8 +36,8 @@ describe "Column" do
   describe "#update" do
     it "success" do
       column
-      update_data = { :name => "new_name" }
-      put "/columns/#{column.id}", :column => update_data
+      update_data = { name: "new_name" }
+      put "/columns/#{column.id}", column: update_data
       expect(response).to be_redirect
       column.reload
       expect(column.name).to match(update_data[:name])
