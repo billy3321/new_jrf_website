@@ -34,9 +34,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.as_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -73,9 +71,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.as_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -112,9 +108,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.to_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -151,9 +145,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.as_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -190,9 +182,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.as_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -229,9 +219,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
+          articles: @articles.as_json(include: [:keywords], except: [:published]),
           count: @articles_count
         },
         callback: params[:callback]
@@ -273,9 +261,7 @@ class ArticlesController < ApplicationController
       format.html
       format.json { render :json => {
         status: "success",
-        article: JSON.parse(
-            @article.to_json({include: [:keywords], except: [:published]})
-          ),
+        article: @article.as_json(include: [:keywords], except: [:published]),
         callback: params[:callback]
         }
       }

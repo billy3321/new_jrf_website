@@ -72,12 +72,12 @@ class KeywordsController < ApplicationController
       format.html
       format.json {render :json => {
         status: "success",
-        keyword: JSON.parse(@keyword.to_json(
+        keyword: @keyword.as_json(
         except: [:published, :created_at, :updated_at],
         include: {
           faqs: {},
           articles: {except: [:published], include: [:keywords]}
-        }))},
+        })},
         callback: params[:callback]
       }
     end
