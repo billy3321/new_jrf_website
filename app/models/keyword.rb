@@ -18,9 +18,7 @@ class Keyword < ActiveRecord::Base
   before_save :set_position, :fix_content
 
   def set_position
-    if not self.position
-      self.position = Keyword.maximum("position").to_i + 1
-    end
+    self.position ||= Keyword.maximum("position").to_i + 1
   end
 
   def self.build #-> allows you to call a single method
