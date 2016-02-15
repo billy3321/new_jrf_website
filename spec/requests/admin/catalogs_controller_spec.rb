@@ -35,7 +35,7 @@ describe "Admin/Catalog" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/catalogs", :catalog => new_catalog
+        post "/admin/catalogs", catalog: new_catalog
         expect(response).to be_redirect
       end
     end
@@ -43,8 +43,8 @@ describe "Admin/Catalog" do
     describe "#update" do
       it "redirect" do
         catalog
-        update_data = { :name => "new_name" }
-        put "/admin/catalogs/#{catalog.id}", :catalog => update_data
+        update_data = { name: "new_name" }
+        put "/admin/catalogs/#{catalog.id}", catalog: update_data
         expect(response).to be_redirect
       end
     end
@@ -112,7 +112,7 @@ describe "Admin/Catalog" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/catalogs", :catalog => new_catalog
+        post "/admin/catalogs", catalog: new_catalog
         expect(response).to be_redirect
       end
     end
@@ -120,8 +120,8 @@ describe "Admin/Catalog" do
     describe "#update" do
       it "redirect" do
         catalog
-        update_data = { :name => "new_name" }
-        put "/admin/catalogs/#{catalog.id}", :catalog => update_data
+        update_data = { name: "new_name" }
+        put "/admin/catalogs/#{catalog.id}", catalog: update_data
         expect(response).to be_redirect
       end
     end
@@ -189,7 +189,7 @@ describe "Admin/Catalog" do
 
     describe "#create" do
       it "success" do
-        post "/admin/catalogs", :catalog => new_catalog
+        post "/admin/catalogs", catalog: new_catalog
         expect(response).to be_success
       end
     end
@@ -197,8 +197,8 @@ describe "Admin/Catalog" do
     describe "#update" do
       it "success" do
         catalog
-        update_data = { :name => "new_name" }
-        put "/admin/catalogs/#{catalog.id}", :catalog => update_data
+        update_data = { name: "new_name" }
+        put "/admin/catalogs/#{catalog.id}", catalog: update_data
         expect(response).to be_redirect
       end
     end

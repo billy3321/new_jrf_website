@@ -1,6 +1,6 @@
 class CreateJoinTableArticleKeyword < ActiveRecord::Migration
   def change
-    create_table :articles_keywords, :id => false do |t|
+    create_table :articles_keywords, id: false do |t|
       t.references :article, null: false
       t.references :keyword, null: false
     end

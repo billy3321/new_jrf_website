@@ -10,9 +10,7 @@ class Catalog < ActiveRecord::Base
   validates_uniqueness_of :name, message: '請確認名稱沒有重複'
 
   def set_position
-    if not self.position
-      self.position = Catalog.maximum("position").to_i + 1
-    end
+    self.position ||= Catalog.maximum("position").to_i + 1
   end
 
   def width_unit

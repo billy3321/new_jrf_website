@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   match '/donate',    to: 'static_pages#donate',    via: 'get'
   match '/search',    to: 'static_pages#search',    via: 'get'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :articles, only: [:show, :index] do
     get :presses, on: :collection

@@ -35,7 +35,7 @@ describe "Admin/Category" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/categories", :category => new_category
+        post "/admin/categories", category: new_category
         expect(response).to be_redirect
       end
     end
@@ -43,8 +43,8 @@ describe "Admin/Category" do
     describe "#update" do
       it "redirect" do
         category
-        update_data = { :name => "new_name" }
-        put "/admin/categories/#{category.id}", :category => update_data
+        update_data = { name: "new_name" }
+        put "/admin/categories/#{category.id}", category: update_data
         expect(response).to be_redirect
       end
     end
@@ -112,7 +112,7 @@ describe "Admin/Category" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/categories", :category => new_category
+        post "/admin/categories", category: new_category
         expect(response).to be_redirect
       end
     end
@@ -120,8 +120,8 @@ describe "Admin/Category" do
     describe "#update" do
       it "redirect" do
         category
-        update_data = { :name => "new_name" }
-        put "/admin/categories/#{category.id}", :category => update_data
+        update_data = { name: "new_name" }
+        put "/admin/categories/#{category.id}", category: update_data
         expect(response).to be_redirect
       end
     end
@@ -189,7 +189,7 @@ describe "Admin/Category" do
 
     describe "#create" do
       it "success" do
-        post "/admin/categories", :category => new_category
+        post "/admin/categories", category: new_category
         expect(response).to be_success
       end
     end
@@ -197,8 +197,8 @@ describe "Admin/Category" do
     describe "#update" do
       it "success" do
         category
-        update_data = { :name => "new_name" }
-        put "/admin/categories/#{category.id}", :category => update_data
+        update_data = { name: "new_name" }
+        put "/admin/categories/#{category.id}", category: update_data
         expect(response).to be_redirect
       end
     end
