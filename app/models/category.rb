@@ -13,9 +13,7 @@ class Category < ActiveRecord::Base
   end
 
   def set_position
-    if not self.position
-      self.position = Category.maximum("position").to_i + 1
-    end
+    self.position ||= Category.maximum("position").to_i + 1
   end
 
   def chunk_keywords

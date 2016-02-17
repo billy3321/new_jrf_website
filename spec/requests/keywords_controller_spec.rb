@@ -6,7 +6,7 @@ describe "Keyword" do
   let(:keyword) { FactoryGirl.create(:keyword) }
   let(:new_keyword) do
     {
-      :name => "new_keyword_name",
+      name: "new_keyword_name",
     }
   end
 

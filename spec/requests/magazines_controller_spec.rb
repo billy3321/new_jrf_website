@@ -30,7 +30,7 @@ describe "Magazine" do
   describe "#create" do
     it "success" do
       expect {
-        post "/magazines", :magazine => new_magazine
+        post "/magazines", magazine: new_magazine
       }.to change { Magazine.count }.by(1)
       expect(response).to be_redirect
     end
@@ -39,8 +39,8 @@ describe "Magazine" do
   describe "#update" do
     it "success" do
       magazine
-      update_data = { :issue => 50 }
-      put "/magazines/#{magazine.id}", :magazine => update_data
+      update_data = { issue: 50 }
+      put "/magazines/#{magazine.id}", magazine: update_data
       expect(response).to be_redirect
       magazine.reload
       expect(magazine.issue).to eq(update_data[:issue])

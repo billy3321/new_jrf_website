@@ -74,14 +74,14 @@ class Admin::KeywordsController < Admin::BaseController
     keyword_params[:order].each do |key,value|
       Keyword.find(value[:id]).update_attribute(:position, value[:position])
     end
-    render :nothing => true
+    render nothing: true
   end
 
   def show_sort
     keyword_params[:order].each do |key,value|
       Keyword.find(value[:id]).update_attribute(:show_position, value[:position])
     end
-    render :nothing => true
+    render nothing: true
   end
 
   private
@@ -94,8 +94,8 @@ class Admin::KeywordsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def keyword_params
     params.require(:keyword).permit(:category_id, :name, :published, :showed,
-      :image, :image_cache, :remove_image, :title, :content, :description, 
+      :image, :image_cache, :remove_image, :title, :content, :description,
       :cover, :cover_cache, :remove_cover, :position, {order: [:id, :position]},
-      :faqs_attributes => [:id, :question, :answer, :keyword_id, :_destroy])
+      faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy])
   end
 end

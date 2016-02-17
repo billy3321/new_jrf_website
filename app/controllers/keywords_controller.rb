@@ -23,7 +23,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => {
+        render json: {
           status: "success",
           keyword: @keywords,
           count: count
@@ -70,15 +70,15 @@ class KeywordsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json {render :json => {
+      format.json {render json: {
         status: "success",
-        keyword: JSON.parse(@keyword.to_json(
-        except: [:published, :created_at, :updated_at],
-        include: {
-          faqs: {},
-          articles: {except: [:published], include: [:keywords]}
-        }))},
-        callback: params[:callback]
+        keyword: @keyword.as_json(
+          except: [:published, :created_at, :updated_at],
+          include: {
+            faqs: {},
+            articles: {except: [:published], include: [:keywords]}
+          })},
+          callback: params[:callback]
       }
     end
   end

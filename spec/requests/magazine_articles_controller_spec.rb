@@ -33,7 +33,7 @@ describe "MagazineArticle" do
   describe "#create" do
     it "success" do
       expect {
-        post "/magazine_articles", :magazine_article => new_magazine_article
+        post "/magazine_articles", magazine_article: new_magazine_article
       }.to change { MagazineArticle.count }.by(1)
       expect(response).to be_redirect
     end
@@ -42,8 +42,8 @@ describe "MagazineArticle" do
   describe "#update" do
     it "success" do
       magazine_article
-      update_data = { :title => "new_title" }
-      put "/magazine_articles/#{magazine_article.id}", :magazine_article => update_data
+      update_data = { title: "new_title" }
+      put "/magazine_articles/#{magazine_article.id}", magazine_article: update_data
       expect(response).to be_redirect
       magazine_article.reload
       expect(magazine_article.title).to match(update_data[:title])

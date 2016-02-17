@@ -1,7 +1,7 @@
 class Keyword < ActiveRecord::Base
   belongs_to :category
-  has_many :faqs, :dependent => :destroy
-  accepts_nested_attributes_for :faqs, :reject_if => :all_blank, :allow_destroy => true
+  has_many :faqs, dependent: :destroy
+  accepts_nested_attributes_for :faqs, reject_if: :all_blank, allow_destroy: true
   has_and_belongs_to_many :articles, -> { uniq }
   has_and_belongs_to_many :magazine_articles, -> { uniq }
   validates_presence_of :name, message: '請填專案字名稱'
@@ -18,9 +18,7 @@ class Keyword < ActiveRecord::Base
   before_save :set_position, :fix_content
 
   def set_position
-    if not self.position
-      self.position = Keyword.maximum("position").to_i + 1
-    end
+    self.position ||= Keyword.maximum("position").to_i + 1
   end
 
   def self.build #-> allows you to call a single method
