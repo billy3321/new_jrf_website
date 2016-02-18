@@ -52,6 +52,6 @@ blockquote:before {
 li.keyword-list + li.keyword-list:before{
 	content:"、";
 }
-i.title-icon-margin{
+h2 i{
 	margin:3px;
 }
