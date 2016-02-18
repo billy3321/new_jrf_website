@@ -49,3 +49,6 @@ blockquote:before {
 .blockquote {
 	margin-right:40px;
 }
+li#keyword-list + li#keyword-list:before{
+	content:"、";
+}
