@@ -17,7 +17,11 @@ class Category < ActiveRecord::Base
   end
 
   def chunk_keywords
-    max_length = ( self.keywords.published.length + self.width - 1 ) / self.width
-    self.keywords.published.each_slice(max_length).to_a
+    unless self.keywords.published.blank?
+      max_length = ( self.keywords.published.length + self.width - 1 ) / self.width
+      self.keywords.published.each_slice(max_length).to_a
+    else
+      []
+    end
   end
 end
