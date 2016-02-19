@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match '/about',     to: 'static_pages#about',     via: 'get'
   match '/donate',    to: 'static_pages#donate',    via: 'get'
   match '/search',    to: 'static_pages#search',    via: 'get'
+  match '/thanks',    to: 'static_pages#thanks',    via: 'get'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 

@@ -47,6 +47,16 @@ class StaticPagesController < ApplicationController
     })
   end
 
+  def thanks
+    set_meta_tags({
+      title: "感謝您的支持",
+      og: {
+        title: "感謝您的支持",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/thanks.png"
+      }
+    })
+  end
+
   def sitemap
     @articles = Article.all
   end
