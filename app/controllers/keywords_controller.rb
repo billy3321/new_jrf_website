@@ -62,6 +62,7 @@ class KeywordsController < ApplicationController
     set_meta_tags({
       title: @keyword.title,
       description: sanitize(@keyword.description),
+      keyword: @keyword.title,
       og: {
         type: 'article',
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",

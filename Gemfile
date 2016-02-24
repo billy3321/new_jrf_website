@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-turbolinks'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'meta-tags'
+gem 'meta-tags', '~> 2.0.0'
 gem 'devise'
 gem 'simple_form'
 gem 'slim-rails'
