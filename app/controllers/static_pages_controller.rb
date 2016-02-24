@@ -32,6 +32,14 @@ class StaticPagesController < ApplicationController
       og: {
         title: "關於我們",
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
   end
@@ -43,6 +51,14 @@ class StaticPagesController < ApplicationController
       og: {
         title: "捐款支持",
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
   end
@@ -52,6 +68,9 @@ class StaticPagesController < ApplicationController
       title: "感謝您的支持",
       og: {
         title: "感謝您的支持",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/thanks.png"
+      },
+      twitter: {
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/thanks.png"
       }
     })

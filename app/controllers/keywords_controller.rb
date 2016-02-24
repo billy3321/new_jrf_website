@@ -66,6 +66,14 @@ class KeywordsController < ApplicationController
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
         title: @keyword.title,
         description: sanitize(@keyword.description)
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @keyword.published_at.strftime('%FT%T%:z'),
+        modified_time: @keyword.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
       }
     })
     respond_to do |format|

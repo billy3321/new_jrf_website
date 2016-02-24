@@ -254,6 +254,14 @@ class ArticlesController < ApplicationController
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
         description: sanitize(@article.description)
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
 

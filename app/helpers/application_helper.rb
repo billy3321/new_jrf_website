@@ -21,13 +21,17 @@ module ApplicationHelper
       separator: "&mdash;".html_safe,
       site: '財團法人民間司法改革基金會',
       reverse: true,
-      description: ' ',
+      description: '',
       og: {
         title: '財團法人民間司法改革基金會',
         description: ' ',
         type: 'website',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
         site_name: '財團法人民間司法改革基金會'
+      },
+      twitter: {
+        card: 'summary_large_image',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
       }
     }
   end
