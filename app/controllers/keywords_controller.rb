@@ -63,6 +63,7 @@ class KeywordsController < ApplicationController
       title: @keyword.title,
       description: sanitize(@keyword.description),
       og: {
+        type: 'article',
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
         title: @keyword.title,
         description: sanitize(@keyword.description)
