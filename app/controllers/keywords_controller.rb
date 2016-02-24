@@ -69,6 +69,7 @@ class KeywordsController < ApplicationController
       },
       article: {
         author: 'https://www.facebook.com/jrf.tw',
+        publisher: 'https://www.facebook.com/jrf.tw',
         published_time: @keyword.published_at.strftime('%FT%T%:z'),
         modified_time: @keyword.updated_at.strftime('%FT%T%:z')
       },

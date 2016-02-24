@@ -257,6 +257,7 @@ class ArticlesController < ApplicationController
       },
       article: {
         author: 'https://www.facebook.com/jrf.tw',
+        publisher: 'https://www.facebook.com/jrf.tw',
         published_time: @article.published_at.strftime('%FT%T%:z'),
         modified_time: @article.updated_at.strftime('%FT%T%:z')
       },
