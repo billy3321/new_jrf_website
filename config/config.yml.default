@@ -23,6 +23,7 @@ defaults: &defaults
   url:
     host: ""
     protocol: ""
+    fb: ""
 
   rollbar:
     access_token: ""

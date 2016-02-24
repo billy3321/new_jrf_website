@@ -69,8 +69,8 @@ class KeywordsController < ApplicationController
         description: sanitize(@keyword.description)
       },
       article: {
-        author: 'https://www.facebook.com/jrf.tw',
-        publisher: 'https://www.facebook.com/jrf.tw'
+        author: Setting.url.fb,
+        publisher: Setting.url.fb
       },
       twitter: {
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",

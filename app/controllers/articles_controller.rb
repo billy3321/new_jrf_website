@@ -256,8 +256,8 @@ class ArticlesController < ApplicationController
         description: sanitize(@article.description)
       },
       article: {
-        author: 'https://www.facebook.com/jrf.tw',
-        publisher: 'https://www.facebook.com/jrf.tw',
+        author: Setting.url.fb,
+        publisher: Setting.url.fb,
         published_time: @article.published_at.strftime('%FT%T%:z'),
         modified_time: @article.updated_at.strftime('%FT%T%:z')
       },
@@ -272,7 +272,7 @@ class ArticlesController < ApplicationController
         status: "success",
         article: @article.as_json(include: [:keywords], except: [:published]),
         callback: params[:callback]
-      }
+        }
       }
     end
   end
