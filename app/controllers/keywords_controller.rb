@@ -69,9 +69,7 @@ class KeywordsController < ApplicationController
       },
       article: {
         author: 'https://www.facebook.com/jrf.tw',
-        publisher: 'https://www.facebook.com/jrf.tw',
-        published_time: @keyword.published_at.strftime('%FT%T%:z'),
-        modified_time: @keyword.updated_at.strftime('%FT%T%:z')
+        publisher: 'https://www.facebook.com/jrf.tw'
       },
       twitter: {
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
