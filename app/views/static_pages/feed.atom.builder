@@ -1,4 +1,4 @@
-atom_feed ({language: 'zh-TW', url: root_url}) do |feed|
+atom_feed ({language: 'zh-TW'}) do |feed|
   feed.title "民間司法改革基金會"
   feed.updated @articles.maximum(:published_at)
 
@@ -9,8 +9,7 @@ atom_feed ({language: 'zh-TW', url: root_url}) do |feed|
       entry.author do |author|
         author.name article.author
       end
-      entry.url article_url(article)
-      entry.summary article.description
+      entry.summary article.description, type: 'html'
     end
   end
 end
