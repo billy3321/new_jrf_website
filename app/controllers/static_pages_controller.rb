@@ -77,6 +77,14 @@ class StaticPagesController < ApplicationController
   end
 
   def sitemap
-    @articles = Article.all
+    @articles = Article.published
+    @keywords = Keyword.published
+  end
+
+  def feed
+    @articles = Article.published
+    respond_to do |format|
+      format.atom { render :layout => false }
+    end
   end
 end
