@@ -55,3 +55,7 @@ li.keyword-list + li.keyword-list:before{
 i.title-icon-margin{
 	margin:3px;
 }
+.list-icons{
+	text-indent : -25px ;
+	margin-left:40px;
+}
