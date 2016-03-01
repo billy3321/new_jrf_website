@@ -1,4 +1,4 @@
-.header-top
+﻿.header-top
   .container
     .row
       .col-xs-2.col-sm-6
@@ -38,11 +38,11 @@
         .clearfix.header-top-second
           .header-top-dropdown
             .btn-group.dropdown
-              button.btn type="button" onclick="window.location('/about')"
+              button.btn type="button" onclick="window.location.href='/about';"
                 = link_to about_path do
                   i.fa.fa-info
                   | 關於我們
-              button.btn type="button" onclick="window.location('/donate')"
+              button.btn type="button" onclick="window.location.href='/donate';"
                 = link_to donate_path do
                   i.fa.fa-heart
                   | 支持司改
