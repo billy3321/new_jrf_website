@@ -21,6 +21,6 @@
       .masonry-grid.row
         - @articles.each do |a|
           = render partial: 'shared/article_block', locals: { a: a }
-  .row.text-center
-    .col-md-10.col-md-offset-1
-      = paginate @articles
+      .clearfix
+      .text-center
+        = paginate @articles
