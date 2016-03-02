@@ -81,7 +81,7 @@
               li
                 = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
     .row
-      .block.clearfix.isotope-container
+      .isotope-container
         - @articles.each do |a|
           .list-with-image.isotope-item.col-md-4.col-sm-6 class="jrf-#{a.kind}"
             .overlay-container
@@ -106,6 +106,5 @@
             h2
               = link_to a.title, article_path(a)
             p.small = a.published_at.try(:strftime, '%Y-%m-%d')
-    .row.text-center
-      .col-md-10.col-md-offset-1
+      .text-center
         = paginate @articles, params: { anchor: 'more' }
