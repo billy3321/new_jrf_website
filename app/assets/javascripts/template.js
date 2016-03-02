@@ -19,7 +19,7 @@
 		//-----------------------------------------------
 		var delay=0, setTimeoutConst;
 		if ((Modernizr.mq('only all and (min-width: 768px)') && !Modernizr.touch) || $("html.ie8").length>0) {
-			$('.main-navigation .navbar-nav>li.dropdown, .main-navigation li.dropdown>ul>li.dropdown').hover(
+			$('.main-navigation .navbar-nav>li.dropdown, .main-navigation li.dropdown>ul>li.dropdown').click(
 			function(){
 				var $this = $(this);
 				setTimeoutConst = setTimeout(function(){
