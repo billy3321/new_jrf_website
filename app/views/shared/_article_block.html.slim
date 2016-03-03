@@ -38,7 +38,7 @@
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
           span.month = a.published_at.try(:strftime, '%-m月 %Y')
-        .blogpost-content
+        .blogpost-content.small
           header
             h4.title = link_to a.title, article_path(a)
             .submitted
