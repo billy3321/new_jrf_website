@@ -1,5 +1,5 @@
 - if a.kind
-  .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{a.kind}"
+  .masonry-grid-item.col-sm-6.col-md-4 class="jrf-#{a.kind}"
     article.clearfix.blogpost
       .overlay-container
         - if a.image.blank?
@@ -21,7 +21,7 @@
           - else
             = display_shorter(a.content, 50)
 - else
-  .masonry-grid-item.isotope-item.col-sm-6.col-md-4
+  .masonry-grid-item.col-sm-6.col-md-4
     article.clearfix.blogpost
       .overlay-container
         - if a.image.blank?
