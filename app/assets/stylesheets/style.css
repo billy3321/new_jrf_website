@@ -2065,9 +2065,9 @@ tbody {
 
 /* The color of default buttons is the color of current color scheme */
 .btn-default {
-	background-color: #e84c3d;
+	background-color: #b73c5a;
 	color: #fff !important;
-	border-color: #cd3c2e;
+	border-color: #b73c5a;
 }
 .btn-default:hover,
 .btn-default:focus,
