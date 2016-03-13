@@ -41,10 +41,12 @@
           .col-sm-2.footer-content
             h5 站內連結
             ul.nav.nav-pills.nav-stacked
-              li 
-                = link_to "我要申訴", keyword_path(1)
-              li 
-                = link_to "我要申冤", keyword_path(33)
+              - if @injustice_keyword.present?
+                li 
+                  = link_to "我要申訴", keyword_path(@injustice_keyword)
+              - if @appeal_keyword.present?
+                li 
+                  = link_to "我要申冤", keyword_path(@appeal_keyword)
               li 
                 = link_to "支持司改", donate_path
               li 
