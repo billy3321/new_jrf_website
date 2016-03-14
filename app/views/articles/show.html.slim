@@ -15,7 +15,7 @@ section.container
                     .submitted
                       i.fa.fa-user.pr-1
                       = @article.author
-                  .embed-responsive.embed-responsive-16by9
+                  .owl-carousel.content-slider-with-controls-autoplay
                     - if @article.youtube_id
                       iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}?rel=0&wmode=opaque"
                     - elsif @article.image.blank?
