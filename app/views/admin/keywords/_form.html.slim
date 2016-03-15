@@ -14,11 +14,6 @@
   = f.input :remove_cover, as:  :boolean, label: '移除圖片'
   p.help-block 建議大小1600*900，將顯示為首頁廣告
   = image_tag(@keyword.cover_url, alt:"") if @keyword.cover?
-- unless @keyword.new_record?
-  #slides.sortable-slide
-    = f.simple_fields_for :slides do |slide|
-      = render :partial => 'slide_fields', :locals => { :f => slide }
-    = link_to_add_association "新增Slide", f, :slides, class: "btn radius btn-white btn-sm"
 .form-group
   label 首頁專案介紹
   = f.cktext_area :description, label: '簡述', required: true, hint: "此處文字在專案主打時出現在首頁中，以及供FB抓取"
@@ -29,6 +24,11 @@
   = f.input :remove_image, as:  :boolean, label: '移除圖片'
   p.help-block 建議大小1600*900，將顯示為專案圖片
   = image_tag(@keyword.image_url, alt:"") if @keyword.image?
+- unless @keyword.new_record?
+  #slides.sortable-slide
+    = f.simple_fields_for :slides do |slide|
+      = render :partial => 'slide_fields', :locals => { :f => slide }
+    = link_to_add_association "新增Slide", f, :slides, class: "btn radius btn-white btn-sm"
 .form-group
   label 內文
   = f.cktext_area :content, label: '內文', required: true
