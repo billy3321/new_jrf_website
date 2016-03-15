@@ -18,7 +18,6 @@ class Admin::ArticlesController < Admin::BaseController
   # GET /articles/new
   def new
     @article = Article.new
-    @slide = @article.slides.build
     set_meta_tags({
       title: "新增文章"
     })
@@ -26,7 +25,6 @@ class Admin::ArticlesController < Admin::BaseController
 
   # GET /articles/1/edit
   def edit
-    @slide = @article.slides.build
     set_meta_tags({
       title: "編輯文章"
     })

@@ -33,7 +33,6 @@ class Admin::KeywordsController < Admin::BaseController
   # GET /keywords/new
   def new
     @keyword = Keyword.new
-    @slide = @keyword.slides.build
     @faq = @keyword.faqs.build
     set_meta_tags({
       title: "新增專案"
@@ -42,7 +41,6 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords/1/edit
   def edit
-    @slide = @keyword.slides.build
     @faq = @keyword.faqs.build
     set_meta_tags({
       title: "編輯專案"
