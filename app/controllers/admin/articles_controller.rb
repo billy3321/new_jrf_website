@@ -67,6 +67,6 @@ class Admin::ArticlesController < Admin::BaseController
   def article_params
     params.require(:article).permit(:published, {keyword_ids: []}, :description, :author,
       :published_at, :kind, :image, :image_cache, :remove_image, :title, :content, :youtube_url, :link,
-      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image])
+      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image, :_destroy])
   end
 end

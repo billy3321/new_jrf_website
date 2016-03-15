@@ -3,7 +3,7 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords
   def index
-    @q = Keyword.search(params[:q])
+    @q = Keyword.includes(category: :catalog).search(params[:q])
     @keywords = @q.result(distinct: true)
     set_meta_tags({
       title: "專案管理"
@@ -17,14 +17,14 @@ class Admin::KeywordsController < Admin::BaseController
   end
 
   def order
-    @catalogs = Catalog.all
+    @catalogs = Catalog.includes(categories: :keywords).all
     set_meta_tags({
       title: "專案排序"
     })
   end
 
   def show_order
-    @keywords = Keyword.showed
+    @keywords = Keyword.includes(category: :catalog).showed
     set_meta_tags({
       title: "首頁顯示專案排序"
     })
@@ -100,6 +100,6 @@ class Admin::KeywordsController < Admin::BaseController
       :image, :image_cache, :remove_image, :title, :content, :description,
       :cover, :cover_cache, :remove_cover, :position, {order: [:id, :position]},
       faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy],
-      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image])
+      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image, :_destroy])
   end
 end
