@@ -47,17 +47,17 @@ class KeywordsController < ApplicationController
       @kind = nil
     end
     if @kind == 'presses'
-      @articles = @keyword.articles.presses.published.page params[:page]
+      @articles = @keyword.articles.presses.published.page(params[:page]).per(10)
     elsif @kind == 'comments'
-      @articles = @keyword.articles.comments.published.page params[:page]
+      @articles = @keyword.articles.comments.published.page(params[:page]).per(10)
     elsif @kind == 'activities'
-      @articles = @keyword.articles.activities.published.page params[:page]
+      @articles = @keyword.articles.activities.published.page(params[:page]).per(10)
     elsif @kind == 'epapers'
-      @articles = @keyword.articles.epapers.published.page params[:page]
+      @articles = @keyword.articles.epapers.published.page(params[:page]).per(10)
     elsif @kind == 'books'
-      @articles = @keyword.articles.books.published.page params[:page]
+      @articles = @keyword.articles.books.published.page(params[:page]).per(10)
     else
-      @articles = @keyword.articles.published.page params[:page]
+      @articles = @keyword.articles.published.page(params[:page]).per(10)
     end
     set_meta_tags({
       title: @keyword.title,
