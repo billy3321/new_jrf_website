@@ -12,11 +12,13 @@ class Admin::ArticlesController < Admin::BaseController
 
   # GET /articles/1
   def show
+    @slides = @article.slides.all
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    @slide = @article.slides.build
     set_meta_tags({
       title: "新增文章"
     })
@@ -24,6 +26,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   # GET /articles/1/edit
   def edit
+    @slide = @article.slides.build
     set_meta_tags({
       title: "編輯文章"
     })
@@ -63,6 +66,7 @@ class Admin::ArticlesController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
     params.require(:article).permit(:published, {keyword_ids: []}, :description, :author,
-      :published_at, :kind, :image, :image_cache, :remove_image, :title, :content, :youtube_url, :link)
+      :published_at, :kind, :image, :image_cache, :remove_image, :title, :content, :youtube_url, :link,
+      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image])
   end
 end

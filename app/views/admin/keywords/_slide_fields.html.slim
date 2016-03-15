@@ -1,0 +1,7 @@
+.nested-fields.panel.panel-default.gray-bg data-id="#{f.object.id}"
+  = f.input :image, as: :file, label: '附圖', input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
+  = f.input :image_cache, as: :hidden
+  = f.input :remove_image, as:  :boolean, label: '移除圖片'
+  p.help-block 建議大小1600*900，將顯示為投影片
+  = image_tag(f.object.image_url, alt:"") if f.object.image?
+  = link_to_remove_association "刪除圖片", f, class: "form-control"
