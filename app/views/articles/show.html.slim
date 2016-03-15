@@ -18,6 +18,9 @@ section.container
                   .owl-carousel.content-slider-with-controls-autoplay
                     - if @article.youtube_id
                       iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}?rel=0&wmode=opaque"
+                    - elsif @article.slides.present?
+                      - @article.slides.each do |slide|
+                        = image_tag(slide.image, alt: "", class: "embed-responsive-item")
                     - elsif @article.image.blank?
                       = image_tag("jrf-img.png", alt: "", class: "embed-responsive-item")
                     - else
