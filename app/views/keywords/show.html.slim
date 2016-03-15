@@ -81,7 +81,7 @@
                 li
                   = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
       .row
-        .isotope-container
+        .isotope-container#more
           - @articles.each do |a|
             .list-with-image.isotope-item.col-sm-6 class="jrf-#{a.kind}"
               .overlay-container
