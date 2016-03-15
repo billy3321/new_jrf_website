@@ -12,6 +12,7 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords/1
   def show
+    @slides = @keyword.slides.all
     @faqs = @keyword.faqs.all
   end
 
@@ -32,6 +33,7 @@ class Admin::KeywordsController < Admin::BaseController
   # GET /keywords/new
   def new
     @keyword = Keyword.new
+    @slide = @keyword.slides.build
     @faq = @keyword.faqs.build
     set_meta_tags({
       title: "新增專案"
@@ -40,6 +42,7 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords/1/edit
   def edit
+    @slide = @keyword.slides.build
     @faq = @keyword.faqs.build
     set_meta_tags({
       title: "編輯專案"
@@ -96,6 +99,7 @@ class Admin::KeywordsController < Admin::BaseController
     params.require(:keyword).permit(:category_id, :name, :published, :showed,
       :image, :image_cache, :remove_image, :title, :content, :description,
       :cover, :cover_cache, :remove_cover, :position, {order: [:id, :position]},
-      faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy])
+      faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy],
+      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image])
   end
 end

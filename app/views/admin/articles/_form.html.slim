@@ -19,6 +19,11 @@
     = f.input :remove_image, as:  :boolean, label: '移除圖片'
     p.help-block 建議大小1600*900，將文章頁閱讀時顯示
     = image_tag(@article.image_url, alt:"") if @article.image?
+  - unless @article.new_record?
+    #slides.sortable-slide
+      = f.simple_fields_for :slides do |slide|
+        = render :partial => 'slide_fields', :locals => { :f => slide }
+      = link_to_add_association "新增Slide", f, :slides, class: "btn radius btn-white btn-sm"
   .form-group
     = f.input :youtube_url, label: 'Youtube 網址', input_html: { class: 'form-control' }, hint: "Youtube 網址，若貼上則顯示youtube為主"
   .form-group
@@ -48,6 +53,11 @@
     = f.input :remove_image, as:  :boolean, label: '移除圖片'
     p.help-block 建議大小1024*768，將文章頁閱讀時顯示
     = image_tag(@article.image_url, alt:"") if @article.image?
+  - unless @article.new_record?
+    #slides.sortable-slide
+      = f.simple_fields_for :slides do |slide|
+        = render :partial => 'admin/shared/slides_fields', :locals => { :f => slide }
+      = link_to_add_association "新增Slide", f, :slides, class: "btn radius btn-white btn-sm"
   .form-group
     = f.input :youtube_url, label: 'Youtube 網址', input_html: { class: 'form-control' }
   .form-group

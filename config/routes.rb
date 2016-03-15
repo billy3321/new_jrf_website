@@ -42,7 +42,8 @@ Rails.application.routes.draw do
       put :show_sort,  on: :collection
       resources :faqs, only: [:index]
     end
-    match 'faqs/sort',  to: 'faqs#sort',  via: 'put'
+    match 'faqs/sort',   to: 'faqs#sort',   via: 'put'
+    match 'slides/sort', to: 'slides#sort', via: 'put'
   end
 
   namespace :api, defaults: { format: 'json' } do
