@@ -1,6 +1,6 @@
 .container
   .row.col-lg-12
-    .owl-carousel.content-slider-with-controls-autoplay
+    .embed-responsive.embed-responsive-16by9.owl-carousel.content-slider-with-controls-autoplay
       - if @keyword.slides.present?
         - @keyword.slides.each do |slide|
           = image_tag(slide.image, class: "embed-responsive-item", alt: "", width: "100%")
