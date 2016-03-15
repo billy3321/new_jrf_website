@@ -15,15 +15,18 @@ section.container
                     .submitted
                       i.fa.fa-user.pr-1
                       = @article.author
-                  .embed-responsive.embed-responsive-16by9.owl-carousel.content-slider-with-controls-autoplay
-                    - if @article.youtube_id
+                  - if @article.youtube_id.presnet?
+                    .embed-responsive.embed-responsive-16by9
                       iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}?rel=0&wmode=opaque"
-                    - elsif @article.slides.present?
+                  - elsif @article.slides.present?
+                    .owl-carousel.content-slider-with-controls-autoplay
                       - @article.slides.each do |slide|
                         = image_tag(slide.image, alt: "", class: "embed-responsive-item")
-                    - elsif @article.image.blank?
+                  - elsif @article.image.blank?
+                    .embed-responsive.embed-responsive-16by9
                       = image_tag("jrf-img.png", alt: "", class: "embed-responsive-item")
-                    - else
+                  - else
+                    .embed-responsive.embed-responsive-16by9
                       = image_tag(@article.image.banner, alt: "", class: "embed-responsive-item")
         div
           = @article.content.try(:html_safe)
