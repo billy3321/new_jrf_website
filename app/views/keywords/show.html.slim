@@ -1,5 +1,5 @@
 .container
-  .row.col-lg-12
+  .row.col-lg-10.col-lg-offset-1
     .owl-carousel.content-slider-with-controls-autoplay
       - if @keyword.slides.present?
         - @keyword.slides.each do |slide|
@@ -13,7 +13,7 @@
 
 - if @keyword.faqs.any?
   .container
-    .row.col-lg-12
+    .row.col-lg-10.col-lg-offset-1
       h2 FAQ
       .separator-2
       .panel-group#accordion-faq
@@ -32,61 +32,60 @@
 
 - if @keyword.articles.any?
   .container
-    h2#more 相關訊息
-    .separator-2
-    .row.hidden-xs
-      .container.section
-        ul.nav.nav-tabs.nav-justified
-          - if @kind.blank?
-            li.active
-              = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
-            li
-              = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
-            li
-              = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
-            li
-              = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
-            li
-              = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
-            li
-              = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
-          - else
-            li
-              = link_to "所有", url_for(params.merge({k: nil, page: nil, anchor: 'more'}))
-            - if @kind == 'presses'
+    .col-lg-10.col-lg-offset-1
+      .row.hidden-xs
+        .container.section
+          ul.nav.nav-tabs.nav-justified
+            - if @kind.blank?
               li.active
-                = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
-            - else
+                = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
               li
                 = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
-            - if @kind == 'activities'
-              li.active
-                = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
-            - else
               li
                 = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
-            - if @kind == 'comments'
-              li.active
-               = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
-            - else
               li
                 = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
-            - if @kind == 'epapers'
-              li.active
-                = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
-            - else
               li
                 = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
-            - if @kind == 'books'
-              li.active
-                = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
-            - else
               li
                 = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
+            - else
+              li
+                = link_to "所有", url_for(params.merge({k: nil, page: nil, anchor: 'more'}))
+              - if @kind == 'presses'
+                li.active
+                  = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
+              - else
+                li
+                  = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
+              - if @kind == 'activities'
+                li.active
+                  = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+              - else
+                li
+                  = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
+              - if @kind == 'comments'
+                li.active
+                 = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+              - else
+                li
+                  = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
+              - if @kind == 'epapers'
+                li.active
+                  = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+              - else
+                li
+                  = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
+              - if @kind == 'books'
+                li.active
+                  = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
+              - else
+                li
+                  = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
     .row
       .isotope-container
         - @articles.each do |a|
-          .list-with-image.isotope-item.col-md-4.col-sm-6 class="jrf-#{a.kind}"
+          .list-with-image.isotope-item.col-sm-6 class="jrf-#{a.kind}"
             .overlay-container
               - if a.image.blank?
                 = image_tag("jrf-img.png", alt: "")
