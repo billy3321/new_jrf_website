@@ -15,7 +15,7 @@ section.container
                     .submitted
                       i.fa.fa-user.pr-1
                       = @article.author
-                  - if @article.youtube_id.presnet?
+                  - if @article.youtube_id
                     .embed-responsive.embed-responsive-16by9
                       iframe.embed-responsive-item src="//www.youtube.com/embed/#{@article.youtube_id}?rel=0&wmode=opaque"
                   - elsif @article.slides.present?
