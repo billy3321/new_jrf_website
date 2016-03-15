@@ -14,8 +14,6 @@
 - if @keyword.faqs.any?
   .container
     .row.col-lg-10.col-lg-offset-1
-      h2 FAQ
-      .separator-2
       .panel-group#accordion-faq
         - num = 0
         - @keyword.faqs.each do |faq|
@@ -82,31 +80,31 @@
               - else
                 li
                   = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
-    .row
-      .isotope-container
-        - @articles.each do |a|
-          .list-with-image.isotope-item.col-sm-6 class="jrf-#{a.kind}"
-            .overlay-container
-              - if a.image.blank?
-                = image_tag("jrf-img.png", alt: "")
-              - else
-                = image_tag(a.image.thumb, alt: "")
-              = link_to article_path(a), class: "overlay small" do
-                i.fa.fa-link
-                - if a.kind == 'press'
-                  span 新聞稿
-                - elsif a.kind == 'activity'
-                  span 活動
-                - elsif a.kind == 'comment'
-                  span 評論
-                - elsif a.kind == 'epaper'
-                  span 電子報
-                - elsif a.kind == 'book'
-                  span 書籍
+      .row
+        .isotope-container
+          - @articles.each do |a|
+            .list-with-image.isotope-item.col-sm-6 class="jrf-#{a.kind}"
+              .overlay-container
+                - if a.image.blank?
+                  = image_tag("jrf-img.png", alt: "")
                 - else
-                  span 不明
-            h2
-              = link_to a.title, article_path(a)
-            p.small = a.published_at.try(:strftime, '%Y-%m-%d')
-      .text-center
-        = paginate @articles, params: { anchor: 'more' }
+                  = image_tag(a.image.thumb, alt: "")
+                = link_to article_path(a), class: "overlay small" do
+                  i.fa.fa-link
+                  - if a.kind == 'press'
+                    span 新聞稿
+                  - elsif a.kind == 'activity'
+                    span 活動
+                  - elsif a.kind == 'comment'
+                    span 評論
+                  - elsif a.kind == 'epaper'
+                    span 電子報
+                  - elsif a.kind == 'book'
+                    span 書籍
+                  - else
+                    span 不明
+              h2
+                = link_to a.title, article_path(a)
+              p.small = a.published_at.try(:strftime, '%Y-%m-%d')
+        .text-center
+          = paginate @articles, params: { anchor: 'more' }
