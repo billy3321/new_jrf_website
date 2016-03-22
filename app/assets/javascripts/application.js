@@ -21,6 +21,7 @@
 //= require jquery.sharrre
 //= require jquery.parallax
 //= require jquery.validate
+//= require hanzi
 //= require template
 //= require custom
 //= require gtm
@@ -44,6 +45,7 @@ var ready = function(){
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   }
+  Han.init();
 };
 
 $(document).ready(ready);
