@@ -36,7 +36,6 @@ var ready = function(){
   }else{
     ready_ran = 1;
   }
-  Han.init();
 };
 
 $(document).ready(ready);

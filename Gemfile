@@ -64,7 +64,6 @@ gem 'rollbar', '~> 2.5.1'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
 gem 'canonical-rails'
-gem 'hanzi-rails'
 
 source 'https://rails-assets.org' do
   # gem 'rails-assets-jquery'
