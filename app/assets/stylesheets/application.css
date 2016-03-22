@@ -20,6 +20,7 @@
  *= require style
  *= require skins/red
  *= require social-share-button
+ *= require hanzi
  *= require custom
  *= require_self
  */
