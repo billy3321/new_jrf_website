@@ -25,7 +25,6 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require hanzi
 //= require gtm
 
 var ready_ran = 0;
