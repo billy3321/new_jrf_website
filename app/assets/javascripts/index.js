@@ -25,7 +25,6 @@
 //= require jquery.validate
 //= require template
 //= require custom
-//= require hanzi
 //= require gtm
 
 var ready_ran = 0;
@@ -36,7 +35,6 @@ var ready = function(){
   }else{
     ready_ran = 1;
   }
-  Han.init();
 };
 
 $(document).ready(ready);
