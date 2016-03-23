@@ -63,3 +63,6 @@ h2 i{
 	font-size:18px;
 	height:60px;
 }
+.owl-controls .owl-pagination{
+	bottom: 0px;
+}
