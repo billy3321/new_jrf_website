@@ -20,8 +20,8 @@ xml.rss :version => "2.0" do
         xml.pubDate article.published_at.to_s(:rfc822)
         xml.link article_url(article)
         xml.guid article_url(article)
-        content = render :partial => 'article', :locals => {:article => article}
-        xml.cdata! content
+        xml.tag!("content:encode") do
+          xml.cdata!(render :partial => 'article', :locals => {:article => article})
         end
         xml.description article.description
       end

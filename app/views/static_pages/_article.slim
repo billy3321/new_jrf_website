@@ -8,8 +8,8 @@ html lang="zh-Hant-TW" prefix="op: http://media.facebook.com/op#"
     article
       header
         h1 = article.title
-        time.op-published datetime="#{article.published_at.to_s(:rfc822)}" = article.published_at('%Y年%m月%d日 %H:%i')
-        time.op-modified datetime="#{article.updated_at.to_s(:rfc822)}" = article.updated_at('%Y年%m月%d日 %H:%i')
+        time.op-published datetime="#{article.published_at.to_s(:rfc822)}" = article.published_at.strftime('%Y年%m月%d日 %H:%i')
+        time.op-modified datetime="#{article.updated_at.to_s(:rfc822)}" = article.updated_at.strftime('%Y年%m月%d日 %H:%i')
         address
           a = article.author
         
@@ -22,7 +22,7 @@ html lang="zh-Hant-TW" prefix="op: http://media.facebook.com/op#"
         - else
           figure
             img src="#{image_url(article.image)}"
-      = article.content
+      = article.content.html_safe
       footer
         aside 財團法人民間司法改革基金會
         small CC-BY-SA 4.0
