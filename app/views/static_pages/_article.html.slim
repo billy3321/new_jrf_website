@@ -1,0 +1,29 @@
+doctype html
+html lang="zh-Hant-TW" prefix="op: http://media.facebook.com/op#"
+  head
+    meta charset="utf-8"
+    link href="#{article_url(article)}" rel="canonical"
+    meta content="v1.0" property="op:markup_version"
+  body
+    article
+      header
+        h1 = article.title
+        time.op-published datetime="#{article.published_at.to_s(:rfc822)}" = article.published_at('%Y年%m月%d日 %H:%i')
+        time.op-modified datetime="#{article.updated_at.to_s(:rfc822)}" = article.updated_at('%Y年%m月%d日 %H:%i')
+        address
+          a = article.author
+        
+        - if article.youtube_id
+          figure.op-social
+            iframe src="//www.youtube.com/embed/#{article.youtube_id}?rel=0&wmode=opaque"
+        - elsif article.image.blank?
+          figure
+            img src="#{image_url('jrf-img.png')}"
+        - else
+          figure
+            img src="#{image_url(article.image)}"
+      = article.content
+      footer
+        aside 財團法人民間司法改革基金會
+        small CC-BY-SA 4.0
+
