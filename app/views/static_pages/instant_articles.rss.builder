@@ -23,7 +23,7 @@ xml.rss :version => "2.0" do
         xml.tag!("content:encode") do
           xml.cdata!(render :partial => 'article', :locals => {:article => article})
         end
-        xml.description article.description
+        xml.description sanitize(article.description)
       end
     end
   end
