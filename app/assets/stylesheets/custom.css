@@ -61,7 +61,7 @@ h2 i{
 }
 .blogpost-content h4.title {
 	font-size:18px;
-	height:60px;
+	min-height:60px;
 }
 .owl-controls .owl-pagination{
 	bottom: 0px;
