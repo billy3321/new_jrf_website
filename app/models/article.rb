@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
   scope :comments, -> { where(kind: 'comment') }
   scope :epapers, -> { where(kind: 'epaper') }
   scope :books, -> { where(kind: 'book') }
-  before_save :update_youtube_values, :fix_content
+  before_save :update_youtube_values, :fix_content, :save_fb_ia_content
   validate :check_content
   validates_presence_of :published_at
 
@@ -35,6 +35,26 @@ class Article < ActiveRecord::Base
     end
     self.youtube_id = youtube_id
     self.youtube_url = "https://www.youtube.com/watch?v=" + self.youtube_id
+  end
+
+  def save_fb_ia_content
+    html = Nokogiri::HTML(self.content)
+    elements = html.css('h1,h2,h3,h4,h5,h6,p,img,p+ul,p+ol,blockquote')
+    result = ''
+    elements.each do |e|
+      if ['h1','h2','h3','h4','h5','h6','p','blockquote'].include? e.node_name
+        result += "<#{e.node_name}>#{e.text}</#{e.node_name}>"
+      elsif ['ul', 'ol'].include? e.node_name
+        result += e.to_html
+      elsif e.node_name == 'img'
+        src = e.attr('src')
+        if src.match(/^\//)
+          src = "#{Setting.url.protocol}://#{Setting.url.host}" + src
+        end
+        result += "<figure><img src=\"#{src}\" /></figure>"
+      end
+    end
+    self.fb_ia_content = result
   end
 
   private
