@@ -25,6 +25,9 @@ defaults: &defaults
     protocol: ""
     fb: ""
 
+  fb:
+    pages: ""
+
   rollbar:
     access_token: ""
 

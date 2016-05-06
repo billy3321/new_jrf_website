@@ -32,6 +32,9 @@ module ApplicationHelper
       twitter: {
         card: 'summary_large_image',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
+      },
+      fb: {
+        pages: Setting.fb.pages
       }
     }
   end
