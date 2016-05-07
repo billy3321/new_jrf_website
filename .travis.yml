@@ -39,7 +39,7 @@ before_script:
 # when starting out as this usually runs `rake test`.
 
 script:
-  - bin/rake db:create db:migrate RAILS_ENV=test
+  - bin/rake db:migrate RAILS_ENV=test
   - bin/rake spec
 
 # 5. OPTIONAL Add a Build Status Badge to your README, follow instructions here:
