@@ -30,6 +30,6 @@ class Keyword < ActiveRecord::Base
   end
 
   def fix_content
-    self.content = self.content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/")
+    self.content = self.content.gsub("href=\"#{Setting.url.protocol}://#{Setting.url.host}", "href=\"/") if self.content.present?
   end
 end

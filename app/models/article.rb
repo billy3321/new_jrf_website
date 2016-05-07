@@ -39,12 +39,16 @@ class Article < ActiveRecord::Base
 
   def save_fb_ia_content
     html = Nokogiri::HTML(self.content)
+    html.xpath('//@style').remove
+    html.xpath('//@class').remove
     elements = html.css('h1,h2,h3,h4,h5,h6,p,img,p+ul,p+ol,blockquote')
     result = ''
     elements.each do |e|
-      if ['h1','h2','h3','h4','h5','h6','p','blockquote'].include? e.node_name
+      if ['h1','h2','h3','h4','h5','h6','blockquote'].include? e.node_name
         result += "<#{e.node_name}>#{e.text}</#{e.node_name}>"
       elsif ['ul', 'ol'].include? e.node_name
+        result += e.to_html
+      elsif e.node_name == 'p'
         result += e.to_html
       elsif e.node_name == 'img'
         src = e.attr('src')
