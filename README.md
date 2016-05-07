@@ -1,7 +1,9 @@
-## Judicial Reform Foundation Website
+# Judicial Reform Foundation Website
 
-Project Build
-===============
+[![Build Status](https://travis-ci.org/JRF-tw/jrf_website.svg?branch=master)](https://travis-ci.org/JRF-tw/jrf_website)
+
+## Project Build
+
 
 - Make sure you have already start PostgreSql
 
@@ -24,8 +26,7 @@ rails server
 
 - Yo login as admin, setup Google or Facebook OAuth login at `config/config.yml`, and set the user as admin in rails console.
 
-PostgreSql
-=================
+## PostgreSql
 
 - install
 
@@ -53,8 +54,7 @@ GRANT ALL PRIVILEGES ON DATABASE "your_name" to "your_name";
 ALTER USER "your_name" WITH SUPERUSER;
 ```
 
-LICENSE
-=================
+## LICENSE
 This project is release under MIT License.
 
 
