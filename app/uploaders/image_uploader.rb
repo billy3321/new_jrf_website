@@ -1,3 +1,4 @@
+
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
@@ -39,12 +40,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
   version :thumb do
     process resize_to_fill: [480, 270]
-    process :optimize
+    process optimize: [{ quiet: true, quality: 50}]
   end
 
   version :banner do
     process resize_to_fill: [1600, 900]
-    # process :optimize
+    # process optimize: [{ quiet: true, quality: 50}]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
