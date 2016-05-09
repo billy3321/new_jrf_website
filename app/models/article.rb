@@ -64,6 +64,7 @@ class Article < ActiveRecord::Base
         result += "<figure><img src=\"#{src}\" /></figure>"
       end
     end
+    result = result.gsub(/\n/, '').gsub(/\r/, '')
     self.fb_ia_content = result
   end
 

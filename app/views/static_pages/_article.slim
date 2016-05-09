@@ -2,8 +2,9 @@ doctype html
 html lang="zh-Hant-TW" prefix="op: http://media.facebook.com/op#"
   head
     meta charset="utf-8"
-    link href="#{article_url(article)}" rel="canonical"
     meta content="v1.0" property="op:markup_version"
+    link href="#{article_url(article)}" rel="canonical"
+    meta property="fb:article_style" content="default">
   body
     article
       header
@@ -14,7 +15,7 @@ html lang="zh-Hant-TW" prefix="op: http://media.facebook.com/op#"
           a = article.author
         - if article.youtube_id
           figure.op-social
-            iframe src="https://www.youtube.com/embed/#{article.youtube_id}?rel=0&wmode=opaque"
+            iframe src="https://www.youtube.com/embed/#{article.youtube_id}"
         - elsif article.image.blank?
           figure
             img src="#{image_url('jrf-img.png')}"
