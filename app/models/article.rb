@@ -65,6 +65,7 @@ class Article < ActiveRecord::Base
       end
     end
     result = result.gsub(/\n/, '').gsub(/\r/, '')
+    result = result.gsub(/href=\"\//, "href=\"#{Setting.url.protocol}://#{Setting.url.host}/")
     self.fb_ia_content = result
   end
 
