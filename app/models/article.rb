@@ -51,7 +51,11 @@ class Article < ActiveRecord::Base
       elsif ['ul', 'ol'].include? e.node_name
         result += e.to_html
       elsif e.node_name == 'p'
-        result += e.to_html
+        e.search('.//img').remove
+        e.search('.//br').remove
+        if e.text.present?
+          result += e.to_html
+        end
       elsif e.node_name == 'img'
         src = e.attr('src')
         if src.match(/^\//)
