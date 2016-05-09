@@ -45,7 +45,9 @@ class Article < ActiveRecord::Base
     result = ''
     elements.each do |e|
       if ['h1','h2','h3','h4','h5','h6','blockquote'].include? e.node_name
-        result += "<#{e.node_name}>#{e.text}</#{e.node_name}>"
+        node_name = e.node_name
+        node_name = 'h2' if ['h3','h4','h5','h6'].include? node_name
+        result += "<#{node_name}>#{e.text}</#{node_name}>"
       elsif ['ul', 'ol'].include? e.node_name
         result += e.to_html
       elsif e.node_name == 'p'
