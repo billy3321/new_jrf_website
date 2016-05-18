@@ -229,12 +229,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    unless @article.published
-      if user_signed_in? and current_user.admin?
-      else
-        not_found
-      end
-    end
     keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
     if @article.keywords.first
       @related_articles = @article.keywords.first.articles.published.first(4).reject { |a| [@article].include? a }
