@@ -96,7 +96,7 @@ class Admin::KeywordsController < Admin::BaseController
   def keyword_params
     params.require(:keyword).permit(:category_id, :name, :published, :showed,
       :image, :image_cache, :remove_image, :title, :content, :description,
-      :cover, :cover_cache, :remove_cover, :position, {order: [:id, :position]},
+      :cover, :cover_cache, :remove_cover, :position, :label, :label_type, {order: [:id, :position]},
       faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy],
       slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image, :_destroy])
   end

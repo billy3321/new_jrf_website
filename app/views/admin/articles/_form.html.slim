@@ -2,7 +2,7 @@
 - unless @article.kind == 'system'
   .form-group
     = f.association :keywords, label: "專案分類", collection: Keyword.all, input_html: { class: 'chosen-select form-control' }
-    = f.input :kind, label: "類型", collection: [['新聞稿', 'press'], ['活動', 'activity'], ['評論', 'comment'], ['電子報', 'epaper'], ['書籍', 'book']], input_html: { class: 'form-control' }, include_blank: false    
+    = f.input :kind, label: "類型", collection: [['新聞稿', 'press'], ['活動', 'activity'], ['評論', 'comment'], ['電子報', 'epaper'], ['書籍', 'book']], input_html: { class: 'form-control' }, include_blank: false
   .form-group
     = f.input :title, label: '標題', required: true, input_html: { class: 'form-control' }, hint: "建議少於30字"
   .form-group

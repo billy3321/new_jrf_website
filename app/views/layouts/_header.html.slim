@@ -104,6 +104,9 @@ header.header.fixed.clearfix
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
+                                                - unless keyword.label.blank?
+                                                  | &nbsp;
+                                                  span class="label label-#{keyword.label_type}" = keyword.label
                                           - if category.name == '出版品'
                                             li
                                               = link_to epapers_articles_path do
