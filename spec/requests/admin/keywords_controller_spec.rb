@@ -6,6 +6,7 @@ describe "Admin/Keyword" do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:keyword) { FactoryGirl.create(:keyword) }
   let(:faq) { FactoryGirl.create(:faq) }
+  let(:slide) { FactoryGirl.create(:keyword_slide) }
   let(:new_keyword) do
     {
       name: "new_keyword_name"
@@ -246,6 +247,41 @@ describe "Admin/Keyword" do
         expect {
           put "/admin/keywords/#{faq.keyword_id}", keyword: update_faq_data
         }.to change { Faq.count }.by(-1)
+      end
+    end
+
+    describe "nested slide #update" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test.jpg'))
+            }
+          ]
+        }
+        put "/admin/keywords/#{slide.slideable.id}", keyword: update_slide_data
+        expect(response).to be_redirect
+        slide.reload
+        expect(slide.image.filename).to match('test.jpg')
+      end
+    end
+
+    describe "nested slide #update delete" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              _destroy: 1
+            }
+          ]
+        }
+        expect {
+          put "/admin/keywords/#{slide.slideable.id}", keyword: update_slide_data
+        }.to change { Slide.count }.by(-1)
       end
     end
 

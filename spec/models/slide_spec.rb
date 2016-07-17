@@ -1,5 +1,18 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe Slide, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Slide do
+  let(:keyword_slide) {FactoryGirl.create(:keyword_slide)}
+  let(:article_slide) {FactoryGirl.create(:article_slide)}
+
+  it "#factory_keyword_creat_success" do
+    expect {
+      FactoryGirl.create :keyword_slide
+    }.to change { Slide.count }.by(1)
+  end
+
+  it "#factory_article_creat_success" do
+    expect {
+      FactoryGirl.create :article_slide
+    }.to change { Slide.count }.by(1)
+  end
 end

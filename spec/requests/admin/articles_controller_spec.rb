@@ -5,6 +5,7 @@ describe "Admin/Article" do
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:article) { FactoryGirl.create(:press_article) }
+  let(:slide) { FactoryGirl.create(:article_slide) }
   let(:new_article) do
     {
       title: "new_article_title",
@@ -154,6 +155,41 @@ describe "Admin/Article" do
         update_data = { title: "new_title" }
         put "/admin/articles/#{article.id}", article: update_data
         expect(response).to be_redirect
+      end
+    end
+
+    describe "nested slide #update" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test.jpg'))
+            }
+          ]
+        }
+        put "/admin/articles/#{slide.slideable.id}", article: update_slide_data
+        expect(response).to be_redirect
+        slide.reload
+        expect(slide.image.filename).to match('test.jpg')
+      end
+    end
+
+    describe "nested slide #update delete" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              _destroy: 1
+            }
+          ]
+        }
+        expect {
+          put "/admin/articles/#{slide.slideable.id}", article: update_slide_data
+        }.to change { Slide.count }.by(-1)
       end
     end
 

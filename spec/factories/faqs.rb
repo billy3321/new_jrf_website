@@ -4,5 +4,4 @@ FactoryGirl.define do
     sequence(:question) { |n| "Faq question #{n}" }
     sequence(:answer) { |n| "Faq answer #{n}" }
   end
-
 end

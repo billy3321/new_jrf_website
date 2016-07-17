@@ -1,7 +1,0 @@
-h1 Editing magazine
-
-= simple_form_for(@magazine, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to 'Show', magazine_path(@magazine), class: "btn"
-= link_to 'Back', magazines_path, class: "btn"

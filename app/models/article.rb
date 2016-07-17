@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :keywords, -> { uniq }
-  has_many :slides, as: :slideable
+  has_many :slides, as: :slideable, dependent: :destroy
   accepts_nested_attributes_for :slides, reject_if: proc { |attributes| attributes['image'].blank? }, allow_destroy: true
   default_scope { order(published_at: :desc) }
   scope :published, -> { where("published = ? AND published_at <= ?", true, Time.now) }

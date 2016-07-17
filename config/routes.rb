@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   # resources :catalogs
   # resources :categories
   # resources :kinds, only: [:show, :index]
-  resources :magazines
-  resources :magazine_articles
-  resources :columns
+  # resources :magazines, only: [:show, :index]
+  # resources :magazine_articles, only: [:show, :index]
+  # resources :columns, only: [:show, :index]
   resources :epapers, only: [:show, :index]
   namespace :admin do
     root 'admins#index',             via: 'get', as: 'admin'
