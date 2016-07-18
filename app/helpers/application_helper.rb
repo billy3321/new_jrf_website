@@ -6,6 +6,8 @@ module ApplicationHelper
       reverse: true,
       description: '',
       canonical: request.url,
+      author: Setting.google.pages,
+      publisher: Setting.google.pages,
       og: {
         title: '財團法人民間司法改革基金會',
         description: '',
