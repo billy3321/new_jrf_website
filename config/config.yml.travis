@@ -26,7 +26,10 @@ defaults: &defaults
     fb: "https://facebook.com/jrf.tw"
 
   fb:
-    pages: "176765029076"
+    pages: ""
+
+  google:
+    pages: ""
 
   rollbar:
     access_token: ''

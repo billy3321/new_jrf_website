@@ -1,4 +1,28 @@
 module ApplicationHelper
+  def default_meta_tags
+    {
+      separator: "&mdash;".html_safe,
+      site: '財團法人民間司法改革基金會',
+      reverse: true,
+      description: '',
+      canonical: request.url,
+      og: {
+        title: '財團法人民間司法改革基金會',
+        description: '',
+        type: 'website',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
+        site_name: '財團法人民間司法改革基金會',
+        url: request.url
+      },
+      twitter: {
+        card: 'summary_large_image',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
+      },
+      fb: {
+        pages: Setting.fb.pages
+      }
+    }
+  end
 
   def display_shorter(str, length, additional = "...")
     length = length * 2
@@ -14,29 +38,6 @@ module ApplicationHelper
     else
       text
     end
-  end
-
-  def default_meta_tags
-    {
-      separator: "&mdash;".html_safe,
-      site: '財團法人民間司法改革基金會',
-      reverse: true,
-      description: '',
-      og: {
-        title: '財團法人民間司法改革基金會',
-        description: '',
-        type: 'website',
-        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
-        site_name: '財團法人民間司法改革基金會'
-      },
-      twitter: {
-        card: 'summary_large_image',
-        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
-      },
-      fb: {
-        pages: Setting.fb.pages
-      }
-    }
   end
 
   def instant_article_content(content)
