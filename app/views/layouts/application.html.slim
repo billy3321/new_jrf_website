@@ -17,18 +17,12 @@ html lang="zh-Hant-TW"
       = stylesheet_link_tag  'index', media: 'all'
     - else
       = stylesheet_link_tag  'application', media: 'all'
-    - if params[:controller] == 'static_pages' and params[:action] == 'home'
-      = javascript_include_tag 'index'
-    - else
-      = javascript_include_tag 'application'
     = display_meta_tags(default_meta_tags)
     /[if lt IE 9]
       script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"
       script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
 
   body.front.no-trans
-    noscript
-      iframe height="0" src="//www.googletagmanager.com/ns.html?id=#{Setting.google_gtm.id}" style="display:none;visibility:hidden" width="0" 
     .scrollToTop
       i.icon-up-open-big
     .page-wrapper
@@ -41,5 +35,11 @@ html lang="zh-Hant-TW"
       = yield
       = render 'layouts/footer'
     = debug(params) if Rails.env.development?
+    - if params[:controller] == 'static_pages' and params[:action] == 'home'
+      = javascript_include_tag 'index'
+    - else
+      = javascript_include_tag 'application'
+    noscript
+      iframe height="0" src="//www.googletagmanager.com/ns.html?id=#{Setting.google_gtm.id}" style="display:none;visibility:hidden" width="0" 
     
 
