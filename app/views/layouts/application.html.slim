@@ -35,6 +35,7 @@ html lang="zh-Hant-TW"
       = yield
       = render 'layouts/footer'
     = debug(params) if Rails.env.development?
+    - console if Rails.env.development?
     - if params[:controller] == 'static_pages' and params[:action] == 'home'
       = javascript_include_tag 'index'
     - else
