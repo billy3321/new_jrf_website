@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   has_many :slides, as: :slideable, dependent: :destroy
   accepts_nested_attributes_for :slides, reject_if: proc { |attributes| attributes['image'].blank? }, allow_destroy: true
   default_scope { order(published_at: :desc) }
-  scope :published, -> { where("published = ? AND published_at <= ?", true, Time.now) }
+  scope :published, -> { where(published: true) }
   mount_uploader :image, ImageUploader
   paginates_per 15
   scope :activities, -> { where(kind: 'activity') }

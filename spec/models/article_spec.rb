@@ -23,7 +23,7 @@ describe Article do
     article1 = FactoryGirl.create(:press_article)
     article2 = FactoryGirl.create(:press_article, published: false)
     article3 = FactoryGirl.create(:press_article, published_at: 1.day.from_now)
-    expect(Article.published).to eq([article1])
+    expect(Article.published).to eq([article3, article1])
   end
 
   it "presses, activities, comments work" do
