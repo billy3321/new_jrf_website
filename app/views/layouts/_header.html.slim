@@ -53,7 +53,7 @@
                 li
                   = search_form_for @article_q, url: articles_path, class: "search-box", role: "search" do |f|
                     .form-group.has-feedback
-                      = f.search_field :title_or_content_cont, class: "form-control", id: "textfield", placeholder: "輸入關鍵字"
+                      = f.search_field :title_or_content_or_author_or_keywords_name_cont, class: "form-control", id: "textfield", placeholder: "輸入關鍵字"
                       i.fa.fa-search.form-control-feedback
                       = f.submit "搜尋", class: "btn btn-default radius btn-sm"
 header.header.fixed.clearfix
