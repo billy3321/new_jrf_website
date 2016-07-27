@@ -1,54 +1,18 @@
-# Setting up Travis CI:
-
-# 1. Go to https://travis-ci.org
-# 2. Click the Sign Up/Sign in with GitHub button and give Travis CI permission
-#    to access your GitHub repositories.
-# 3. Create a file like this one you're reading at `your-rails-app/.travis.yml`:
-
 language: ruby
 rvm:
-  - 2.2.2
-  # Add more Ruby versions to list if supported,
-  # Travis supports these versions: http://rubies.travis-ci.org/
-
-# addons:
-#   firefox: "38.0.5" # Set Firefox Version if needed.
-
-# If needed, use xvfb to setup fake monitor display so Firefox GUI can be used by specs:
-# http://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-xvfb-to-Run-Tests-That-Require-GUI-(e.g.-a-Web-browser)
-# before_install:
-#   - "export DISPLAY=:99.0"
-#   - "sh -e /etc/init.d/xvfb start"
+- 2.2.2
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libxml2-dev nodejs optipng jpegoptim
-
+- sudo apt-get -qq update
+- sudo apt-get install -y libxml2-dev nodejs optipng jpegoptim
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
-  - cp config/config.yml.travis config/config.yml
-
-# 4. OPTIONAL Only customize the `script` option if needed.
-
-# The `script` option is an optional list of the main build task(s). `rake` is
-# the default script option for Travis and most Rails projects will want this
-# when starting out as this usually runs `rake test`.
-
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+- cp config/config.yml.travis config/config.yml
 script:
-  - bin/rake db:migrate RAILS_ENV=test
-  - bin/rake spec
-
-# 5. OPTIONAL Add a Build Status Badge to your README, follow instructions here:
-#    http://docs.travis-ci.com/user/status-images/
-
-# Suggested docs
-# --------------
-# Getting Started: http://docs.travis-ci.com/user/getting-started/
-# Ruby & Travis CI docs: http://docs.travis-ci.com/user/languages/ruby/
-# Supported Ruby Versions: http://rubies.travis-ci.org/
-# Custom build task: http://docs.travis-ci.com/user/customizing-the-build/
-# GUI, Browsers, xvfb: http://docs.travis-ci.com/user/gui-and-headless-browsers/
-# Build Status Badge for README: http://docs.travis-ci.com/user/status-images/
+- bin/rake db:migrate RAILS_ENV=test
+- bin/rake spec
+notifications:
+  slack:
+    secure: SVcW7vbfKxTMUKcy8PMz0faHDY2DpgyKv4iqnCkk7jVc/Hn0LssSHGUGjdhwFRvHZUS3eoKxhATPd1JKXf6fTlY3SaSlUNFi4aU9bEQHL9pL7XR1FHiepakRe309tceLYyqSkbH5dsaDN9F5EVwAVM5f8zwl7O4bpGt35vHc+XoFA0QrnzA0XLQDUKYi8NrGttG/Ty4MHrl8dyRb6QBakV/9O01cihqrtAANfZ0THZ4/9W9MYk964V6VjDkxF8faGGBq1sz+5nFVW0fyqtltWjQk4/inzk7BzyweEzXGBkQQc2HcX7Wsnxhf9Hiz7qyPluQi5YDvaqsQ2Kr7Wqd1oSPRfDdK9uoTRjh1drzJuJT0q73KfJRJ6n3NzSXIcoxsHOfzHOaFxCdbjHuqwuYJZcch4hGKk4yvKKfQ2HyGssYLlOy4ZMjYjEt2sU3HdebNykQAUUpHDl5a5/KKn/jDGtf+G896SwzKcmK3EPiyztKGMr72rAYQ54OPad1sjPLk9EOBZvaPv5HsAdulAYjbPZuDY4eBZvEqkn/Pj6ZAwx0GYL/tAFXJXY0RASMB2WqMwCzqc5ABRKPnLg9W/I1tvqw8rY3jUmpvV56BvDkWh1aWoDs9T0lF0PjF2RY28YqUQzM53XdK+8jczLa/wAEC21LYOd4T6bkq+Y/GWUrpED4=
