@@ -32,7 +32,6 @@ Keyword.delete_all
 Article.delete_all
 Faq.delete_all
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
-ActiveRecord::Base.connection.execute("Delete from keywords_magazine_articles;");
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
