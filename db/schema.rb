@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717095042) do
+ActiveRecord::Schema.define(version: 20160802073541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160717095042) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.text     "fb_ia_content"
+    t.string   "system_type"
   end
 
   create_table "articles_keywords", id: false, force: :cascade do |t|

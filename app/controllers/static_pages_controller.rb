@@ -26,7 +26,7 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    @article = Article.find(1)
+    @article = Article.where(kind: 'system', system_type: 'about').first
     set_meta_tags({
       title: "關於我們",
       og: {
@@ -45,7 +45,7 @@ class StaticPagesController < ApplicationController
   end
 
   def donate
-    @article = Article.find(2)
+    @article = Article.where(kind: 'system', system_type: 'donate').first
     set_meta_tags({
       title: "捐款支持",
       og: {

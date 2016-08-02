@@ -286,6 +286,7 @@ articles = [
   {
     id: 1,
     kind: 'system',
+    system_type: 'about',
     published: false,
     published_at: Time.now,
     image: 'about.jpg',
@@ -370,6 +371,7 @@ articles = [
   }, {
     id: 2,
     kind: 'system',
+    system_type: 'donate',
     published: false,
     published_at: Time.now,
     image: 'donate.jpg',
