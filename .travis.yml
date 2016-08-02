@@ -3,7 +3,7 @@ rvm:
 - 2.2.2
 before_install:
 - sudo apt-get -qq update
-- sudo apt-get install -y libxml2-dev nodejs optipng jpegoptim
+- sudo apt-get install -y libxml2-dev nodejs optipng jpegoptim imagemagick
 services:
 - postgresql
 before_script:
