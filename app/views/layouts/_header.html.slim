@@ -92,7 +92,7 @@ header.header.fixed.clearfix
                                   = image_tag(catalog.image.thumb)
                               .col-lg-8.col-md-12
                                 .row
-                                  - catalog.categories.each do |category|
+                                  - catalog.categories.published.each do |category|
                                     - width = catalog.width_unit * category.width
                                     div class="col-sm-#{width}"
                                       h4 = category.name

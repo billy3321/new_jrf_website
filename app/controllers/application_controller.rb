@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_catalog
-    @catalogs = Catalog.includes(:categories).all
+    @catalogs = Catalog.includes(:categories).published
   end
 
   def set_article_q
