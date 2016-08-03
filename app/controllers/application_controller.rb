@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_catalog, :set_article_q, :set_injustice_keyword, :set_appeal_keyword
+  before_filter :set_catalog, :set_article_q, :set_keywords
 
   def append_info_to_payload(payload)
     super
@@ -27,12 +27,10 @@ class ApplicationController < ActionController::Base
     @article_q = Article.includes(:keywords).search(params[:q])
   end
 
-  def set_injustice_keyword
+  def set_keywords
     @injustice_keyword = Keyword.where(name: '我要申訴').first
-  end
-
-  def set_appeal_keyword
     @appeal_keyword = Keyword.where(name: '我要申冤').first
+    @recruit_keyword = Keyword.where(name: '徵才訊息').first
   end
 
   def after_sign_in_path_for(resource)
