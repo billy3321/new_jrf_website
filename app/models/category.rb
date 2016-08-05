@@ -13,8 +13,15 @@ class Category < ActiveRecord::Base
   end
 
   def set_position
-    if not self.position
-      self.position = Category.maximum("position").to_i + 1
+    self.position ||= Category.maximum("position").to_i + 1
+  end
+
+  def chunk_keywords
+    unless self.keywords.published.blank?
+      max_length = ( self.keywords.published.length + self.width - 1 ) / self.width
+      self.keywords.published.each_slice(max_length).to_a
+    else
+      []
     end
   end
 end

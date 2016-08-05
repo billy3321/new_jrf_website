@@ -1,4 +1,4 @@
-.header-top
+﻿.header-top
   .container
     .row
       .col-xs-2.col-sm-6
@@ -19,7 +19,7 @@
           .social-links.hidden-lg.hidden-md.hidden-sm
             .btn-group.dropdown
               button.btn.dropdown-toggle data-toggle="dropdown" type="button"
-                i.fa.fa-share-alt
+                i.fa.fa-plus
               ul.dropdown-menu.dropdown-animation
                 li.youtube
                   = link_to "https://www.youtube.com/user/JRF25231178", target: "_blank" do
@@ -38,11 +38,11 @@
         .clearfix.header-top-second
           .header-top-dropdown
             .btn-group.dropdown
-              button.btn type="button" onclick="window.location('/about')"
+              button.btn type="button" onclick="window.location.href='/about';"
                 = link_to about_path do
                   i.fa.fa-info
                   | 關於我們
-              button.btn type="button" onclick="window.location('/donate')"
+              button.btn type="button" onclick="window.location.href='/donate';"
                 = link_to donate_path do
                   i.fa.fa-heart
                   | 支持司改
@@ -53,7 +53,7 @@
                 li
                   = search_form_for @article_q, url: articles_path, class: "search-box", role: "search" do |f|
                     .form-group.has-feedback
-                      = f.search_field :title_or_content_cont, class: "form-control", id: "textfield", placeholder: "輸入關鍵字"
+                      = f.search_field :title_or_content_or_author_or_keywords_name_cont, class: "form-control", id: "textfield", placeholder: "輸入關鍵字"
                       i.fa.fa-search.form-control-feedback
                       = f.submit "搜尋", class: "btn btn-default radius btn-sm"
 header.header.fixed.clearfix
@@ -63,6 +63,10 @@ header.header.fixed.clearfix
         .header-left.clearfix
           .logo
             = link_to image_tag("logo.png", alt: "財團法人民間司法改革基金會", id: 'logo'), root_path
+            .pull-right
+              span.badge
+                = link_to "English", "http://www.jrf.org.tw/newjrf/index_new_e.asp", target: "_blank"
+
           .site-slogan 由下而上建立值得人民信賴的司法
       .col-md-9
         .header-right.clearfix
@@ -88,17 +92,21 @@ header.header.fixed.clearfix
                                   = image_tag(catalog.image.thumb)
                               .col-lg-8.col-md-12
                                 .row
-                                  - catalog.categories.each do |category|
-                                    - if catalog.categories.length == 1
-                                      .col-sm-12
-                                        h4 = category.name
-                                        .divider
+                                  - catalog.categories.published.each do |category|
+                                    - width = catalog.width_unit * category.width
+                                    div class="col-sm-#{width}"
+                                      h4 = category.name
+                                      .divider
+                                      - if category.width == 1
                                         ul.menu
                                           - category.keywords.published.each do |keyword|
                                             li
                                               = link_to keyword_path(keyword) do
                                                 i.icon-right-open
                                                 = keyword.name
+                                                - unless keyword.label.blank?
+                                                  | &nbsp;
+                                                  span class="label label-#{keyword.label_type}" = keyword.label
                                           - if category.name == '出版品'
                                             li
                                               = link_to epapers_articles_path do
@@ -108,61 +116,14 @@ header.header.fixed.clearfix
                                               = link_to books_articles_path do
                                                 i.icon-right-open
                                                 | 書籍
-                                    - elsif catalog.categories.length == 2
-                                      .col-sm-6
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-                                    - elsif catalog.categories.length == 3
-                                      .col-sm-4
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-                                    - elsif catalog.categories.length == 4
-                                      .col-sm-3
-                                        h4 = category.name
-                                        .divider
-                                        ul.menu
-                                          - category.keywords.published.each do |keyword|
-                                            li
-                                              = link_to keyword_path(keyword) do
-                                                i.icon-right-open
-                                                = keyword.name
-                                          - if category.name == '出版品'
-                                            li
-                                              = link_to epapers_articles_path do
-                                                i.icon-right-open
-                                                | 電子報
-                                            li
-                                              = link_to books_articles_path do
-                                                i.icon-right-open
-                                                | 書籍
-
+                                      - else
+                                        .row
+                                          - sub_width = 12 / category.width
+                                          - category.chunk_keywords.each do |keywords|
+                                            div class="col-sm-#{sub_width}"
+                                              ul.menu
+                                                - keywords.each do |keyword|
+                                                  li
+                                                    = link_to keyword_path(keyword) do
+                                                      i.icon-right-open
+                                                      = keyword.name

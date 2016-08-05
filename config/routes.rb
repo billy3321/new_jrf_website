@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   match '/about',     to: 'static_pages#about',     via: 'get'
   match '/donate',    to: 'static_pages#donate',    via: 'get'
   match '/search',    to: 'static_pages#search',    via: 'get'
+  match '/thanks',    to: 'static_pages#thanks',    via: 'get'
+  match '/feed',      to: 'static_pages#feed',      format: 'atom', via: 'get'
+  match '/instant_articles', to: 'static_pages#instant_articles',      format: 'rss', via: 'get'
+  match "/sitemap",   to: 'static_pages#sitemap',   format: 'xml',  via: 'get'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :articles, only: [:show, :index] do
     get :presses, on: :collection
@@ -18,9 +22,9 @@ Rails.application.routes.draw do
   # resources :catalogs
   # resources :categories
   # resources :kinds, only: [:show, :index]
-  resources :magazines
-  resources :magazine_articles
-  resources :columns
+  # resources :magazines, only: [:show, :index]
+  # resources :magazine_articles, only: [:show, :index]
+  # resources :columns, only: [:show, :index]
   resources :epapers, only: [:show, :index]
   namespace :admin do
     root 'admins#index',             via: 'get', as: 'admin'
@@ -39,7 +43,8 @@ Rails.application.routes.draw do
       put :show_sort,  on: :collection
       resources :faqs, only: [:index]
     end
-    match 'faqs/sort',  to: 'faqs#sort',  via: 'put'
+    match 'faqs/sort',   to: 'faqs#sort',   via: 'put'
+    match 'slides/sort', to: 'slides#sort', via: 'put'
   end
 
   namespace :api, defaults: { format: 'json' } do

@@ -1,7 +1,0 @@
-h1 Editing column
-
-= simple_form_for(@column, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to 'Show', column_path(@column), class: "btn"
-= link_to 'Back', columns_path, class: "btn"

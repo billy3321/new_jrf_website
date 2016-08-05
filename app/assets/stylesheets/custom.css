@@ -49,3 +49,20 @@ blockquote:before {
 .blockquote {
 	margin-right:40px;
 }
+li.keyword-list + li.keyword-list:before{
+	content:"、";
+	}
+h2 i{
+	margin:3px;
+}
+.list-icons{
+	text-indent : -10px ;
+	margin-left:15px;
+}
+.blogpost-content h4.title {
+	font-size:18px;
+	min-height:60px;
+}
+.owl-controls .owl-pagination{
+	bottom: 0px;
+}

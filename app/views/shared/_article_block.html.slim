@@ -1,5 +1,5 @@
 - if a.kind
-  .masonry-grid-item.isotope-item.col-sm-6.col-md-4 class="jrf-#{a.kind}"
+  .masonry-grid-item.col-sm-6.col-md-4 class="jrf-#{a.kind}"
     article.clearfix.blogpost
       .overlay-container
         - if a.image.blank?
@@ -10,7 +10,7 @@
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
           span.month = a.published_at.try(:strftime, '%-m月 %Y')
-        .blogpost-content
+        .blogpost-content.small
           header
             h4.title = link_to a.title, article_path(a)
             .submitted
@@ -22,12 +22,12 @@
             = display_shorter(a.content, 50)
       footer.clearfix
         ul.links.pull-left
+          i.fa.fa-tags.pr-5
           - a.keywords.each do |k|
-            li
-              i.fa.fa-tags.pr-5
+            li.keyword-list
               = link_to k.name, keyword_path(k)
 - else
-  .masonry-grid-item.isotope-item.col-sm-6.col-md-4
+  .masonry-grid-item.col-sm-6.col-md-4
     article.clearfix.blogpost
       .overlay-container
         - if a.image.blank?
@@ -38,7 +38,7 @@
         .post-info
           span.day = a.published_at.try(:strftime, '%d')
           span.month = a.published_at.try(:strftime, '%-m月 %Y')
-        .blogpost-content
+        .blogpost-content.small
           header
             h4.title = link_to a.title, article_path(a)
             .submitted
@@ -50,7 +50,7 @@
             = display_shorter(a.content, 50)
       footer.clearfix
         ul.links.pull-left
+          i.fa.fa-tags.pr-5
           - a.keywords.each do |k|
-            li
-              i.fa.fa-tags.pr-5
+            li.keyword-list
               = link_to k.name, keyword_path(k)

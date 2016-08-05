@@ -33,11 +33,13 @@ FactoryGirl.define do
   factory :about_article, parent: :article do
     kind "system"
     id 1
+    system_type 'about'
   end
 
   factory :donate_article, parent: :article do
     kind "system"
     id 2
+    system_type 'donate'
   end
 end
 

@@ -98,7 +98,7 @@ h6 {
 	padding-top: 20px;
 }
 p {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 a {
 	color: #e84c3d;
@@ -192,7 +192,7 @@ ul {
 	padding: 5px 0;
 }
 .list-icons li i {
-	width: 25px;
+	width: 10px;
 	text-align: center;
 }
 .list li .vertical-divider {
@@ -2065,9 +2065,9 @@ tbody {
 
 /* The color of default buttons is the color of current color scheme */
 .btn-default {
-	background-color: #e84c3d;
+	background-color: #b73c5a;
 	color: #fff !important;
-	border-color: #cd3c2e;
+	border-color: #b73c5a;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -4825,7 +4825,6 @@ ul.tweets li span {
 ---------------------------------- */
 .isotope-container {
 	display: none;
-	margin-bottom: 40px;
 }
 .isotope-item {
 	margin-bottom: 30px;

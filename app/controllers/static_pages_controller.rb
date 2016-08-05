@@ -26,28 +26,72 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    @article = Article.find(1)
+    @article = Article.where(kind: 'system', system_type: 'about').first
     set_meta_tags({
       title: "關於我們",
       og: {
         title: "關於我們",
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
   end
 
   def donate
-    @article = Article.find(2)
+    @article = Article.where(kind: 'system', system_type: 'donate').first
     set_meta_tags({
       title: "捐款支持",
       og: {
         title: "捐款支持",
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}"
+      },
+      article: {
+        author: 'https://www.facebook.com/jrf.tw',
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
+      }
+    })
+  end
+
+  def thanks
+    set_meta_tags({
+      title: "感謝您的支持",
+      og: {
+        title: "感謝您的支持",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/thanks.png"
+      },
+      twitter: {
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/thanks.png"
       }
     })
   end
 
   def sitemap
-    @articles = Article.all
+    @articles = Article.published
+    @keywords = Keyword.published
+  end
+
+  def feed
+    @articles = Article.published
+    respond_to do |format|
+      format.atom { render :layout => false }
+    end
+  end
+
+  def instant_articles
+    @articles = Article.published
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
   end
 end

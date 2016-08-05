@@ -36,10 +36,12 @@ aside.col-md-2.gray-bg
         li
           = link_to '修改/刪除文章', admin_articles_path
         li.nav-divider
-        li
-          = link_to '修改介紹頁', edit_admin_article_path(1)
-        li
-          = link_to '修改捐款頁', edit_admin_article_path(2)
+        - unless @about_article.blank?
+          li
+            = link_to '修改介紹頁', edit_admin_article_path(@about_article)
+        - unless @donate_article.blank?
+          li
+            = link_to '修改捐款頁', edit_admin_article_path(@donate_article)
         li.nav-divider
         li
           = link_to '後台使用者', admin_users_path

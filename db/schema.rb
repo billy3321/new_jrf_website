@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907060005) do
+ActiveRecord::Schema.define(version: 20160802073541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 20150907060005) do
     t.string   "youtube_id"
     t.string   "link"
     t.text     "description"
-    t.boolean  "published",    default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "published",     default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.text     "fb_ia_content"
+    t.string   "system_type"
   end
 
   create_table "articles_keywords", id: false, force: :cascade do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150907060005) do
     t.integer "catalog_id"
     t.boolean "published",  default: true
     t.integer "position"
+    t.integer "width",      default: 1,    null: false
   end
 
   add_index "categories", ["catalog_id"], name: "index_categories_on_catalog_id", using: :btree
@@ -73,22 +76,6 @@ ActiveRecord::Schema.define(version: 20150907060005) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-
-  create_table "columns", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "epapers", force: :cascade do |t|
-    t.string   "title"
-    t.string   "filename"
-    t.text     "content"
-    t.date     "published_at"
-    t.string   "image"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
 
   create_table "faqs", force: :cascade do |t|
     t.integer "keyword_id"
@@ -111,37 +98,18 @@ ActiveRecord::Schema.define(version: 20150907060005) do
     t.text    "content"
     t.integer "position"
     t.integer "show_position", default: 0,     null: false
+    t.string  "label"
+    t.string  "label_type"
   end
 
   add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree
   add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
 
-  create_table "keywords_magazine_articles", force: :cascade do |t|
-    t.integer "keyword_id",          null: false
-    t.integer "magazine_article_id", null: false
-  end
-
-  add_index "keywords_magazine_articles", ["keyword_id", "magazine_article_id"], name: "keywords_magazine_articles_index", unique: true, using: :btree
-
-  create_table "magazine_articles", force: :cascade do |t|
-    t.integer  "magazine_id"
-    t.integer  "column_id"
-    t.string   "image"
-    t.string   "title"
-    t.string   "author"
-    t.text     "content"
-    t.text     "comment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "magazines", force: :cascade do |t|
-    t.string   "name"
-    t.string   "volumn"
-    t.integer  "issue"
-    t.date     "published_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "slides", force: :cascade do |t|
+    t.integer "position"
+    t.integer "slideable_id"
+    t.string  "slideable_type"
+    t.string  "image"
   end
 
   create_table "users", force: :cascade do |t|

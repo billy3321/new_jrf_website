@@ -1,3 +1,4 @@
+
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
@@ -10,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-  process :optimize
+  # process :optimize
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -38,13 +39,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
   version :thumb do
-    process resize_to_fill: [480, 360]
-    process :optimize
+    process resize_to_fill: [480, 270]
+    process optimize: [{ quiet: true, quality: 50 }]
   end
 
   version :banner do
     process resize_to_fill: [1600, 900]
-    process :optimize
+    # process optimize: [{ quiet: true, quality: 50}]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

@@ -6,6 +6,7 @@ describe "Admin/Keyword" do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:keyword) { FactoryGirl.create(:keyword) }
   let(:faq) { FactoryGirl.create(:faq) }
+  let(:slide) { FactoryGirl.create(:keyword_slide) }
   let(:new_keyword) do
     {
       name: "new_keyword_name"
@@ -36,7 +37,7 @@ describe "Admin/Keyword" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/keywords", :keyword => new_keyword
+        post "/admin/keywords", keyword: new_keyword
         expect(response).to be_redirect
       end
     end
@@ -44,8 +45,8 @@ describe "Admin/Keyword" do
     describe "#update" do
       it "redirect" do
         keyword
-        update_data = { :name => "new_name" }
-        put "/admin/keywords/#{keyword.id}", :keyword => update_data
+        update_data = { name: "new_name" }
+        put "/admin/keywords/#{keyword.id}", keyword: update_data
         expect(response).to be_redirect
       end
     end
@@ -113,7 +114,7 @@ describe "Admin/Keyword" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/keywords", :keyword => new_keyword
+        post "/admin/keywords", keyword: new_keyword
         expect(response).to be_redirect
       end
     end
@@ -121,8 +122,8 @@ describe "Admin/Keyword" do
     describe "#update" do
       it "redirect" do
         keyword
-        update_data = { :name => "new_name" }
-        put "/admin/keywords/#{keyword.id}", :keyword => update_data
+        update_data = { name: "new_name" }
+        put "/admin/keywords/#{keyword.id}", keyword: update_data
         expect(response).to be_redirect
       end
     end
@@ -190,7 +191,7 @@ describe "Admin/Keyword" do
 
     describe "#create" do
       it "success" do
-        post "/admin/keywords", :keyword => new_keyword
+        post "/admin/keywords", keyword: new_keyword
         expect(response).to be_redirect
       end
     end
@@ -198,8 +199,8 @@ describe "Admin/Keyword" do
     describe "#update" do
       it "success" do
         keyword
-        update_data = { :name => "new_name" }
-        put "/admin/keywords/#{keyword.id}", :keyword => update_data
+        update_data = { name: "new_name" }
+        put "/admin/keywords/#{keyword.id}", keyword: update_data
         expect(response).to be_redirect
       end
     end
@@ -218,14 +219,14 @@ describe "Admin/Keyword" do
       it "success" do
         faq
         update_faq_data = {
-          :faqs_attributes => [
+          faqs_attributes: [
             {
-              :id => faq.id,
-              :question => 'new_faq_question'
+              id: faq.id,
+              question: 'new_faq_question'
             }
           ]
         }
-        put "/admin/keywords/#{faq.keyword_id}", :keyword => update_faq_data
+        put "/admin/keywords/#{faq.keyword_id}", keyword: update_faq_data
         expect(response).to be_redirect
         faq.reload
         expect(faq.question).to match(update_faq_data[:faqs_attributes][0][:question])
@@ -236,16 +237,51 @@ describe "Admin/Keyword" do
       it "success" do
         faq
         update_faq_data = {
-          :faqs_attributes => [
+          faqs_attributes: [
             {
-              :id => faq.id,
-              :_destroy => 1
+              id: faq.id,
+              _destroy: 1
             }
           ]
         }
         expect {
-          put "/admin/keywords/#{faq.keyword_id}", :keyword => update_faq_data
+          put "/admin/keywords/#{faq.keyword_id}", keyword: update_faq_data
         }.to change { Faq.count }.by(-1)
+      end
+    end
+
+    describe "nested slide #update" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test.jpg'))
+            }
+          ]
+        }
+        put "/admin/keywords/#{slide.slideable.id}", keyword: update_slide_data
+        expect(response).to be_redirect
+        slide.reload
+        expect(slide.image.filename).to match('test.jpg')
+      end
+    end
+
+    describe "nested slide #update delete" do
+      it "success" do
+        slide
+        update_slide_data = {
+          slides_attributes: [
+            {
+              id: slide.id,
+              _destroy: 1
+            }
+          ]
+        }
+        expect {
+          put "/admin/keywords/#{slide.slideable.id}", keyword: update_slide_data
+        }.to change { Slide.count }.by(-1)
       end
     end
 

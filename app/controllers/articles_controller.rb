@@ -17,10 +17,10 @@ class ArticlesController < ApplicationController
     else
       if user_signed_in? and current_user.admin?
         @q = Article.includes(:keywords).search(params[:q])
-        @articles = @q.result(:distinct => true).page(params[:page])
+        @articles = @q.result(distinct: true).page(params[:page])
       else
         @q = Article.includes(:keywords).published.search(params[:q])
-        @articles = @q.result(:distinct => true).page(params[:page])
+        @articles = @q.result(distinct: true).page(params[:page])
       end
     end
     set_meta_tags({
@@ -32,14 +32,12 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.as_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
@@ -71,14 +69,12 @@ class ArticlesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.as_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
@@ -110,14 +106,12 @@ class ArticlesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.to_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
@@ -149,14 +143,12 @@ class ArticlesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.as_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
@@ -188,14 +180,12 @@ class ArticlesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.as_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
@@ -227,36 +217,28 @@ class ArticlesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => {
-          status: "success",
-          articles: JSON.parse(
-            @articles.to_json({include: [:keywords], except: [:published]})
-          ),
-          count: @articles_count
-        },
-        callback: params[:callback]
+      format.json { render json: {
+        status: "success",
+        articles: @articles.as_json(include: [:keywords], except: [:published]),
+        count: @articles_count
+      },
+      callback: params[:callback]
       }
     end
   end
 
   # GET /articles/1
   def show
-    unless @article.published
-      if user_signed_in? and current_user.admin?
-      else
-        not_found
-      end
-    end
     keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
     if @article.keywords.first
-      @related_articles = @article.keywords.first.articles.first(4).reject { |a| [@article].include? a }
+      @related_articles = @article.keywords.first.articles.published.first(4).reject { |a| [@article].include? a }
       if @related_articles.length > 3
         @related_articles = @related_articles.first(3)
       end
     else
       @related_articles = []
     end
-    @lastest_articles = Article.first(3)
+    @lastest_articles = Article.published.first(3)
     set_meta_tags({
       title: @article.title,
       description: sanitize(@article.description),
@@ -266,16 +248,23 @@ class ArticlesController < ApplicationController
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
         description: sanitize(@article.description)
+      },
+      article: {
+        author: Setting.url.fb,
+        publisher: Setting.url.fb,
+        published_time: @article.published_at.strftime('%FT%T%:z'),
+        modified_time: @article.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
 
     respond_to do |format|
       format.html
-      format.json { render :json => {
+      format.json { render json: {
         status: "success",
-        article: JSON.parse(
-            @article.to_json({include: [:keywords], except: [:published]})
-          ),
+        article: @article.as_json(include: [:keywords], except: [:published]),
         callback: params[:callback]
         }
       }

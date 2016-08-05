@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Static pages" do
+describe "Static Pages" do
 
   describe "#home" do
     it "success" do
@@ -23,6 +23,15 @@ describe "Static pages" do
     it "success" do
       FactoryGirl.create :donate_article
       get "/donate"
+      expect(response).to be_success
+    end
+  end
+
+  describe "#sitemap" do
+    it "success" do
+      2.times { FactoryGirl.create :keyword }
+      2.times { FactoryGirl.create :article }
+      get "/sitemap.xml"
       expect(response).to be_success
     end
   end

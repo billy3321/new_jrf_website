@@ -23,7 +23,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => {
+        render json: {
           status: "success",
           keyword: @keywords,
           count: count
@@ -47,38 +47,47 @@ class KeywordsController < ApplicationController
       @kind = nil
     end
     if @kind == 'presses'
-      @articles = @keyword.articles.presses.published.page params[:page]
+      @articles = @keyword.articles.presses.published.page(params[:page]).per(10)
     elsif @kind == 'comments'
-      @articles = @keyword.articles.comments.published.page params[:page]
+      @articles = @keyword.articles.comments.published.page(params[:page]).per(10)
     elsif @kind == 'activities'
-      @articles = @keyword.articles.activities.published.page params[:page]
+      @articles = @keyword.articles.activities.published.page(params[:page]).per(10)
     elsif @kind == 'epapers'
-      @articles = @keyword.articles.epapers.published.page params[:page]
+      @articles = @keyword.articles.epapers.published.page(params[:page]).per(10)
     elsif @kind == 'books'
-      @articles = @keyword.articles.books.published.page params[:page]
+      @articles = @keyword.articles.books.published.page(params[:page]).per(10)
     else
-      @articles = @keyword.articles.published.page params[:page]
+      @articles = @keyword.articles.published.page(params[:page]).per(10)
     end
     set_meta_tags({
       title: @keyword.title,
       description: sanitize(@keyword.description),
+      keyword: @keyword.title,
       og: {
+        type: 'article',
         image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
         title: @keyword.title,
         description: sanitize(@keyword.description)
+      },
+      article: {
+        author: Setting.url.fb,
+        publisher: Setting.url.fb
+      },
+      twitter: {
+        image: @keyword.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf-img.png" : "#{Setting.url.protocol}://#{Setting.url.host}#{@keyword.image}",
       }
     })
     respond_to do |format|
       format.html
-      format.json {render :json => {
+      format.json {render json: {
         status: "success",
-        keyword: JSON.parse(@keyword.to_json(
-        except: [:published, :created_at, :updated_at],
-        include: {
-          faqs: {},
-          articles: {except: [:published], include: [:keywords]}
-        }))},
-        callback: params[:callback]
+        keyword: @keyword.as_json(
+          except: [:published, :created_at, :updated_at],
+          include: {
+            faqs: {},
+            articles: {except: [:published], include: [:keywords]}
+          })},
+          callback: params[:callback]
       }
     end
   end

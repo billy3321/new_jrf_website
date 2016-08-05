@@ -1,7 +1,10 @@
 .container
-  .row.col-lg-12
-    - unless @keyword.image.blank?
-      .embed-responsive.embed-responsive-16by9
+  .row.col-lg-10.col-lg-offset-1
+    .owl-carousel.content-slider-with-controls-autoplay
+      - if @keyword.slides.present?
+        - @keyword.slides.each do |slide|
+          = image_tag(slide.image, class: "embed-responsive-item", alt: "", width: "100%")
+      - elsif @keyword.image.present?
         = image_tag(@keyword.image.banner, class: "embed-responsive-item", alt: "", width: "100%")
     h1.title.text-center = @keyword.title
     .separator
@@ -10,9 +13,7 @@
 
 - if @keyword.faqs.any?
   .container
-    .row.col-lg-12
-      h2 FAQ
-      .separator-2
+    .row.col-lg-10.col-lg-offset-1
       .panel-group#accordion-faq
         - num = 0
         - @keyword.faqs.each do |faq|
@@ -29,83 +30,81 @@
 
 - if @keyword.articles.any?
   .container
-    h2#more 相關訊息
-    .separator-2
-    .row.hidden-xs
-      .container.section
-        ul.nav.nav-tabs.nav-justified
-          - if @kind.blank?
-            li.active
-              = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
-            li
-              = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
-            li
-              = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
-            li
-              = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
-            li
-              = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
-            li
-              = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
-          - else
-            li
-              = link_to "所有", url_for(params.merge({k: nil, page: nil, anchor: 'more'}))
-            - if @kind == 'presses'
+    .col-lg-10.col-lg-offset-1
+      .row.hidden-xs
+        .section
+          ul.nav.nav-tabs.nav-justified
+            - if @kind.blank?
               li.active
-                = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
-            - else
+                = link_to "所有", url_for(params.merge({k: nil, anchor: 'more'}))
               li
                 = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
-            - if @kind == 'activities'
-              li.active
-                = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
-            - else
               li
                 = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
-            - if @kind == 'comments'
-              li.active
-               = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
-            - else
               li
                 = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
-            - if @kind == 'epapers'
-              li.active
-                = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
-            - else
               li
                 = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
-            - if @kind == 'books'
-              li.active
-                = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
-            - else
               li
                 = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
-    .row
-      .block.clearfix.isotope-container
-        - @articles.each do |a|
-          .list-with-image.isotope-item.col-md-4.col-sm-6 class="jrf-#{a.kind}"
-            .overlay-container
-              - if a.image.blank?
-                = image_tag("jrf-img.png", alt: "")
+            - else
+              li
+                = link_to "所有", url_for(params.merge({k: nil, page: nil, anchor: 'more'}))
+              - if @kind == 'presses'
+                li.active
+                  = link_to "新聞稿", url_for(params.merge({k: "presses", anchor: 'more'}))
               - else
-                = image_tag(a.image.thumb, alt: "")
-              = link_to article_path(a), class: "overlay small" do
-                i.fa.fa-link
-                - if a.kind == 'press'
-                  span 新聞稿
-                - elsif a.kind == 'activity'
-                  span 活動
-                - elsif a.kind == 'comment'
-                  span 評論
-                - elsif a.kind == 'epaper'
-                  span 電子報
-                - elsif a.kind == 'book'
-                  span 書籍
+                li
+                  = link_to "新聞稿", url_for(params.merge({k: "presses", page: nil, anchor: 'more'}))
+              - if @kind == 'activities'
+                li.active
+                  = link_to "活動", url_for(params.merge({k: "activities", anchor: 'more'}))
+              - else
+                li
+                  = link_to "活動", url_for(params.merge({k: "activities", page: nil, anchor: 'more'}))
+              - if @kind == 'comments'
+                li.active
+                 = link_to "評論", url_for(params.merge({k: "comments", anchor: 'more'}))
+              - else
+                li
+                  = link_to "評論", url_for(params.merge({k: "comments", page: nil, anchor: 'more'}))
+              - if @kind == 'epapers'
+                li.active
+                  = link_to "電子報", url_for(params.merge({k: "epapers", anchor: 'more'}))
+              - else
+                li
+                  = link_to "電子報", url_for(params.merge({k: "epapers", page: nil, anchor: 'more'}))
+              - if @kind == 'books'
+                li.active
+                  = link_to "書籍", url_for(params.merge({k: "books", anchor: 'more'}))
+              - else
+                li
+                  = link_to "書籍", url_for(params.merge({k: "books", page: nil, anchor: 'more'}))
+      .row
+        .isotope-container#more
+          - @articles.each do |a|
+            .list-with-image.isotope-item.col-sm-6 class="jrf-#{a.kind}"
+              .overlay-container
+                - if a.image.blank?
+                  = image_tag("jrf-img.png", alt: "")
                 - else
-                  span 不明
-            h2
-              = link_to a.title, article_path(a)
-            p.small = a.published_at.try(:strftime, '%Y-%m-%d')
-    .row.text-center
-      .col-md-10.col-md-offset-1
-        = paginate @articles, params: { anchor: 'more' }
+                  = image_tag(a.image.thumb, alt: "")
+                = link_to article_path(a), class: "overlay small" do
+                  i.fa.fa-link
+                  - if a.kind == 'press'
+                    span 新聞稿
+                  - elsif a.kind == 'activity'
+                    span 活動
+                  - elsif a.kind == 'comment'
+                    span 評論
+                  - elsif a.kind == 'epaper'
+                    span 電子報
+                  - elsif a.kind == 'book'
+                    span 書籍
+                  - else
+                    span 不明
+              h2
+                = link_to a.title, article_path(a)
+              p.small = a.published_at.try(:strftime, '%Y-%m-%d')
+        .text-center
+          = paginate @articles, params: { anchor: 'more' }

@@ -1,7 +1,11 @@
 .form-group
-   = f.input :name, label: '專案名稱', required: true, input_html: { class: 'form-control' }, hint: "建議小於8個字"
+  = f.input :name, label: '專案名稱', required: true, input_html: { class: 'form-control' }, hint: "建議小於8個字"
 .form-group
-   = f.input :title, label: '專案標題', required: true, input_html: { class: 'form-control' }
+  = f.input :title, label: '專案標題', required: true, input_html: { class: 'form-control' }
+.form-group
+  = f.input :label, label: '標籤文字', required: false, input_html: { class: 'form-control' }, hint: "留空則無標籤"
+.form-group
+  = f.input :label_type, collection: [['灰色', 'default'], ['藍色', 'primary'], ['綠色', 'success'], ['淡藍色', 'info'], ['黃色', 'warning'], ['紅色', 'danger']], input_html: { class: 'form-control' }, include_blank: false
 .form-group
   = f.input :category_id, collection: Catalog.all, as: :grouped_select, group_method: :categories, include_blank: false, label: '目錄分類'
 .form-group
@@ -24,6 +28,11 @@
   = f.input :remove_image, as:  :boolean, label: '移除圖片'
   p.help-block 建議大小1600*900，將顯示為專案圖片
   = image_tag(@keyword.image_url, alt:"") if @keyword.image?
+- unless @keyword.new_record?
+  #slides.sortable-slide
+    = f.simple_fields_for :slides do |slide|
+      = render :partial => 'slide_fields', :locals => { :f => slide }
+    = link_to_add_association "新增Slide", f, :slides, class: "btn radius btn-white btn-sm"
 .form-group
   label 內文
   = f.cktext_area :content, label: '內文', required: true

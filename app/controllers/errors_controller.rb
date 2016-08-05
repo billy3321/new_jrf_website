@@ -1,5 +1,6 @@
 class ErrorsController < ApplicationController
   def error404
+    @keyword = Keyword.where(name: '反黑箱服貿案').first
     if json_request?
       render json: {error: "not found", status: "failed"}, status: :not_found, callback: params[:callback]
     else
@@ -16,6 +17,7 @@ class ErrorsController < ApplicationController
   end
 
   def error500
+    @keyword = Keyword.where(name: '邱和順案').first
     if json_request?
       render json: {error: "internal server error", status: "failed"}, status: :internal_server_error, callback: params[:callback]
     else

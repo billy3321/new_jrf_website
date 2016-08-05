@@ -78,9 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.logger = Logger.new(config.paths["log"].first, 'weekly')
   config.lograge.enabled = true
-  config.lograge.custom_options = lambda do |event|
-    options = event.payload.slice(:request_id, :user_id, :ip)
-    options[:params] = event.payload[:params].except("controller", "action")
-    options
-  end
+  config.lograge.custom_options = ->(event) { options = event.payload.slice(:request_id, :user_id, :ip)
+                                    options[:params] = event.payload[:params].except("controller", "action")
+                                    options }
 end

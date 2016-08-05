@@ -3,7 +3,7 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords
   def index
-    @q = Keyword.search(params[:q])
+    @q = Keyword.includes(category: :catalog).search(params[:q])
     @keywords = @q.result(distinct: true)
     set_meta_tags({
       title: "專案管理"
@@ -12,18 +12,19 @@ class Admin::KeywordsController < Admin::BaseController
 
   # GET /keywords/1
   def show
+    @slides = @keyword.slides.all
     @faqs = @keyword.faqs.all
   end
 
   def order
-    @catalogs = Catalog.all
+    @catalogs = Catalog.includes(categories: :keywords).all
     set_meta_tags({
       title: "專案排序"
     })
   end
 
   def show_order
-    @keywords = Keyword.showed
+    @keywords = Keyword.includes(category: :catalog).showed
     set_meta_tags({
       title: "首頁顯示專案排序"
     })
@@ -74,14 +75,14 @@ class Admin::KeywordsController < Admin::BaseController
     keyword_params[:order].each do |key,value|
       Keyword.find(value[:id]).update_attribute(:position, value[:position])
     end
-    render :nothing => true
+    render nothing: true
   end
 
   def show_sort
     keyword_params[:order].each do |key,value|
       Keyword.find(value[:id]).update_attribute(:show_position, value[:position])
     end
-    render :nothing => true
+    render nothing: true
   end
 
   private
@@ -94,8 +95,9 @@ class Admin::KeywordsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def keyword_params
     params.require(:keyword).permit(:category_id, :name, :published, :showed,
-      :image, :image_cache, :remove_image, :title, :content, :description, 
-      :cover, :cover_cache, :remove_cover, :position, {order: [:id, :position]},
-      :faqs_attributes => [:id, :question, :answer, :keyword_id, :_destroy])
+      :image, :image_cache, :remove_image, :title, :content, :description,
+      :cover, :cover_cache, :remove_cover, :position, :label, :label_type, {order: [:id, :position]},
+      faqs_attributes: [:id, :question, :answer, :keyword_id, :_destroy],
+      slides_attributes: [:id, :slideable_id, :slideable_type, :image, :image_cache, :remove_image, :_destroy])
   end
 end

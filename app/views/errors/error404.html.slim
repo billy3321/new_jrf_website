@@ -1,0 +1,5 @@
+.text-center
+  - if @keyword.present?
+    = link_to image_tag('404error.png', class: 'center-block', alt: '找不到頁面 (404 Not Found)'), keyword_path(@keyword)
+  - else
+    = image_tag('404error.png', class: 'center-block', alt: '找不到頁面 (404 Not Found)')

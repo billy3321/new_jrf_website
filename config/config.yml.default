@@ -23,6 +23,13 @@ defaults: &defaults
   url:
     host: ""
     protocol: ""
+    fb: ""
+
+  fb:
+    pages: ""
+
+  google:
+    pages: ""
 
   rollbar:
     access_token: ""

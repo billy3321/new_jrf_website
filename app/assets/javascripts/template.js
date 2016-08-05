@@ -20,17 +20,19 @@
 		var delay=0, setTimeoutConst;
 		if ((Modernizr.mq('only all and (min-width: 768px)') && !Modernizr.touch) || $("html.ie8").length>0) {
 			$('.main-navigation .navbar-nav>li.dropdown, .main-navigation li.dropdown>ul>li.dropdown').hover(
-			function(){
+			  function(){},	function(){
+				clearTimeout(setTimeoutConst );
+				$(this).removeClass('open');
+				$(this).find('.dropdown-toggle').removeClass('disabled');
+			});
+
+			$('.main-navigation .navbar-nav>li.dropdown, .main-navigation li.dropdown>ul>li.dropdown').click(
+				function(){
 				var $this = $(this);
 				setTimeoutConst = setTimeout(function(){
 					$this.addClass('open').slideDown();
 					$this.find('.dropdown-toggle').addClass('disabled');
 				}, delay);
-
-			},	function(){
-				clearTimeout(setTimeoutConst );
-				$(this).removeClass('open');
-				$(this).find('.dropdown-toggle').removeClass('disabled');
 			});
 		};
 
@@ -291,7 +293,7 @@
 			});
 			$(".owl-carousel.content-slider").owlCarousel({
 				singleItem: true,
-				autoPlay: 5000,
+				autoPlay: 20000,
 				navigation: false,
 				navigationText: false,
 				pagination: false
@@ -305,7 +307,7 @@
 			});
 			$(".owl-carousel.content-slider-with-controls-autoplay").owlCarousel({
 				singleItem: true,
-				autoPlay: 5000,
+				autoPlay: 20000,
 				navigation: true,
 				navigationText: false,
 				pagination: true
