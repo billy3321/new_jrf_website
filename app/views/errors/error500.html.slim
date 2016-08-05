@@ -1,2 +1,5 @@
 .text-center
-  = image_tag('500error.png', class: 'center-block')
+  - if @keyword.present?
+    = link_to image_tag('500error.png', alt: '伺服器錯誤 (500 Internal Server Error)', class: 'center-block'), keyword_path(@keyword)
+  - else
+    = image_tag('500error.png', alt: '伺服器錯誤 (500 Internal Server Error)', class: 'center-block')
