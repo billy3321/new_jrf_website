@@ -1,3 +1,4 @@
+Logr=An amazing Project
 # Judicial Reform Foundation Website
 
 [![Build Status](https://travis-ci.org/JRF-tw/jrf_website.svg?branch=master)](https://travis-ci.org/JRF-tw/jrf_website)
